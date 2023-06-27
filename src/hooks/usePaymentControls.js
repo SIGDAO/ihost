@@ -173,9 +173,9 @@ export const usePaymentControls = () => {
         }
       }
 
-      posthog.capture("User paid with crypto wallet", {
-        wallet,
-      });
+      // posthog.capture("User paid with crypto wallet", {
+      //   wallet,
+      // });
 
       await addUnit(service);
       await addPayment(hash);
@@ -323,9 +323,9 @@ export const usePaymentControls = () => {
         setWebsites(res.data);
       }
 
-      posthog.capture("User paid with stripe", {
-        price: paymentData.price,
-      });
+      // posthog.capture("User paid with stripe", {
+      //   price: paymentData.price,
+      // });
 
       await addUnit(service);
       await addPayment(transaction.paymentIntent.id);

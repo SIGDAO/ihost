@@ -16,7 +16,7 @@ import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
 import { teamArr } from "@/utils/json";
 import { webColor } from "@/theme/index";
-import posthog from "posthog-js";
+
 
 const Team = () => {
   const containerColor = useColorModeValue(
@@ -59,11 +59,6 @@ const Team = () => {
                     <IconButton
                       icon={<FaTwitter />}
                       size="sm"
-                      onClick={() =>
-                        posthog?.capture("User visited team twitter", {
-                          name: member.name,
-                        })
-                      }
                     />
                   </Link>
                 )}
@@ -72,11 +67,6 @@ const Team = () => {
                     <IconButton
                       icon={<FaLinkedin />}
                       size="sm"
-                      onClick={() =>
-                        posthog?.capture("User visited team linkedin", {
-                          name: member.name,
-                        })
-                      }
                     />
                   </Link>
                 )}
@@ -85,11 +75,7 @@ const Team = () => {
                     <IconButton
                       icon={<FaYoutube />}
                       size="sm"
-                      onClick={() =>
-                        posthog?.capture("User visited team youtube", {
-                          name: member.name,
-                        })
-                      }
+
                     />
                   </Link>
                 )}
@@ -98,11 +84,6 @@ const Team = () => {
                     <IconButton
                       icon={<FaFacebook />}
                       size="sm"
-                      onClick={() =>
-                        posthog?.capture("User visited team facebook", {
-                          name: member.name,
-                        })
-                      }
                     />
                   </Link>
                 )}
@@ -111,11 +92,6 @@ const Team = () => {
                     <IconButton
                       icon={<FaInstagram />}
                       size="sm"
-                      onClick={() =>
-                        posthog?.capture("User visited team instagram", {
-                          name: member.name,
-                        })
-                      }
                     />
                   </Link>
                 )}

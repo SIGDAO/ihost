@@ -40,8 +40,31 @@ export const GeneratorProvider = ({ children }) => {
   const [youtubeURL, setYoutubeURL] = useState("");
   const [utilsTab, setUtilsTab] = useState("image");
   const [jsonFiles, setJsonFiles] = useState();
+   //For signum metadata
+   const [royalties, setRoyalties] = useState(0);
+   const [nftTypes, setNftTypes] = useState([]);
+   const [attribute1, setAttribute1] = useState("");
+   const [attribute2, setAttribute2] = useState("");
+   const [attribute3, setAttribute3] = useState("");
+   const [attribute4, setAttribute4] = useState("");
+   const [attribute5, setAttribute5] = useState("");
+   const [attribute6, setAttribute6] = useState("");
+   const [attribute7, setAttribute7] = useState("");
+   const [attribute8, setAttribute8] = useState("");
+   const [signumAttributes, setSignumAttributes] = useState([]);
+   const [listingMode, setlistingMode] = useState("Not For Sale");
+   const [price, setPrice] = useState(0);
+   const [offerPrice, setOfferPrice] = useState(0);
+   const [auctionEnd, setAuctionEnd] = useState("");
+   const [edition,setEdition] = useState("");
+   const [identifier,setIdentifier] = useState("");
+   const [officialWeb,setOfficialWeb] = useState("");
+   const [socialPlatform,setSocialPlatform] = useState("");
+   const [numOfAttributes,updateNum] = useState(0);
+   const [attributeType,setAttributeType] = useState("");
+   const [attributeName,setAttributeName] = useState("");
   const canvasRef = useRef();
-
+  const [attributes, setAttributes] = useState("");
   const controllers = {
     name,
     setName,
@@ -114,6 +137,53 @@ export const GeneratorProvider = ({ children }) => {
     setUtilsTab,
     jsonFiles,
     setJsonFiles,
+     //For signum metadata
+     royalties,
+     setRoyalties,
+      attributes,
+     setAttributes,
+     nftTypes,
+     setNftTypes,
+     edition,
+     setEdition,
+     identifier,
+     setIdentifier,
+     officialWeb,
+     setOfficialWeb,
+     socialPlatform,
+     setSocialPlatform,
+     attribute1, 
+     setAttribute1,
+     attribute2,
+     setAttribute2,
+     attribute3, 
+     setAttribute3,
+     attribute4, 
+     setAttribute4,
+     attribute5, 
+     setAttribute5,
+     attribute6, 
+     setAttribute6,
+     attribute7, 
+     setAttribute7,
+     attribute8, 
+     setAttribute8,
+     signumAttributes,
+     setSignumAttributes,
+     listingMode, 
+     setlistingMode,
+     price, 
+     setPrice,
+     offerPrice, 
+     setOfferPrice,
+     auctionEnd, 
+     setAuctionEnd,
+     numOfAttributes, 
+     updateNum,
+     attributeType, 
+     setAttributeType,
+     attributeName,
+     setAttributeName,
   };
 
   return (

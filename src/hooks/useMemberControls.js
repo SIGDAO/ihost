@@ -11,8 +11,27 @@ import config from "@/config/index";
 import Web3 from "web3";
 import posthog from "posthog-js";
 import axios from "axios";
+//not for original iHost 
+import {useAppDispatch} from '../xtWallet/hooks/useAppDispatch';
+import {useAppSelector} from '../xtWallet/hooks/useAppSelector';
+import {useAppContext} from '../xtWallet/hooks/useAppContext';
+import {actions, selectIsWalletConnected} from "../xtWallet/states/walletState";
+import {Address} from '@signumjs/core' 
+import {useNetworkMetadata} from '../xtWallet/hooks/useNetworkMetadata';
+import {LedgerClientFactory} from '@signumjs/core'
 
 export const useMemberControls = () => {
+      // for signum wallet connection
+      const dispatch = useAppDispatch();
+      const { Ledger, Wallet, DAppName } = useAppContext();
+      const isWalletConnected = useAppSelector(selectIsWalletConnected);
+    
+      function onWalletConnected(connection) {
+          dispatch(actions.setIsWalletConnected(true));
+          dispatch(actions.setWalletNodeHost(connection.currentNodeHost));
+          dispatch(actions.setWalletPublicKey(connection.publicKey || ""));
+      }
+    // for other 
   const toast = useToast({
     title: "Error",
     status: "error",
@@ -95,6 +114,21 @@ export const useMemberControls = () => {
         setProvider(walletConnect);
         const accounts = await window.web3.eth.getAccounts();
         address = accounts[0];
+      } else if (wallet === "xtWallet"){
+        console.log(isWalletConnected);
+        console.log(Wallet);
+        let connection = await Wallet.Extension.connect({
+          appName: DAppName,
+          networkName: Ledger.Network,
+      });
+      console.log(connection)
+      const ledger = LedgerClientFactory.createClient({
+        nodeHost: connection.currentNodeHost
+      });
+      const account = await ledger.account.getAccount({accountId: connection.accountId})
+      console.log(account);
+      setProvider(connection);
+      address = account.accountRS;
       }
 
       const token = await axios.post(
@@ -105,11 +139,11 @@ export const useMemberControls = () => {
         },
       );
 
-      if (!localStorage.getItem("nfthost-user")) {
-        posthog.capture("User logged in with crypto wallet", {
-          wallet,
-        });
-      }
+      // if (!localStorage.getItem("nfthost-user")) {
+      //   posthog.capture("User logged in with crypto wallet", {
+      //     wallet,
+      //   });
+      // }
 
       const encrypted = encrypt(JSON.stringify(token.data));
       localStorage.setItem("nfthost-user", encrypted);
@@ -118,8 +152,8 @@ export const useMemberControls = () => {
 
       if (!userData) throw new Error("Cannot get user data");
 
-      posthog.identify(userData._id);
-      posthog.people.set({ walletAddress: userData.address });
+      // posthog.identify(userData._id);
+      // posthog.people.set({ walletAddress: userData.address });
 
       setUser(userData);
       setAddress(address);
@@ -160,7 +194,7 @@ export const useMemberControls = () => {
         },
       });
 
-      posthog.reset();
+      // posthog.reset();
 
       localStorage.removeItem("nfthost-user");
 
@@ -304,7 +338,7 @@ export const useMemberControls = () => {
 
       if (res.status !== 200) return;
 
-      posthog.capture("User email has been updated");
+      // posthog.capture("User email has been updated");
 
       setUser((prevUser) => {
         return {
@@ -371,7 +405,7 @@ export const useMemberControls = () => {
 
       if (res.status !== 200) return;
 
-      posthog.capture("User deleted account");
+      // posthog.capture("User deleted account");
 
       await logout();
 

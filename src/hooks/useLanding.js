@@ -24,7 +24,7 @@ export const useLanding = () => {
         throw new Error("You must connect your wallet");
       }
 
-      posthog.capture("User clicked GetStarted on landing page");
+      // posthog.capture("User clicked GetStarted on landing page");
 
       setIsServiceModal(true);
     } catch (err) {
@@ -40,7 +40,7 @@ export const useLanding = () => {
         throw new Error("You must connect your wallet");
       }
 
-      posthog.capture("User clicked feature on landing page");
+      // posthog.capture("User clicked feature on landing page");
 
       router.push(route, undefined, { shallow: true });
     } catch (err) {

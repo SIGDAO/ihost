@@ -211,7 +211,7 @@ export const useWebsiteControls = () => {
 
       if (!recaptchaRef.current.getValue().length)
         throw new Error("Please verify that you are a human.");
-
+      console.log(process.env.CREATE_WEBSITE_TOKEN);
       const res = await axios.post(
         `${config.serverUrl}/api/website/create`,
         {
@@ -232,7 +232,8 @@ export const useWebsiteControls = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${process.env.CREATE_WEBSITE_TOKEN}`,
+            Authorization: `Bearer ${process.env.CREATE_WEBSITE_TOKEN}`, 
+            //to backend's thirdparty token
           },
         },
       );
@@ -240,7 +241,7 @@ export const useWebsiteControls = () => {
       if (res.status !== 200)
         throw new Error("Cannot create website at the moment");
 
-      posthog.capture("User created a mint website");
+
 
       await getWebsites();
 
@@ -814,7 +815,7 @@ export const useWebsiteControls = () => {
       if (res.status !== 200)
         throw new Error("Cannot delete website at the moment");
 
-      posthog.capture("User deleted a mint website");
+      // posthog.capture("User deleted a mint website");
 
       setWebsites((prevWebsite) => {
         return prevWebsite.filter((web) => {

@@ -24,6 +24,28 @@ const Preview = () => {
     animationURL,
     youtubeURL,
     backgroundColor,
+       //signum
+       royalties,
+       attributes,
+       nftTypes,
+       edition,
+       identifier,
+       officialWeb,
+       socialPlatform,
+       attribute1, 
+       attribute2,
+       attribute3, 
+       attribute4, 
+       attribute5, 
+       attribute6, 
+       attribute7, 
+       attribute8,
+       signumAttributes,
+       listingMode, 
+       price, 
+       setPrice,
+       offerPrice, 
+       auctionEnd, 
   } = useGenerator();
 
   const containerColor = useColorModeValue(
@@ -54,7 +76,7 @@ const Preview = () => {
           value: layer?.images[0]?.name || "Sample Value",
         };
       }),
-      compiler: "https://nfthost.app/",
+      compiler: "https://ihost.app/",
     };
 
     let metadataObj = {
@@ -76,6 +98,11 @@ const Preview = () => {
           creators: creators,
         },
       },
+      signum: `
+      
+      
+      name,description,symbol,edition,royalties,identifier,image1,image2,image3,attribute1,attribute2,attribute3,attribute4,attribute5,attribute6,attribute7,attribute8,listingMode,price,offerPrice,auctionEnd",
+${name},${description},${symbol},${edition},${royalties},${identifier},${storageURL},,,${signumAttributes[0]?signumAttributes[0]:""},${signumAttributes[1]?signumAttributes[1]:""},${signumAttributes[2]?signumAttributes[2]:""},${signumAttributes[3]?signumAttributes[3]:""},${signumAttributes[4]?signumAttributes[4]:""},${signumAttributes[5]?signumAttributes[5]:""},${signumAttributes[6]?signumAttributes[6]:""},${signumAttributes[7]?signumAttributes[7]:""},${listingMode},${price},${offerPrice},${auctionEnd}`,
     };
 
     // Optional data
@@ -116,8 +143,11 @@ const Preview = () => {
         youtube_url: youtubeURL,
       };
     }
-
-    return JSON.stringify(metadataObj[standard], null, 4);
+    if( standard !== "signum"){
+      return JSON.stringify(metadataObj[standard], null, 4);}
+      else { 
+      return metadataObj[standard];
+      }
   };
 
   const Copy = () => {
@@ -147,7 +177,7 @@ const Preview = () => {
         Preview
       </Text>
       <Text fontSize="9pt" mb="1.5em">
-        A preview of your NFT collection&apos;s json metadata file.
+        A preview of your NFT collection&apos;s json/csv metadata file.
       </Text>
       <Flex
         bg={bgColor}

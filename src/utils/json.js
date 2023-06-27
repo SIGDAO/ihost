@@ -1,5 +1,6 @@
 import { CgWebsite } from "@react-icons/all-files/cg/CgWebsite";
 import { CgRemove } from "@react-icons/all-files/cg/CgRemove";
+import { AiFillIdcard } from "@react-icons/all-files/ai/AiFillIdcard";
 import { CgSmartHomeWashMachine } from "@react-icons/all-files/cg/CgSmartHomeWashMachine";
 import { BiSupport } from "@react-icons/all-files/bi/BiSupport";
 import { VscOrganization } from "@react-icons/all-files/vsc/VscOrganization";
@@ -54,39 +55,67 @@ export const sidebarArr = [
         children: [
           { name: "Templates", link: "/website/templates" },
           // { name: 'Addons', link: '/website/addons' },
-          { name: "Analytics", link: "/website/analytics" },
-          //{ name: "Domain", link: "/website/domain" },
+          // { name: "Analytics", link: "/website/analytics" },
+          // { name: "Domain", link: "/website/domain" },
         ],
         isExternal: false,
       },
     ],
   },
   {
-    parent: "about",
+    parent: "borderLine",
     items: [
       {
-        name: "Partners",
-        link: "/partners",
-        icon: <VscOrganization />,
-        children: [],
+        name: "Business Card",
+        link: "/businesscard",
+        icon: <AiFillIdcard />,
+        children: [
+        ],
         isExternal: false,
       },
       {
-        name: "Team",
-        link: "/team",
-        icon: <AiOutlineTeam />,
-        children: [],
+        name: "Uncertainty",
+        link: "/businesscard",
+        icon: <AiFillIdcard />,
+        children: [
+        ],
         isExternal: false,
       },
-      {
-        name: "Support",
-        link: "https://discord.gg/2BDzCvSTVc",
-        icon: <BiSupport />,
-        children: [],
-        isExternal: true,
-      },
+      // {
+      //   name: "Support",
+      //   link: "https://discord.gg/2BDzCvSTVc",
+      //   icon: <BiSupport />,
+      //   children: [],
+      //   isExternal: true,
+      // },
     ],
   },
+  // {
+  //   parent: "about",
+  //   items: [
+  //     {
+  //       name: "Partners",
+  //       link: "/partners",
+  //       icon: <VscOrganization />,
+  //       children: [],
+  //       isExternal: false,
+  //     },
+  //     {
+  //       name: "Credits",
+  //       link: "/credits",
+  //       icon: <AiOutlineTeam />,
+  //       children: [],
+  //       isExternal: false,
+  //     },
+  //     {
+  //       name: "Support",
+  //       link: "https://discord.gg/2BDzCvSTVc",
+  //       icon: <BiSupport />,
+  //       children: [],
+  //       isExternal: true,
+  //     },
+  //   ],
+  // },
 ];
 
 export const getStartedServicesArr = [
@@ -111,6 +140,44 @@ export const getStartedServicesArr = [
 ];
 
 export const metadataStandardsArr = [
+  {
+    name: "Signum",
+    image: "/assets/signumIcon.png",
+    components: [
+      "size",
+      "name",
+      "description",
+      "symbol",
+      "edition",
+      "royalties",
+      "identifier",
+      "image",
+      "signumAttributes",
+      "attribute1",
+      "attribute2",
+      "attribute3",
+      "attribute4",
+      "attribute5",
+      "attribute6",
+      "attribute7",
+      "attribute8",
+      "listingMode",
+      "price",
+      "offerPrice",
+      "auctionEnd",
+          // "name",
+      // "description",
+      // "royalties",
+      // "nftTypes",
+      // "attributes",
+      // "compiler",
+      // "edition",
+      // "symbol",
+      // "identifier",
+      // "officialWeb",
+      // "socialPlatform",
+    ],
+  },
   {
     name: "Ethereum",
     image: "/assets/ethereum.png",
@@ -145,6 +212,7 @@ export const metadataStandardsArr = [
       "compiler",
     ],
   },
+ 
 ];
 
 export const templatesArr = [

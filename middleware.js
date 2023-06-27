@@ -11,20 +11,26 @@ export const config = {
 
 export default async function middleware(req) {
   const url = req.nextUrl;
+  console.log(url)
   const hostname = req.headers.get("host");
-
+  console.log("hostname: " , hostname)
+  console.log("hostname: " , hostname, "hostname.indexOf(appConfig.frontendUrl):" , hostname.indexOf(appConfig.frontendUrl))
   const isDomain = hostname.indexOf(appConfig.frontendUrl) === -1;
+  console.log("isDomain:" , isDomain)
+  console.log(appConfig.frontendUrl)
   const isSubdomain =
     !isDomain &&
     hostname.countChar(".") ===
       (process.env.NODE_ENV === "development" ? 1 : 2);
-
+  console.log(process.env.NODE_ENV)
+  console.log("countChar(.)",hostname.countChar("."))
+  console.log("isSubdomain: ", isSubdomain)
   if (isDomain) {
     const host =
       hostname.indexOf("www.") !== -1
         ? hostname.slice(hostname.indexOf("www.") + 4)
         : hostname;
-
+    console.log("hostname.indexOf(www.): ", hostname.indexOf("www."))
     const site = await fetch(
       `${appConfig.serverUrl}/api/website/getWebsiteByDomain?domain=${host}`,
       {
@@ -38,7 +44,11 @@ export default async function middleware(req) {
     );
 
     const siteRes = await site.json();
-    if (!siteRes) return NextResponse.redirect("/404");
+    console.log("siteRes: ", siteRes)
+    if (!siteRes) {
+      url.pathname = `/`
+      return NextResponse.rewrite(url);
+    }
 
     url.pathname = `/_sites/${siteRes.route}${url.pathname}`;
   }

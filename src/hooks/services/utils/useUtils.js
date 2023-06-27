@@ -114,7 +114,7 @@ export const useUtils = () => {
 
       saveAs(content, "NFTHost Updated Metadata.zip");
 
-      posthog.capture("User updated image storage");
+      // posthog.capture("User updated image storage");
 
       setIsDownloading(false);
     } catch (err) {
@@ -186,9 +186,9 @@ export const useUtils = () => {
 
       saveAs(content, "NFTHost Updated Metadata.zip");
 
-      posthog.capture("User added metadata key", {
-        key: Object.keys(newKey)[0],
-      });
+      // posthog.capture("User added metadata key", {
+      //   key: Object.keys(newKey)[0],
+      // });
 
       setIsDownloading(false);
     } catch (err) {
@@ -263,7 +263,7 @@ export const useUtils = () => {
 
       saveAs(content, "NFTHost Updated Metadata.zip");
 
-      posthog.capture("User removed metadata key", { key: selectedRemoveKey });
+      // posthog.capture("User removed metadata key", { key: selectedRemoveKey });
 
       setIsDownloading(false);
     } catch (err) {

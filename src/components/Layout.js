@@ -12,6 +12,7 @@ import {
   Flex,
   Link,
   Image,
+  GridItem
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 // import { BiSun } from "@react-icons/all-files/bi/BiSun";
@@ -55,14 +56,14 @@ const Layout = ({ children, currentApp }) => {
             style={{ textDecoration: "none", color: "white" }}
           >
             <HStack spacing=".5em" cursor="pointer" flex="1">
-              <Image src="/assets/logo.png" alt="NFT Host Logo" w="50px" />
+
               <Heading
                 as="h1"
                 fontWeight="bold"
                 fontFamily="inter"
                 fontSize="16pt"
               >
-                NFT Host
+                iHost
               </Heading>
             </HStack>
           </Link>
@@ -107,7 +108,7 @@ const Layout = ({ children, currentApp }) => {
         >
           {sidebarArr?.map((item, idx) => (
             <VStack key={idx} spacing="1.5em" alignItems="flex-start" w="full">
-              <Text fontSize="10pt">{item.parent.toUpperCase()}</Text>
+            {(item.parent==="borderLine")?(<Box bg='white' w="full" h="0.1">&nbsp; </Box> ) :( <Text fontSize="10pt">{item.parent.toUpperCase()}</Text>)}
               <VStack spacing=".25em" w="full">
                 {item.items.map((nav, idx) => (
                   <Box key={idx} w="full">
