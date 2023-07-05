@@ -106,12 +106,12 @@ const Settings = () => {
             <HStack>
               <Text fontSize="9pt">
                 http{process.env.NODE_ENV === "production" ? "s" : ""}://
-                {editingWebsite?.route}.{config?.frontendUrl}
+                {config?.frontendUrl}/mintingwebsite/{editingWebsite?.route}
               </Text>
               <Link
                 href={`http${
                   process.env.NODE_ENV === "production" ? "s" : ""
-                }://${editingWebsite?.route}.${config?.frontendUrl}`}
+                }://${config?.frontendUrl}/mintingwebsite/${editingWebsite?.route}`}
                 isExternal
               >
                 <FaExternalLinkAlt />

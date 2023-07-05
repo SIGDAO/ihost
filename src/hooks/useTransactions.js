@@ -5,7 +5,7 @@ import { useCore } from "@/providers/CoreProvider";
 import axios from "axios";
 import config from "@/config/index";
 import { decryptToken } from "@/utils/tools";
-
+import errorHandler from "@/utils/errorHandler";
 export const useTransactions = (update = true) => {
   const toast = useToast({
     title: "Error",

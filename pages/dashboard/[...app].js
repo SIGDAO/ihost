@@ -36,7 +36,7 @@ const Page = () => {
   const app = router.query.app || [];
 
   const currentApp = app[app.length === 2 ? 1 : 0]?.toLowerCase();
-
+  console.log(router)
   console.log(app);
   console.log(currentApp);
   useReAuthenticate();

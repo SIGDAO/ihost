@@ -20,7 +20,7 @@ export const useGenerate = () => {
     isClosable: true,
     position: "bottom",
   });
-  const { pay } = usePaymentControls();
+  // const { pay } = usePaymentControls();
   const {
     name,
     description,

@@ -149,7 +149,7 @@ export const useMemberControls = () => {
       localStorage.setItem("nfthost-user", encrypted);
 
       const userData = await getUserByAddress(address);
-
+      console.log(userData);
       if (!userData) throw new Error("Cannot get user data");
 
       // posthog.identify(userData._id);
@@ -159,7 +159,7 @@ export const useMemberControls = () => {
       setAddress(address);
       setWallet(wallet);
       setIsLoggedIn(true);
-
+      
       return true;
     } catch (err) {
       const msg = errorHandler(err);
@@ -326,6 +326,7 @@ export const useMemberControls = () => {
       const res = await axios.patch(
         `${config.serverUrl}/api/member/updateEmail`,
         {
+          address: userAddress,
           memberId: user._id,
           email,
         },

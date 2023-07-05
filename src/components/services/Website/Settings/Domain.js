@@ -78,8 +78,8 @@ const Domain = () => {
             onChange={setRoute}
             mt="1em"
             maxW="380px"
-            addonRight
-            addonRightText={`.${config?.frontendUrl}`}
+            addonLeft
+            addonLeftText={`${config?.frontendUrl}/mintingwebsite/`}
             isInvalid={editInputState?.route?.status}
             errorText={editInputState?.route?.message}
             textTransform="lowercase"

@@ -134,7 +134,7 @@ const List = ({ onCreateWebsiteOpen }) => {
                     <Flex flexDir="column" alignItems="flex-start">
                       <Text fontWeight="bold">{web.components.title}</Text>
                       <Text fontSize="10pt" variant="subtle">
-                        {`${web.route}.${config?.frontendUrl}`}
+                        {`${config?.frontendUrl}/mintingwebsite/${web.route}`}
                       </Text>
                     </Flex>
                   </HStack>

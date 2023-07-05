@@ -25,7 +25,8 @@ const SelectedWebsite = ({ isCollapse }) => {
   const { websites, editingWebsite } = useWebsite();
   const { editWebsite } = useWebsiteControls();
   const { onCopy: onCopyWebsiteLink } = useCopy({
-    text: `${editingWebsite?.route}.${config?.frontendUrl}`,
+    // text: `${editingWebsite?.route}.${config?.frontendUrl}`,
+    text: `${config?.frontendUrl}/mintingwebsite/${editingWebsite?.route}`,
   });
 
   const containerColor = useColorModeValue(
@@ -66,7 +67,7 @@ const SelectedWebsite = ({ isCollapse }) => {
                   <HStack>
                     <Input
                       readOnly
-                      value={`${editingWebsite?.route}.${config?.frontendUrl}`}
+                      value={`${config?.frontendUrl}/mintingwebsite/${editingWebsite?.route}`}
                       textAlign="center"
                       cursor="pointer"
                       _hover={{ opacity: ".5" }}
@@ -74,7 +75,7 @@ const SelectedWebsite = ({ isCollapse }) => {
                       size="sm"
                     />
                     <Link
-                      href={`https://${editingWebsite?.route}.${config?.frontendUrl}`}
+                      href={`${config?.frontendUrl}/mintingwebsite/${editingWebsite?.route}`}
                       isExternal
                     >
                       <IconButton size="sm">

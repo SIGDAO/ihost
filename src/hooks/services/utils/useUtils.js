@@ -132,9 +132,9 @@ export const useUtils = () => {
       // if (Object.keys(newKey)[0].toLowerCase() === 'compiler') throw new Error('Cannot modify compiler key');
 
       const user = await getUserByAddress(address);
-
-      const utilsUnits = user.services.utils.units;
-
+      // mongodb
+      const utilsUnits = user.services_utils_units;
+      // app
       if (utilsUnits <= 0 || !utilsUnits) {
         pay({
           service: "Utils",
@@ -207,7 +207,7 @@ export const useUtils = () => {
 
       const user = await getUserByAddress(address);
 
-      const utilsUnits = user.services.utils.units;
+      const utilsUnits = user.services_utils_units;
 
       if (utilsUnits <= 0 || !utilsUnits) {
         pay({

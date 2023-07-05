@@ -90,11 +90,12 @@ export const useWebsiteControls = () => {
   };
 
   const getWebsites = async () => {
+   
     try {
       setIsGettingWebsites(true);
-
+      
       const accessToken = getAccessToken();
-
+     
       const res = await axios.get(
         `${config.serverUrl}/api/website/getWebsites`,
         {
@@ -1109,7 +1110,7 @@ export const useWebsiteControls = () => {
     try {
       const newUser = await getUserByAddress(user.address);
 
-      const websiteUnits = newUser.services.website.units;
+      const websiteUnits = newUser.services_website_units;
 
       if (websiteUnits <= 0 || !websiteUnits) {
         pay({

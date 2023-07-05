@@ -18,8 +18,27 @@ import {
 import * as solanaWeb3 from "@solana/web3.js";
 import { getAccessToken } from "@/utils/tools";
 import errorHandler from "@/utils/errorHandler";
+//xt-wallet
+import {useAppDispatch} from '../xtWallet/hooks/useAppDispatch';
+import {useAppSelector} from '../xtWallet/hooks/useAppSelector';
+import {useAppContext} from '../xtWallet/hooks/useAppContext';
+import {actions, selectIsWalletConnected} from "../xtWallet/states/walletState";
+import {useNetworkMetadata} from '../xtWallet/hooks/useNetworkMetadata';
+import { DeeplinkableWallet, GenericExtensionWallet, WalletConnection } from "@signumjs/wallets";
+import { Address, LedgerClientFactory } from "@signumjs/core";
+import { UnsignedTransaction } from '@signumjs/core';
 
 export const usePaymentControls = () => {
+  const dispatch = useAppDispatch();
+  const { Ledger, Wallet, DAppName } = useAppContext();
+  const isWalletConnected = useAppSelector(selectIsWalletConnected);
+
+  function onWalletConnected(connection) {
+      dispatch(actions.setIsWalletConnected(true));
+      dispatch(actions.setWalletNodeHost(connection.currentNodeHost));
+      dispatch(actions.setWalletPublicKey(connection.publicKey || ""));
+  }
+
   const router = useRouter();
   const toast = useToast({
     title: "Error",
@@ -139,7 +158,30 @@ export const usePaymentControls = () => {
 
         await connection.confirmTransaction(signature);
         hash = signature;
-      } else {
+      } 
+      else if (wallet === "xtWallet") {
+        // console.log("Wallet.Extension.connection.currentNodeHost: ", Wallet.Extension.connection.currentNodeHost)
+        console.log("Ledger", Ledger)
+        console.log("Wallet", Wallet)
+        console.log("DAppName: ", DAppName )
+        console.log(" isWalletConnected: ",  isWalletConnected)
+        console.log("Wallet.Extension.connection.accountId:", Wallet.Extension.connection.accountId )
+        const ledger = LedgerClientFactory.createClient({
+          nodeHost: Wallet.Extension.connection.currentNodeHost,
+         })
+        const sendSigna = await ledger.transaction.sendAmountToSingleRecipient({
+          amountPlanck:"100000000",
+          recipientId: "18040307637715891485",
+          feePlanck:"2000000",
+          senderPublicKey: Wallet.Extension.connection.publicKey,      
+          //senderPrivateKey:"smoke term keen design mirror skull mom humble twin welcome speak gloom",
+          skipAdditionalSecurityCheck: true,
+          deadline:1440}) 
+          let result = await Wallet.Extension.confirm(sendSigna.unsignedTransactionBytes);
+          console.log("result: ", result)
+         
+       }
+      else {
         throw new Error(
           "Your wallet is currently not supported for payment, please login with a different wallet provider",
         );
@@ -151,7 +193,8 @@ export const usePaymentControls = () => {
         const accessToken = getAccessToken();
         // const subscriptionId = clientData.data.subscriptionId;
         const res = await axios.patch(
-          `${config.serverUrl}/api/website/updateSubscription`,
+          // `${config.serverUrl}/api/website/updateSubscription`,
+          `${config.serverUrl}/api/website/updateSubscription01`,
           {
             memberId: user._id,
             subscriptionId: "temporary",
