@@ -212,7 +212,7 @@ export const useWebsiteControls = () => {
 
       if (!recaptchaRef.current.getValue().length)
         throw new Error("Please verify that you are a human.");
-      console.log(process.env.CREATE_WEBSITE_TOKEN);
+     
       const res = await axios.post(
         `${config.serverUrl}/api/website/create`,
         {

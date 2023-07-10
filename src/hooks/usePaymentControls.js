@@ -161,11 +161,6 @@ export const usePaymentControls = () => {
       } 
       else if (wallet === "xtWallet") {
         // console.log("Wallet.Extension.connection.currentNodeHost: ", Wallet.Extension.connection.currentNodeHost)
-        console.log("Ledger", Ledger)
-        console.log("Wallet", Wallet)
-        console.log("DAppName: ", DAppName )
-        console.log(" isWalletConnected: ",  isWalletConnected)
-        console.log("Wallet.Extension.connection.accountId:", Wallet.Extension.connection.accountId )
         const ledger = LedgerClientFactory.createClient({
           nodeHost: Wallet.Extension.connection.currentNodeHost,
          })
@@ -178,8 +173,8 @@ export const usePaymentControls = () => {
           skipAdditionalSecurityCheck: true,
           deadline:1440}) 
           let result = await Wallet.Extension.confirm(sendSigna.unsignedTransactionBytes);
-          console.log("result: ", result)
-         
+    
+          hash = result.fullHash;
        }
       else {
         throw new Error(
@@ -194,7 +189,7 @@ export const usePaymentControls = () => {
         // const subscriptionId = clientData.data.subscriptionId;
         const res = await axios.patch(
           // `${config.serverUrl}/api/website/updateSubscription`,
-          `${config.serverUrl}/api/website/updateSubscription01`,
+          `${config.serverUrl}/api/website/updateSubscription`,
           {
             memberId: user._id,
             subscriptionId: "temporary",
@@ -212,6 +207,8 @@ export const usePaymentControls = () => {
         );
 
         if (res.status === 200) {
+
+          
           setWebsites(res.data);
         }
       }
@@ -219,7 +216,7 @@ export const usePaymentControls = () => {
       // posthog.capture("User paid with crypto wallet", {
       //   wallet,
       // });
-
+     
       await addUnit(service);
       await addPayment(hash);
 
@@ -229,7 +226,7 @@ export const usePaymentControls = () => {
         status: "success",
       });
 
-      await addReferral(referrer);
+      // await addReferral(referrer);
 
       setIsKeepWorkingModal(true);
       setIsPaying(false);
@@ -323,7 +320,6 @@ export const usePaymentControls = () => {
           },
         );
       }
-
       const cardElement = elements.getElement(CardElement);
 
       const paymentMethod = await stripe.createPaymentMethod({

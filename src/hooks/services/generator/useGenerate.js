@@ -338,7 +338,7 @@ export const useGenerate = () => {
 
       const user = await getUserByAddress(address);
 
-      // const generationUnits = user.services.generator.units;
+      const generationUnits = user.services.generator.units;
 
       // if (collectionSize > 100 && generationUnits <= 0) {
       //   pay({
@@ -491,7 +491,7 @@ export const useGenerate = () => {
             (attribute) => attribute.trait_type,
           );
         }
-        console.log(attributes);
+     
         const columns = [...keys, ...attributes];
         csvData.push(columns);
 

@@ -118,7 +118,7 @@ const Configuration = () => {
       if (type != "" && name != "") {
         let newAttribute = type + ":" + name;
         setSignumAttributes(signumAttributes => [...signumAttributes, newAttribute])
-        console.log(signumAttributes);
+
         setAttributeType("");
         setAttributeName("");
         updateNum(numOfAttributes + 1)
@@ -136,7 +136,7 @@ const Configuration = () => {
   const removeAttribute = (deleteIndex) => {
     setSignumAttributes(signumAttributes.filter((oldAttribute, index) => index !== deleteIndex))
     updateNum(numOfAttributes - 1)
-    console.log(signumAttributes);
+
   }
   const isDisplay = (component) =>
     standardType?.components?.includes(component);
@@ -151,24 +151,18 @@ const Configuration = () => {
     setPrice(0);
     setOfferPrice(0);
     setAuctionEnd("");
-    console.log(price)
-    console.log(offerPrice)
-    console.log(auctionEnd)
+
   }
   if (listingMode === "FixedPrice"){
     setOfferPrice(0);
     setAuctionEnd("");
-    console.log(price)
-    console.log(offerPrice)
-    console.log(auctionEnd)
+
   }
   if (listingMode === "NotForSale"){
     setPrice(0);
     setOfferPrice(0);
     setAuctionEnd("");
-    console.log(price)
-    console.log(offerPrice)
-    console.log(auctionEnd)
+
   }
   }, [listingMode]);
 
@@ -190,7 +184,7 @@ const Configuration = () => {
         <span style={{ color: "rgb(52,140,212)" }}>{standardType?.name}</span>
       </Text>
       <Text fontSize="9pt" mb="1em">
-        Fields with * are required. Otherwise, leave it empty if you want.
+        Fields with * are required. Otherwise, leave it empty if you want.<div><br /></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Text>
       {isDisplay("name") && (
         <HStack w="full">
@@ -535,7 +529,7 @@ const Configuration = () => {
           <HStack w="full" >
             <FormControl >
               <FormHelperText fontSize="9pt">
-                The attribute/trait of the NFTs. This value is used to calculate rarities within a collection. It is a key-value tuple and each NFT can have up to eight attributes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                The attribute/trait of the NFTs. This value is used to calculate rarities within a collection. It is a key-value tuple and each NFT can have up to eight attributes
               </FormHelperText>
             </FormControl>
           </HStack>

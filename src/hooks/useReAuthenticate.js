@@ -15,7 +15,7 @@ export const useReAuthenticate = (protect = false, disable = false) => {
     const storageToken = localStorage.getItem("nfthost-user");
 
     const ReAuthenticate = async () => {
-      console.log(storageToken );
+    
       if (!storageToken) return;
       const userData = decryptToken(storageToken); 
       const isConnected = await connect(userData.wallet);

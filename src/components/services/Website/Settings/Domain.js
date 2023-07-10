@@ -102,7 +102,7 @@ const Domain = () => {
           </Button>
         </Flex>
       </Flex>
-      <Flex
+      {/* <Flex
         flexDir="column"
         bg={containerColor}
         p="1em"
@@ -189,7 +189,7 @@ const Domain = () => {
             Connect
           </Button>
         </Flex>
-      </Flex>
+      </Flex> */}
     </VStack>
   );
 };

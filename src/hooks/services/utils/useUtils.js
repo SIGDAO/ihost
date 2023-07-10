@@ -132,25 +132,25 @@ export const useUtils = () => {
       // if (Object.keys(newKey)[0].toLowerCase() === 'compiler') throw new Error('Cannot modify compiler key');
 
       const user = await getUserByAddress(address);
-      // mongodb
-      const utilsUnits = user.services_utils_units;
+      
+      const utilsUnits = user.services.utils.units;
       // app
-      if (utilsUnits <= 0 || !utilsUnits) {
-        pay({
-          service: "Utils",
-          product: `Add ${Object.keys(newKey)[0]} Key on Metadata`,
-          redirect: {
-            origin: "/dashboard/utilities",
-            title: "Utils",
-          },
-          data: {
-            size: 1,
-          },
-        });
-        return;
-      } else if (utilsUnits > 0) {
-        await deductUnit("utils");
-      }
+      // if (utilsUnits <= 0 || !utilsUnits) {
+      //   pay({
+      //     service: "Utils",
+      //     product: `Add ${Object.keys(newKey)[0]} Key on Metadata`,
+      //     redirect: {
+      //       origin: "/dashboard/utilities",
+      //       title: "Utils",
+      //     },
+      //     data: {
+      //       size: 1,
+      //     },
+      //   });
+      //   return;
+      // } else if (utilsUnits > 0) {
+      //   await deductUnit("utils");
+      // }
 
       setIsDownloading(true);
 
