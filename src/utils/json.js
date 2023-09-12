@@ -32,7 +32,7 @@ export const sidebarArr = [
     ],
   },
   {
-    parent: "apps",
+    parent: "Power-ups",
     items: [
       {
         name: "Generator",
@@ -60,11 +60,6 @@ export const sidebarArr = [
         ],
         isExternal: false,
       },
-    ],
-  },
-  {
-    parent: "borderLine",
-    items: [
       {
         name: "Business Card",
         link: "/businesscard",
@@ -74,13 +69,19 @@ export const sidebarArr = [
         isExternal: false,
       },
       {
-        name: "Uncertainty",
-        link: "/businesscard",
+        name: "NFTs Uploader",
+        link: "/massuploader",
         icon: <AiFillIdcard />,
         children: [
         ],
         isExternal: false,
       },
+    ],
+  },
+  {
+    parent: "borderLine",
+    items: [
+
       // {
       //   name: "Support",
       //   link: "https://discord.gg/2BDzCvSTVc",
@@ -178,40 +179,40 @@ export const metadataStandardsArr = [
       // "socialPlatform",
     ],
   },
-  {
-    name: "Ethereum",
-    image: "/assets/ethereum.png",
-    components: [
-      "size",
-      "name",
-      "symbol",
-      "description",
-      "image",
-      "external_url",
-      "attributes",
-      "background_color",
-      "animation_url",
-      "youtube_url",
-      "compiler",
-    ],
-  },
-  {
-    name: "Solana",
-    image: "/assets/solana.png",
-    components: [
-      "size",
-      "name",
-      "symbol",
-      "description",
-      "seller_fee_basis_points",
-      "creators",
-      "image",
-      "animation_url",
-      "external_url",
-      "attributes",
-      "compiler",
-    ],
-  },
+  // {
+  //   name: "Ethereum",
+  //   image: "/assets/ethereum.png",
+  //   components: [
+  //     "size",
+  //     "name",
+  //     "symbol",
+  //     "description",
+  //     "image",
+  //     "external_url",
+  //     "attributes",
+  //     "background_color",
+  //     "animation_url",
+  //     "youtube_url",
+  //     "compiler",
+  //   ],
+  // },
+  // {
+  //   name: "Solana",
+  //   image: "/assets/solana.png",
+  //   components: [
+  //     "size",
+  //     "name",
+  //     "symbol",
+  //     "description",
+  //     "seller_fee_basis_points",
+  //     "creators",
+  //     "image",
+  //     "animation_url",
+  //     "external_url",
+  //     "attributes",
+  //     "compiler",
+  //   ],
+  // },
  
 ];
 

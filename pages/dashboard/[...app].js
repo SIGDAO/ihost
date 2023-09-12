@@ -29,6 +29,7 @@ import AreYouSureModal from "@/components/AreYouSureModal";
 import { webColor } from "@/theme/index";
 //not for original nfthost 
 import BusinessCard from "@/components/services/BusinessCard";
+import MassUploader from "@/components/services/MassUploader";
 import Credits from "@/components/Credits";
 const Page = () => {
   const router = useRouter();
@@ -79,6 +80,7 @@ const Page = () => {
                 metadata: <MetadataEditor />,
                 utilities: <Utilities />,
                 businesscard: <BusinessCard />,
+                massuploader: <MassUploader />,
                 website: <Website />,
                 templates: <Templates />,
                 analytics: <Analytics />,

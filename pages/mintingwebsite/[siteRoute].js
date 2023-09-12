@@ -95,10 +95,10 @@ const UserWebsite = (props) => {
 
     console.log("Website ID:", userWebsite._id);
 
-    posthog.capture("User visited minting website", {
-      route: userWebsite.route,
-      referrer: document.referrer,
-    });
+    // posthog.capture("User visited minting website", {
+    //   route: userWebsite.route,
+    //   referrer: document.referrer,
+    // });
   }, [userWebsite]);
 
   const { colorMode } = useColorMode();

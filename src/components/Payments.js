@@ -64,7 +64,7 @@ const Payments = () => {
   // useEffect(() => {
   //     getSubscriptions();
   // }, [])
-
+    console.log(transactions);
   return (
     <VStack alignItems="flex-start" spacing="2em">
       <AreYouSureModal />
@@ -162,6 +162,7 @@ const Payments = () => {
                   </Td>
                   <Td>${payment.price}</Td>
                   <Td fontSize="10pt">
+                    
                     {new Date(payment.createdAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -177,7 +178,7 @@ const Payments = () => {
                       />
                       <MenuList>
                         <Link
-                          href="https://discord.com/invite/u2xXYn7C9T"
+                          href=""
                           isExternal
                           style={{ color: textColor, textDecoration: "none" }}
                         >

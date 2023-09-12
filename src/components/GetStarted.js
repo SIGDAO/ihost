@@ -53,7 +53,7 @@ const GetStarted = () => {
           </Heading>
         </Flex>
         <Text fontSize="10pt">
-          Welcome to NFT Host! We created this page to guide you through your
+          Welcome to iHost! We created this page to guide you through your
           NFT journey.
         </Text>
       </Flex>
@@ -128,51 +128,10 @@ const GetStarted = () => {
               </Link>
             </VStack>
           </VStack>
-          <VStack spacing="1.25em" alignItems="flex-start">
-            <Text fontSize="16pt">Socials</Text>
-            <VStack spacing="1em" alignItems="flex-start">
-              <Link
-                href="https://www.producthunt.com/posts/nft-host"
-                isExternal
-              >
-                <HStack>
-                  <Text fontSize="10pt">Product Hunt</Text>
-                  <FiExternalLink />
-                </HStack>
-              </Link>
-              <Link href="https://discord.gg/2BDzCvSTVc" isExternal>
-                <HStack>
-                  <Text fontSize="10pt">Discord</Text>
-                  <FiExternalLink />
-                </HStack>
-              </Link>
-            </VStack>
-            <Flex flexDir="column">
-              <Text fontWeight="bold" fontSize="18pt" mt="1em">
-                Support Us
-              </Text>
-              <Text fontSize="10pt">
-                If you like our service, please upvote NFT Host on Product Hunt.
-              </Text>
-              <Box mt="1em">
-                <a
-                  href="https://www.producthunt.com/posts/nft-host?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-nft&#0045;host"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Image
-                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=326763&theme=dark"
-                    alt="NFT&#0032;Host - Generate&#0032;and&#0032;Host&#0032;your&#0032;NFT&#0032;Collection&#0032;in&#0032;under&#0032;10&#0032;minutes | Product Hunt"
-                    style={{ width: "235px", height: "50px" }}
-                    width="235"
-                    height="50"
-                  />
-                </a>
-              </Box>
-            </Flex>
-          </VStack>
+
         </VStack>
       </Wrap>
+      { featuredWebsites?.length > 0 && (
       <Flex mt="4em" flexDir="column">
         <Heading
           as="h1"
@@ -186,6 +145,7 @@ const GetStarted = () => {
           Current featured website that users have created.
         </Text>
       </Flex>
+      )}
       {featuredWebsites?.length > 0 && (
         <Flex justifyContent="flex-end" mt="1em">
           <Center flex="1" flexDir="column">

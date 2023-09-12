@@ -107,7 +107,7 @@ const ConnectWalletTag = ({
           </>
         ) : (
           <>
-            <MenuItem onClick={() => connect("metamask")}>
+            {/* <MenuItem onClick={() => connect("metamask")}>
               <Image
                 boxSize="2rem"
                 borderRadius="full"
@@ -116,7 +116,7 @@ const ConnectWalletTag = ({
                 mr="12px"
               />
               <span>Metamask</span>
-            </MenuItem>
+            </MenuItem> */}
             {/* <MenuItem onClick={() => connect("phantom")}>
               <Image
                 boxSize="2rem"
@@ -127,7 +127,7 @@ const ConnectWalletTag = ({
               />
               <span>Phantom</span>
             </MenuItem> */}
-            <MenuItem onClick={() => connect("coinbase")}>
+            {/* <MenuItem onClick={() => connect("coinbase")}>
               <Image
                 boxSize="2rem"
                 borderRadius="full"
@@ -146,7 +146,7 @@ const ConnectWalletTag = ({
                 mr="12px"
               />
               <span>WalletConnect</span>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem onClick={() => connect("xtWallet")}>
               <Image
                 boxSize="2rem"

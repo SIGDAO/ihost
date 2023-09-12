@@ -4,7 +4,7 @@ const development = {
   serverUrl: "http://localhost:8080",
   stripe: {
     publicKey:
-      "pk_test_51LlUJgHjrZpuqKHtZxudXKElA6nZSYO2IdYqkdMa0b8BKos4F6KyJCb8ilo4KiiLLNAjbqQAJdaZq9ekqAM4jurq00UQ130FKl",
+      "pk_test_51NQjaMKiHVApsU3DUkrtoe4fvF9ljmFL2WbfmKjb04pkHssZknc3f7FjsYXDV2INr2EwOrDHGVbIRUnWxmLdgPz700ABAEGfcz",
   },
   recaptcha: {
     siteKey: "6LeuRbYgAAAAABGYVWikwVFs--HA8EJ1K80kQ8Ew",

@@ -175,11 +175,11 @@ export const useMemberControls = () => {
     }
   };
 
-  const logout = async (silent = true) => {
+  const logout = async (silent = true, type = "dashboard") => {
     try {
       const storageToken = localStorage.getItem("nfthost-user");
       if (!storageToken) return;
-
+      if(type === "dashboard"){
       const userData = decryptToken(storageToken);
       if (userData.wallet === "phantom") window.solana.disconnect();
 
@@ -193,17 +193,17 @@ export const useMemberControls = () => {
           Authorization: `Bearer ${token.accessToken}`,
         },
       });
-
+    
       // posthog.reset();
 
       localStorage.removeItem("nfthost-user");
-
+    }
       setUser(null);
       setAddress("");
       setIsLoggedIn(false);
-
+      if(type === "dashboard"){
       router.push("/dashboard/getStarted", undefined, { shallow: true });
-
+      }
       if (!silent) {
         toast({
           title: "Success",
@@ -246,6 +246,7 @@ export const useMemberControls = () => {
   };
 
   const addUnit = async (service) => {
+    console.log("addUnit/ ", userAddress)
     try {
       const accessToken = getAccessToken();
 
@@ -381,6 +382,7 @@ export const useMemberControls = () => {
   };
 
   const getConnectedAddress = async () => {
+    console.log(userData);
     window.web3 =
       new Web3(window.ethereum) || new Web3(window.web3.currentProvider);
     const accounts = await window.ethereum.request({

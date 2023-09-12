@@ -205,7 +205,7 @@ const Payment = () => {
                                     </Flex>
                                 </Button>
               </Wrap>
-              <Box mt="1em">
+              {/* <Box mt="1em">
                 <Text fontSize="10pt">Referral Code</Text>
                 <Flex gap=".5em" mt=".25em">
                   <Question
@@ -231,7 +231,7 @@ const Payment = () => {
                     Apply
                   </Button>
                 </Flex>
-              </Box>
+              </Box> */}
               {isApplied && (
                 <Flex justifyContent="center" mt="1em">
                   <Text fontSize="10pt" color="purple.500">

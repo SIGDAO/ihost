@@ -3,7 +3,7 @@ import { useWebsite } from "@/providers/WebsiteProvider";
 import Embed from "./Embed";
 import Address from "./Address";
 import Links from "./Links";
-
+import ConnectWalletTag from "./ConnectWalletTag"
 const Template5 = () => {
   const { userWebsite } = useWebsite();
 
@@ -37,13 +37,14 @@ const Template5 = () => {
             {userWebsite?.components?.title}
           </Text>
           <Links bx={{ color: "white" }} />
-          <Address
+          {/* <Address
             maxW="200px"
             bg="blue.500"
             color="black"
             size="sm"
             h="15px"
-          />
+          /> */}
+           <ConnectWalletTag/>
         </Flex>
       </Flex>
       <Flex flex="1" justifyContent="center" alignItems="center">

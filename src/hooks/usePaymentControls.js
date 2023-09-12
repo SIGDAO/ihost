@@ -69,7 +69,7 @@ export const usePaymentControls = () => {
   const [isApplying, setIsApplying] = useState(false);
   const [isApplied, setIsApplied] = useState(false);
   const [subscriptions, setSubscriptions] = useState([]);
-
+  
   const pay = (paymentData) => {
     try {
       setPaymentData({
@@ -179,7 +179,7 @@ export const usePaymentControls = () => {
           deadline:1440}) 
           let result = await Wallet.Extension.confirm(sendSigna.unsignedTransactionBytes);
           console.log("result: ", result)
-         
+          hash = result.fullHash;
        }
       else {
         throw new Error(
@@ -194,7 +194,7 @@ export const usePaymentControls = () => {
         // const subscriptionId = clientData.data.subscriptionId;
         const res = await axios.patch(
           // `${config.serverUrl}/api/website/updateSubscription`,
-          `${config.serverUrl}/api/website/updateSubscription01`,
+          `${config.serverUrl}/api/website/updateSubscription`,
           {
             memberId: user._id,
             subscriptionId: "temporary",
@@ -212,6 +212,8 @@ export const usePaymentControls = () => {
         );
 
         if (res.status === 200) {
+
+          
           setWebsites(res.data);
         }
       }
@@ -219,7 +221,7 @@ export const usePaymentControls = () => {
       // posthog.capture("User paid with crypto wallet", {
       //   wallet,
       // });
-
+      console.log("service");
       await addUnit(service);
       await addPayment(hash);
 
@@ -229,7 +231,7 @@ export const usePaymentControls = () => {
         status: "success",
       });
 
-      await addReferral(referrer);
+      // await addReferral(referrer);
 
       setIsKeepWorkingModal(true);
       setIsPaying(false);
@@ -243,7 +245,7 @@ export const usePaymentControls = () => {
   const payWithStripe = async (stripe, elements, CardElement) => {
     try {
       setIsPaying(true);
-
+      console.log("stripe",stripe, "elements",elements, "CardElement", CardElement)
       if (!elements || !stripe)
         throw new Error("Error initializing stripe payment");
 
@@ -323,7 +325,7 @@ export const usePaymentControls = () => {
           },
         );
       }
-
+      console.log("CardElement",CardElement)
       const cardElement = elements.getElement(CardElement);
 
       const paymentMethod = await stripe.createPaymentMethod({
