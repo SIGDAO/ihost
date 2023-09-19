@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@/providers/UserProvider";
-import { Button, ButtonGroup,Input,Text } from '@chakra-ui/react'
+import { Button, ButtonGroup,Input,Text,Image} from '@chakra-ui/react'
 import { Http, HttpClientFactory, HttpResponse, HttpMockBuilder, HttpError } from "@signumjs/http"
 import banner from "./demoBanner.jpg"
 import pixel from "./pixel.jpg"
@@ -13,6 +13,8 @@ import {generateMasterKeys} from "@signumjs/crypto";
 import Resizer from "react-image-file-resizer"
 import {useAppContext} from '../../../xtWallet/hooks/useAppContext';
 import {Amount} from "@signumjs/util";
+import Papa from 'papaparse' ;
+import CSVFileValidator from 'csv-file-validator' ;
 // import {sharp_01} from "sharp";
 const MassUploader = () => {
   const [collectionIdInput, setCollectionId] = useState('')
@@ -21,6 +23,11 @@ const MassUploader = () => {
   const [nftImages, setNftImages] = useState("");
   const [nftImages01, setNftImages01] = useState("");
   const [nftImages02, setNftImages02] = useState("");
+  const [ selectedFiles, setSelectedFiles ] = useState([]);
+  const [ selectedUploads, setSelectedUploads ] = useState([]);
+  const [ selectedSocial, setSelectedSocial ] = useState([]);
+  const [ selectedThumb, setSelectedThumb ] = useState([]);
+  const [ selectedCsvArray, setCsvArray] = useState([]);
   const { Ledger, Wallet, DAppName } = useAppContext();
   async function fetchImage() {
     let image = await fetch("/demoBanner.jpg")
@@ -700,54 +707,64 @@ async function mintNft(args) {
   const totalNftCount = 3; 
   const collectionId = "17617481279089802625"
   async function uploadTheNftsOnBlockchain ()  {
-    
-    console.log(pixel);
-    let thumbPixel = await  resizeNft01(nftImages02);
-    thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
-    console.log("thumbPixel.name: ", thumbPixel.name)
-    let socialPixel = await resizeNft02(nftImages02);
-    socialPixel = new File([ socialPixel], "000002.1-social.webp", { type: "image/webp" })
-    console.log("socialPixel: ", socialPixel.name)
-    let originalPixel =  new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
-    console.log("originalPixel: ", originalPixel.name)
-    let files = [originalPixel, socialPixel, thumbPixel];
-    const ledger = LedgerClientFactory.createClient({
-      nodeHost: Wallet.Extension.connection.currentNodeHost,
-    })
-    const imagePinMap = await pinImageFiles(collectionId, files);
-    console.log(imagePinMap);
-    const metaRecordFile = {
-      "name": "Testing NFT #1",
-      "description": "Test the mass uploading function in the website.",
-      "symbol": "AWESOME",
-      "edition": "Summer",
-      "royalties": 10,
-      "identifier": 1,
-      "image1": "000002.1.jpg",
-      "image2": "",
-      "image3": "",
-      "attribute1": "key1:common",
-      "attribute2": "ranking:1",
-      "attribute3": "key3:value3",
-      "attribute4": "",
-      "attribute5": "",
-      "attribute6": "",
-      "attribute7": "",
-      "attribute8": "",
-      "listingMode": "NotForSale",
-      "price": 0,
-      "offerPrice": 0,
-      "auctionEnd": ""
-    };
-    const metaData = await pinMetaData(collectionId, imagePinMap, metaRecordFile, pinningKey);
-    console.log("metaData: ", metaData);
-    const { transaction } = await mintNft({
-      ledger,
-      metaData,
-    });
-    console.log("transaction: ", transaction )
-    const address = Address.fromNumericId(transaction);
-    console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
+    console.log(selectedCsvArray, selectedFiles);
+    if (selectedCsvArray != undefined && selectedFiles != undefined) {
+      if (selectedFiles.length !== 0 && selectedCsvArray.length !== 0){
+        console.log("selected csv array:" , selectedCsvArray )
+        console.log("selected files:" , selectedFiles )
+      }else {
+        console.log("num0 array")
+      }
+    }else{
+      console.log("undefined csv array or selected files array");
+    }
+    // console.log(pixel);
+    // let thumbPixel = await  resizeNft01(nftImages02);
+    // thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
+    // console.log("thumbPixel.name: ", thumbPixel.name)
+    // let socialPixel = await resizeNft02(nftImages02);
+    // socialPixel = new File([ socialPixel], "000002.1-social.webp", { type: "image/webp" })
+    // console.log("socialPixel: ", socialPixel.name)
+    // let originalPixel =  new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
+    // console.log("originalPixel: ", originalPixel.name)
+    // let files = [originalPixel, socialPixel, thumbPixel];
+    // const ledger = LedgerClientFactory.createClient({
+    //   nodeHost: Wallet.Extension.connection.currentNodeHost,
+    // })
+    // const imagePinMap = await pinImageFiles(collectionId, files);
+    // console.log(imagePinMap);
+    // const metaRecordFile = {
+    //   "name": "Testing NFT #1",
+    //   "description": "Test the mass uploading function in the website.",
+    //   "symbol": "AWESOME",
+    //   "edition": "Summer",
+    //   "royalties": 10,
+    //   "identifier": 1,
+    //   "image1": "000002.1.jpg",
+    //   "image2": "",
+    //   "image3": "",
+    //   "attribute1": "key1:common",
+    //   "attribute2": "ranking:1",
+    //   "attribute3": "key3:value3",
+    //   "attribute4": "",
+    //   "attribute5": "",
+    //   "attribute6": "",
+    //   "attribute7": "",
+    //   "attribute8": "",
+    //   "listingMode": "NotForSale",
+    //   "price": 0,
+    //   "offerPrice": 0,
+    //   "auctionEnd": ""
+    // };
+    // const metaData = await pinMetaData(collectionId, imagePinMap, metaRecordFile, pinningKey);
+    // console.log("metaData: ", metaData);
+    // const { transaction } = await mintNft({
+    //   ledger,
+    //   metaData,
+    // });
+    // console.log("transaction: ", transaction )
+    // const address = Address.fromNumericId(transaction);
+    // console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
 }
 //  uploadNftsToCollection = async () =>{
 //   // prepare the use of testing nft
@@ -762,7 +779,29 @@ async function mintNft(args) {
 
 //  }
 
-
+const metaRecordFile = {
+  "name": "Testing NFT #1",
+  "description": "Test the mass uploading function in the website.",
+  "symbol": "AWESOME",
+  "edition": "Summer",
+  "royalties": 10,
+  "identifier": 1,
+  "image1": "000002.1.jpg",
+  "image2": "",
+  "image3": "",
+  "attribute1": "key1:common",
+  "attribute2": "ranking:1",
+  "attribute3": "key3:value3",
+  "attribute4": "",
+  "attribute5": "",
+  "attribute6": "",
+  "attribute7": "",
+  "attribute8": "",
+  "listingMode": "NotForSale",
+  "price": 0,
+  "offerPrice": 0,
+  "auctionEnd": ""
+};
 
 
 
@@ -840,8 +879,261 @@ async function mintNft(args) {
     }
 
   }
+  
 
+	const handleImageChange =async (e) => {
+		// console.log(e.target.files[])
+		if (e.target.files) {
+      console.log(e.target.files);
+          let thumbPixel = await  resizeNft01(nftImages02);
+    thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
+    console.log("thumbPixel.name: ", thumbPixel.name)
+    let socialPixel = await resizeNft02(nftImages02);
+    socialPixel = new File([ socialPixel], "000002.1-social.webp", { type: "image/webp" })
+    console.log("socialPixel: ", socialPixel.name)
+    let originalPixel =  new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
+    console.log("originalPixel: ", originalPixel.name)
+    let files = [originalPixel, socialPixel, thumbPixel];
+			const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+      // const newFilesArray = Array.from( filesArray ).map((file, index) => {
+       
+      //   let arrayOfFilename = file["name"].split('.')
+        
+      //   file.name = `${index}.${arrayOfFilename[-1]}`
+      //   let newFile =  new File([file], `${index}.${arrayOfFilename[-1]}`, file.type)
+      //   console.log(newFile);
+      //   return newFile;
+      // });
+      let socialFileArray = [];
+      let newFilesArray = [];
+      let thumbFilesArray = [];
+      for (let x = 0; x < filesArray.length ; x++){
+        let blob = await fetch(filesArray[x]).then(r => r.blob());
+        let newFile =  new File([blob], `00000${x}.1.jpg`, { type: "image/jpeg" })
+        let thumbPixel = await  resizeNft01(blob);
+        let thumbFile =  new File([thumbPixel], `00000${x}.1-thumb.jpg`, { type: "image/webp" })
+        let socialPixel = await resizeNft02(blob);
+        let socialFile =  new File([socialPixel], `00000${x}.1-social.jpg`, { type: "image/webp" })
+        newFilesArray.push(newFile);
+        socialFileArray.push(socialFile);
+        thumbFileArray.push(thumbFile);
 
+      }
+    
+    
+      console.log(newFilesArray);
+			console.log("filesArray: ", filesArray);
+      
+			setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+      selectedUploads((prevImages) => prevImages.concat(newFilesArray));
+      selectedUploads((prevImages) => prevImages.concat(newfilesArray));
+
+      console.log("new File:", selectedFiles);
+			Array.from(e.target.files).map(
+				(file) => URL.revokeObjectURL(file) // avoid memory leak
+			);
+		}
+	};
+
+	const renderPhotos = (source) => {
+		console.log('source: ', source);
+		return source.map((photo) => {
+			return <Image  boxSize='100px'
+      objectFit='cover' src={photo} alt="" key={photo} />;
+		});
+	};
+  const csvConfig = {
+    headers: [
+      {
+        name: "name",
+        inputName: "name",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "description",
+        inputName: "description",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "symbol",
+        inputName: "symbol",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "edition",
+        inputName: "edition",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "royalties",
+        inputName: "royalties",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "identifier",
+        inputName: "identifier",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "image1",
+        inputName: "image1",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "image2",
+        inputName: "image2",
+        required: false,
+      },
+      {
+        name: "image3",
+        inputName: "image3",
+        required: false,
+      },
+      {
+        name: "attribute1",
+        inputName: "attribute1",
+        required: false,
+   
+      },
+      {
+        name: "attribute2",
+        inputName: "attribute2",
+        required: false,
+  
+      },
+      {
+        name: "attribute3",
+        inputName: "attribute3",
+        required: false,
+    
+      },
+      {
+        name: "attribute4",
+        inputName: "attribute4",
+        required: false,
+      
+      },
+      {
+        name: "attribute5",
+        inputName: "attribute5",
+        required: false,
+     
+      },
+      {
+        name: "attribute6",
+        inputName: "attribute6",
+        required: false,
+  
+      },
+      {
+        name: "attribute7",
+        inputName: "attribute7",
+        required: false,
+        
+      },
+      {
+        name: "attribute8",
+        inputName: "attribute8",
+        required: false,
+     
+      },
+      {
+        name: "listingMode",
+        inputName: "listingMode",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "price",
+        inputName: "price",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "offerPrice",
+        inputName: "offerPrice",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "auctionEnd",
+        inputName: "auctionEnd",
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+  
+      },
+     
+    ]
+  };
+  const handleCsvFileChange = async (e) => {
+    console.log(e.target.files[0]);
+    const csvFile = e.target.files[0];
+    console.log(csvFile); 
+    const csvData = await CSVFileValidator(csvFile, csvConfig)
+    console.log("csvFile: " , csvData)
+    // .then(csvData => {
+      
+    //     csvData.data // Array of objects from file
+    //     console.log("data:", csvData.data)
+    //     csvData.inValidData // Array of error messages
+    //     console.log("inValidData:", csvData.inValidData );
+    //     console.log("inValidData:", csvData.inValidData );
+    //     if (csvFile != undefined && csvFile != null) {
+    //       if (csvData.inValidData.length === 0){
+    //         setCsvArray([])
+    //         setCsvArray((selectedCsvArray) => selectedCsvArray.concat(csvData.data))
+    //       }else {
+    //         console.log("error");
+    //       }
+    //     }
+    // })
+    // .then(()=> console.log(selectedCsvArray))
+    // .catch(err => {})
+  //   if (csvFile != undefined && csvFile != null) {
+  //   Papa.parse(csvFile, {
+  //     skipEmptyLines: true,
+  //     header: true,
+  //     complete: function(results ) {
+  //       console.log("Finished", results.data);
+  //     }
+  //   })
+  // } 
+  console.log("inValidData:" , csvData.inValidData.length)
+  if (csvData.inValidData.length === 0){
+    const dataArray = csvData.data;
+    setCsvArray((prev) =>
+    prev.filter((csvData) => false));
+    setCsvArray((prev) => prev.concat(dataArray))
+    console.log("selectedCsvArray: ", selectedCsvArray);}
+  }
   return (
     <>
       <Input
@@ -852,7 +1144,10 @@ async function mintNft(args) {
       />
       <Text mb='8px'>csv file:</Text>
 <Input
+    accept=".csv"
     type="file"
+    id='csvFileSelector'
+    onChange={handleCsvFileChange}
     sx={{
       "::file-selector-button": {
         height: 10,
@@ -864,10 +1159,28 @@ async function mintNft(args) {
       },
     }}
   />
-  <Text mb='8px'>Image:</Text>
+
+  <div className="result">
+    <style jsx>{`
+      .result{
+         display: flex;
+        justify-content: left; 
+        align-items: center;
+      }
+      `}</style>
+ <Text mb='8px'>Image:</Text>
+ <Button
+      onClick={() => setSelectedFiles([])}
+      >
+        Clear
+      </Button>
+  </div>
   <Input
     type="file"
-    multiple
+    name="images"
+    accept="image/png, image/jpeg, image/webp"
+    multiple 
+    onChange={handleImageChange}
     sx={{
       "::file-selector-button": {
         height: 10,
@@ -879,6 +1192,23 @@ async function mintNft(args) {
       },
     }}
   />
+  <div className="result">
+    {renderPhotos(selectedFiles)}
+    <style jsx>{`
+      .result{
+        min-height: 100%;
+        max-height: auto;
+        width: 100%;
+        background-color: #272c34;
+        margin-top:1rem ;
+         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: left; 
+
+      }
+      `}</style>
+  </div>
       <Button
       onClick={() => uploadTheNftsOnBlockchain()}
       >
