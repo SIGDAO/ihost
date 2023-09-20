@@ -40,7 +40,7 @@ const BusinessCard = () => {
     console.log(nftImages02Blob)
     let nftImages03 = await fetch("/pixel4.jpg")
     let nftImages03Blob = await nftImages03.blob();
-    setNftImages02(nftImages03Blob)
+    setNftImages03(nftImages03Blob)
     console.log(nftImages03Blob)
   }
   const NftConstants = {
@@ -293,11 +293,11 @@ const BusinessCard = () => {
   //testing user info 
   const pinningKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwNWQ4Njk5My0zMjgyLTQzYTAtOTUxNi02ZjYyZGM3ODY2MzciLCJlbWFpbCI6Im1hbnNodW53aW5nQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI2ZWM3Y2Q1YTdiNjY3MmE2MTA2MyIsInNjb3BlZEtleVNlY3JldCI6ImQyNzBjNDVlNTFkYmIzNjU3ZDA0YjIyMjQzYmY0NWIxNDAzZDg2ZWM5NzkwZTdjNmFkMzM1OTdiZGM1ZGNiYTIiLCJpYXQiOjE2ODg5Nzk1MTd9.pku1REnOB0GT4y5EiU38U7gtJO_mImGh-ud1UeAE76s";
   const testProfile = {
-    seed: 'snake chapter glass affair describe autumn twenty eight evolve fox verb open',
+    seed: 'muscle waste foil antique salute damp corn grid aspect symbol spare fiber',
     pinningService: 'Pinata',
     pinningKey: pinningKey,
     network: '',
-    address: 'TS-6XAX-8W2F-FZHN-HE2RN',
+    address: 'TS-XZ9F-YD86-6JSG-DFU8P',
     name: 'aaa',
     description: 'aaa'
   }
@@ -474,7 +474,7 @@ const BusinessCard = () => {
         title: "",
         media,
         attributes,
-    };
+      };//extra value for test 
     //jsonValidator_1.jsonValidator.validateNft(descriptor);
     const descriptorPath = filePinResults[0].file.split(".").slice(0,2).join(".").concat('-', "metadata.json");
     console.log(descriptorPath)
@@ -561,7 +561,7 @@ async function createInitialDataStack(args, ledger, publicKey ) {
    * 26 - {long} reservePrice
    */
   const { status, royaltiesFee, auctionTimeout = 0, price, auxPrice, dutchPriceDrop, } = args;
-  const ownerId = Address.fromPublicKey(publicKey).getNumericId();
+  const ownerId = Address.fromPublicKey(publicKey).getNumericId();//18040307637715891485; 
   const statusCode = 0; //need to rewrite
   const currentPrice = safeAmount(price);
   const platformAddress = constants_1.Constants.Accounts.PlatformFee;
@@ -717,37 +717,39 @@ async function mintNft(args) {
   }
 ]
   const totalNftCount = 3; 
-  const collectionId = "17617481279089802625"
+  const collectionId = "12239091852410934062"
   async function uploadTheNftsOnBlockchain ()  {
-    
+    const profile  = testProfile;
     console.log(pixel);
-    let thumbPixel = await  resizeNft01(nftImages03);
-    thumbPixel = new File([thumbPixel], "000003.1-thumb.webp", { type: "image/webp" })
+    let thumbPixel = await  resizeNft01(nftImages01);
+    thumbPixel = new File([thumbPixel], "000001.1-thumb.webp", { type: "image/webp" })
     console.log("thumbPixel.name: ", thumbPixel.name)
-    let socialPixel = await resizeNft02(nftImages03);
-    socialPixel = new File([ socialPixel], "000003.1-social.webp", { type: "image/webp" })
+    let socialPixel = await resizeNft02(nftImages01);
+    socialPixel = new File([ socialPixel], "000001.1-social.webp", { type: "image/webp" })
     console.log("socialPixel: ", socialPixel.name)
-    let originalPixel =  new File([nftImages03], "000003.1.jpg", { type: "image/jpeg" })
+    let originalPixel =  new File([nftImages01], "000001.1.jpg", { type: "image/jpeg" })
     console.log("originalPixel: ", originalPixel.name)
     let files = [originalPixel, socialPixel, thumbPixel];
     const ledger = LedgerClientFactory.createClient({
       nodeHost: Wallet.Extension.connection.currentNodeHost,
     })
+    const {publicKey, signPrivateKey} = generateMasterKeys(profile.seed)
+    console.log("publicKey: ",Address.fromPublicKey(publicKey).getNumericId())
     const imagePinMap = await pinImageFiles(collectionId, files);
     console.log(imagePinMap);
     const metaRecordFile = {
-      "name": "Testing NFT #3",
-      "description": "Test the mass uploading function in the website.",
-      "symbol": "AWESOME",
+      "name": "Testing NFT 01",
+      "description": "Test the nft with customized metadata in the website .",
+      "symbol": "SOME",
       "edition": "Summer",
       "royalties": 10,
-      "identifier": 3,
-      "image1": "000003.1.jpg",
+      "identifier": 1,
+      "image1": "000001.1.jpg",
       "image2": "",
       "image3": "",
       "attribute1": "key1:common",
       "attribute2": "ranking:1",
-      "attribute3": "key3:value3",
+      "attribute3": "key2:value1",
       "attribute4": "",
       "attribute5": "",
       "attribute6": "",
@@ -764,6 +766,7 @@ async function mintNft(args) {
       ledger,
       metaData,
     });
+
     console.log("transaction: ", transaction )
     const address = Address.fromNumericId(transaction);
     console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);

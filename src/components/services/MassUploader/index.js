@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@/providers/UserProvider";
-import { Button, ButtonGroup,Input,Text } from '@chakra-ui/react'
+import { Button, ButtonGroup,Input,Text,Image} from '@chakra-ui/react'
 import { Http, HttpClientFactory, HttpResponse, HttpMockBuilder, HttpError } from "@signumjs/http"
 import banner from "./demoBanner.jpg"
 import pixel from "./pixel.jpg"
@@ -13,6 +13,8 @@ import {generateMasterKeys} from "@signumjs/crypto";
 import Resizer from "react-image-file-resizer"
 import {useAppContext} from '../../../xtWallet/hooks/useAppContext';
 import {Amount} from "@signumjs/util";
+import Papa from 'papaparse' ;
+import CSVFileValidator from 'csv-file-validator' ;
 // import {sharp_01} from "sharp";
 const MassUploader = () => {
   const [collectionIdInput, setCollectionId] = useState('')
@@ -21,7 +23,165 @@ const MassUploader = () => {
   const [nftImages, setNftImages] = useState("");
   const [nftImages01, setNftImages01] = useState("");
   const [nftImages02, setNftImages02] = useState("");
+  const [ selectedFiles, setSelectedFiles ] = useState([]);
+  const [ selectedUploads, setSelectedUploads ] = useState([]);
+  const [ selectedSocial, setSelectedSocial ] = useState([]);
+  const [ selectedThumb, setSelectedThumb ] = useState([]);
+  const [ selectedCsvArray, setCsvArray] = useState([]);
+  
   const { Ledger, Wallet, DAppName } = useAppContext();
+  const csvConfig = {
+    headers: [
+      {
+        name: "name",
+        inputName: "name",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "description",
+        inputName: "description",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "symbol",
+        inputName: "symbol",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "edition",
+        inputName: "edition",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "royalties",
+        inputName: "royalties",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "identifier",
+        inputName: "identifier",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "image1",
+        inputName: "image1",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "image2",
+        inputName: "image2",
+        required: false,
+      },
+      {
+        name: "image3",
+        inputName: "image3",
+        required: false,
+      },
+      {
+        name: "attribute1",
+        inputName: "attribute1",
+        required: false,
+   
+      },
+      {
+        name: "attribute2",
+        inputName: "attribute2",
+        required: false,
+  
+      },
+      {
+        name: "attribute3",
+        inputName: "attribute3",
+        required: false,
+    
+      },
+      {
+        name: "attribute4",
+        inputName: "attribute4",
+        required: false,
+      
+      },
+      {
+        name: "attribute5",
+        inputName: "attribute5",
+        required: false,
+     
+      },
+      {
+        name: "attribute6",
+        inputName: "attribute6",
+        required: false,
+  
+      },
+      {
+        name: "attribute7",
+        inputName: "attribute7",
+        required: false,
+        
+      },
+      {
+        name: "attribute8",
+        inputName: "attribute8",
+        required: false,
+     
+      },
+      {
+        name: "listingMode",
+        inputName: "listingMode",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "price",
+        inputName: "price",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "offerPrice",
+        inputName: "offerPrice",
+        required: true,
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+      },
+      {
+        name: "auctionEnd",
+        inputName: "auctionEnd",
+        requiredError: function (headerName, rowNumber, columnNumber) {
+          return `${headerName} is required in the ${rowNumber} row / ${columnNumber} column`
+      }
+  
+      },
+     
+    ]
+  };
+
   async function fetchImage() {
     let image = await fetch("/demoBanner.jpg")
     let imageBlob = await image.blob();
@@ -40,6 +200,7 @@ const MassUploader = () => {
     setNftImages02(nftImages02Blob)
     console.log(nftImages02Blob)
   }
+
   const NftConstants = {
     Methods: {
         TransferRoyalties: "7174296962751784077",
@@ -272,13 +433,13 @@ const MassUploader = () => {
   const { isLoggedIn } = useUser();
 
   //testing user info 
-  const pinningKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwNWQ4Njk5My0zMjgyLTQzYTAtOTUxNi02ZjYyZGM3ODY2MzciLCJlbWFpbCI6Im1hbnNodW53aW5nQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI2ZWM3Y2Q1YTdiNjY3MmE2MTA2MyIsInNjb3BlZEtleVNlY3JldCI6ImQyNzBjNDVlNTFkYmIzNjU3ZDA0YjIyMjQzYmY0NWIxNDAzZDg2ZWM5NzkwZTdjNmFkMzM1OTdiZGM1ZGNiYTIiLCJpYXQiOjE2ODg5Nzk1MTd9.pku1REnOB0GT4y5EiU38U7gtJO_mImGh-ud1UeAE76s";
+  const pinningKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI3N2FjNzkwYy03OGU5LTRlNmItOGZlYi03MDliYTY5YjZjY2UiLCJlbWFpbCI6InNodW53bWFuMTk1NEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiNTRlNWYwZjM5NmUzZDJkZDg2NDYiLCJzY29wZWRLZXlTZWNyZXQiOiJkMTI2NjMwOGE5NWFlOGM4ZTMxZTdmYTA2ZDU0ZTYwYzdlMTAxMmNkOTI2OWVmMWU1ODJjZDA2YTkyZWY0MDI5IiwiaWF0IjoxNjk1MTUxMjgzfQ.9KIQsJotrI-JoVOqmfkaML53FUMW-0hDVgpcKft_8b4";
   const testProfile = {
-    seed: 'snake chapter glass affair describe autumn twenty eight evolve fox verb open',
+    seed: 'muscle waste foil antique salute damp corn grid aspect symbol spare fiber',//'snake chapter glass affair describe autumn twenty eight evolve fox verb open',
     pinningService: 'Pinata',
     pinningKey: pinningKey,
     network: '',
-    address: 'TS-6XAX-8W2F-FZHN-HE2RN',
+    address: 'TS-XZ9F-YD86-6JSG-DFU8P',//'TS-6XAX-8W2F-FZHN-HE2RN',
     name: 'aaa',
     description: 'aaa'
   }
@@ -646,8 +807,8 @@ async function createNft(args) {
   });
   console.log(description);
   const transaction = await ledger.contract.publishContractByReference({
-    senderPublicKey: publicKey,
     senderPrivateKey: signPrivateKey,
+    senderPublicKey: publicKey,
     description,
     feePlanck: "40000000",
     referencedTransactionHash,
@@ -655,6 +816,7 @@ async function createNft(args) {
     name: Contract.BaseName,
     data,
 });
+// senderPrivateKey: signPrivateKey,
   return transaction; 
  
 }
@@ -700,54 +862,90 @@ async function mintNft(args) {
   const totalNftCount = 3; 
   const collectionId = "17617481279089802625"
   async function uploadTheNftsOnBlockchain ()  {
+    console.log(selectedCsvArray, selectedFiles);
+    if (selectedCsvArray[0] && selectedFiles[0] && selectedUploads[0] && selectedThumb[0] && selectedSocial[0] && collectionIdInput) {
+    if (selectedCsvArray.length ===  selectedFiles.length &&  selectedThumb.length ===  selectedFiles.length && selectedSocial.length === selectedThumb.length) {
+      console.log("Ok")
+      console.log("collectionId:", collectionIdInput)
+      console.log("selectedCsvArray",selectedCsvArray)
+      console.log("selectedFiles",selectedFiles)
+      console.log("selectedThumb",selectedThumb)
+      console.log("selectedSocial",selectedSocial)
+      console.log("selectedUploads",selectedUploads)
+      const metaDataArray = [];
+      const ledger = LedgerClientFactory.createClient({ 
+        nodeHost: Wallet.Extension.connection.currentNodeHost,
+      })
+      for (let x = 0 ;x < selectedCsvArray.length; x++){
+        const imagePinMap = await pinImageFiles(collectionIdInput, [selectedUploads[x], selectedSocial[x], selectedThumb[x]]);
+        console.log(`imagePinMap0${x}: `,imagePinMap);
+        const metaData = await pinMetaData(collectionIdInput, imagePinMap, selectedCsvArray[x], pinningKey);
+        console.log(`metaData0${x}: `, metaData);
+        metaDataArray.push(metaData);
+      }
+      console.log("metaDataArray: ",metaDataArray);
+      for (let y = 0; y < metaDataArray.length; y++){
+        const metaData = metaDataArray[y]
+        const { transaction } = await mintNft({
+            ledger,
+            metaData,
+          });
+          console.log("transaction: ", transaction )
+          const address = Address.fromNumericId(transaction);
+          console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
+      }
+    }else{ 
+      console.log("the number of csv data and the number of images is/are not match.");
+    }
+  }else {
+    console.log("no input")
+  }
+    // console.log(pixel);
+    // let thumbPixel = await  resizeNft01(nftImages02);
+    // thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
+    // console.log("thumbPixel.name: ", thumbPixel.name)
+    // let socialPixel = await resizeNft02(nftImages02);
+    // socialPixel = new File([ socialPixel], "000002.1-social.webp", { type: "image/webp" })
+    // console.log("socialPixel: ", socialPixel.name)
+    // let originalPixel =  new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
+    // console.log("originalPixel: ", originalPixel.name)
+    // let files = [originalPixel, socialPixel, thumbPixel];
     
-    console.log(pixel);
-    let thumbPixel = await  resizeNft01(nftImages02);
-    thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
-    console.log("thumbPixel.name: ", thumbPixel.name)
-    let socialPixel = await resizeNft02(nftImages02);
-    socialPixel = new File([ socialPixel], "000002.1-social.webp", { type: "image/webp" })
-    console.log("socialPixel: ", socialPixel.name)
-    let originalPixel =  new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
-    console.log("originalPixel: ", originalPixel.name)
-    let files = [originalPixel, socialPixel, thumbPixel];
-    const ledger = LedgerClientFactory.createClient({
-      nodeHost: Wallet.Extension.connection.currentNodeHost,
-    })
-    const imagePinMap = await pinImageFiles(collectionId, files);
-    console.log(imagePinMap);
-    const metaRecordFile = {
-      "name": "Testing NFT #1",
-      "description": "Test the mass uploading function in the website.",
-      "symbol": "AWESOME",
-      "edition": "Summer",
-      "royalties": 10,
-      "identifier": 1,
-      "image1": "000002.1.jpg",
-      "image2": "",
-      "image3": "",
-      "attribute1": "key1:common",
-      "attribute2": "ranking:1",
-      "attribute3": "key3:value3",
-      "attribute4": "",
-      "attribute5": "",
-      "attribute6": "",
-      "attribute7": "",
-      "attribute8": "",
-      "listingMode": "NotForSale",
-      "price": 0,
-      "offerPrice": 0,
-      "auctionEnd": ""
-    };
-    const metaData = await pinMetaData(collectionId, imagePinMap, metaRecordFile, pinningKey);
-    console.log("metaData: ", metaData);
-    const { transaction } = await mintNft({
-      ledger,
-      metaData,
-    });
-    console.log("transaction: ", transaction )
-    const address = Address.fromNumericId(transaction);
-    console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
+    // const imagePinMap = await pinImageFiles(collectionId, files);
+    
+    // console.log(imagePinMap);
+    // const metaRecordFile = {
+    //   "name": "Testing NFT #1",
+    //   "description": "Test the mass uploading function in the website.",
+    //   "symbol": "AWESOME",
+    //   "edition": "Summer",
+    //   "royalties": 10,
+    //   "identifier": 1,
+    //   "image1": "000002.1.jpg",
+    //   "image2": "",
+    //   "image3": "",
+    //   "attribute1": "key1:common",
+    //   "attribute2": "ranking:1",
+    //   "attribute3": "key3:value3",
+    //   "attribute4": "",
+    //   "attribute5": "",
+    //   "attribute6": "",
+    //   "attribute7": "",
+    //   "attribute8": "",
+    //   "listingMode": "NotForSale",
+    //   "price": 0,
+    //   "offerPrice": 0,
+    //   "auctionEnd": ""
+    // };
+    // const metaData = await pinMetaData(collectionId, imagePinMap, metaRecordFile, pinningKey);
+    // console.log("metaData: ", metaData);
+    // const { transaction } = await mintNft({
+    //   ledger,
+    //   metaData,
+    // });
+    // console.log("transaction: ", transaction )
+    // const address = Address.fromNumericId(transaction);
+    // console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
 }
 //  uploadNftsToCollection = async () =>{
 //   // prepare the use of testing nft
@@ -762,60 +960,30 @@ async function mintNft(args) {
 
 //  }
 
+const metaRecordFile = {
+  "name": "Testing NFT #1",
+  "description": "Test the mass uploading function in the website.",
+  "symbol": "AWESOME",
+  "edition": "Summer",
+  "royalties": 10,
+  "identifier": 1,
+  "image1": "000002.1.jpg",
+  "image2": "",
+  "image3": "",
+  "attribute1": "key1:common",
+  "attribute2": "ranking:1",
+  "attribute3": "key3:value3",
+  "attribute4": "",
+  "attribute5": "",
+  "attribute6": "",
+  "attribute7": "",
+  "attribute8": "",
+  "listingMode": "NotForSale",
+  "price": 0,
+  "offerPrice": 0,
+  "auctionEnd": ""
+};
 
-
-
-
-
- 
-  // const pinningBanner = async ( ) => {
-  // console.log(banner);
-  // let originalBanner = await sharp_01.sharp(banner)
-  //                           .resize({width: 1600})
-  //                             .webp({quality: 50,})
-  //                             .toBuffer();
-  // let socialBanner = await sharp_01.sharp(banner).resize({width:800}).webp({quality: 70,}).toBuffer();
-  // let connection = HttpClientFactory.createHttpClient("https://api.pinata.cloud", {
-  //   headers: {
-  //       Authorization: `Bearer ${pinningKey}`,
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //   },
-  // })
-  // const formData01 = new FormData();
-  // formData01.append("file", originalBanner)
-  // formData01.append("pinataMetadata", JSON.stringify({ name: '00000.banner.webp' }))
-  // const pinFile = async () => {
-  //   try {
-  //       const { response } = await connection.post("/pinning/pinFileToIPFS", formData01, {
-  //           maxBodyLength: Infinity,
-  //           maxContentLength: Infinity,
-  //           headers: {
-  //               Authorization: `Bearer ${connection.jwtToken}`,
-  //               // @ts-ignore
-  //               "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
-  //           },
-  //       });
-  //       console.log("IpfsHash:",response.IpfsHash)
-  //       return response.IpfsHash;
-  //   }    catch (e) {
-  //     if (e instanceof HttpError) {
-  //         console.error("Pinata API Error", "Status:", e.status, "Reason:", e.data);
-  //         if (e.status === 401 || e.status === 403) {
-  //             throw new p_retry_1.AbortError(e.data);
-  //         }
-  //         else {
-  //             throw new Error(e.data);
-  //         }
-  //     }
-  //     else {
-  //         console.error("Pinata Pinning Service Error", e.message);
-  //         throw e;
-  //     }
-  // }}
-  // pinFile();
-  // return {originalBanner, socialBanner }
-  // }
 
   const testAuth = async (connection) => {
     try {
@@ -840,8 +1008,79 @@ async function mintNft(args) {
     }
 
   }
+  
 
+	const handleImageChange =async (e) => {
+		if (e.target.files) {
+      console.log(e.target.files);
+          let thumbPixel = await  resizeNft01(nftImages02);
+    thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
+    console.log("thumbPixel.name: ", thumbPixel.name)
+    let socialPixel = await resizeNft02(nftImages02);
+    socialPixel = new File([ socialPixel], "000002.1-social.webp", { type: "image/webp" })
+    console.log("socialPixel: ", socialPixel.name)
+    let originalPixel =  new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
+    console.log("originalPixel: ", originalPixel.name)
+    let files = [originalPixel, socialPixel, thumbPixel];
+			const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+      let socialFilesArray = [];
+      let newFilesArray = [];
+      let thumbFilesArray = [];
+      for (let x = 0; x < filesArray.length ; x++){
+        let blob = await fetch(filesArray[x]).then(r => r.blob());
+        let newFile =  new File([blob], `00000${x}.1.jpg`, { type: "image/jpeg" })
+        let thumbPixel = await  resizeNft01(blob);
+        let thumbFile =  new File([thumbPixel], `00000${x}.1-thumb.jpg`, { type: "image/webp" })
+        let socialPixel = await resizeNft02(blob);
+        let socialFile =  new File([socialPixel], `00000${x}.1-social.jpg`, { type: "image/webp" })
+        newFilesArray.push(newFile);
+        socialFilesArray.push(socialFile);
+        thumbFilesArray.push(thumbFile);
 
+      }
+    
+    
+      console.log(newFilesArray);
+			console.log("filesArray: ", filesArray);
+      
+			setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+      setSelectedUploads((prevImages) => prevImages.concat(newFilesArray));
+      setSelectedSocial((prevImages) => prevImages.concat(socialFilesArray));
+      setSelectedThumb((prevImages) => prevImages.concat(thumbFilesArray));
+
+      console.log("new File:", selectedFiles);
+			Array.from(e.target.files).map(
+				(file) => URL.revokeObjectURL(file) // avoid memory leak
+			);
+		}
+	};
+
+	const renderPhotos = (source) => {
+		console.log('source: ', source);
+		return source.map((photo) => {
+			return <Image  boxSize='100px'
+      objectFit='cover' src={photo} alt="" key={photo} />;
+		});
+	};
+
+  const handleCsvFileChange = async (e) => {
+    if (e.target.files[0]) {
+    console.log(e.target.files[0]);
+    const csvFile = e.target.files[0];
+    console.log(csvFile); 
+    const csvData = await CSVFileValidator(csvFile, csvConfig)
+    console.log("csvFile: " , csvData)
+  console.log("inValidData:" , csvData.inValidData.length)
+  if (csvData.inValidData.length === 0){
+    const dataArray = csvData.data;
+    setCsvArray((prev) =>
+    prev.filter((csvData) => false));
+    setCsvArray((prev) => prev.concat(dataArray))
+    console.log("selectedCsvArray: ", selectedCsvArray);}
+  }else {
+    setCsvArray([]);
+  }
+  }
   return (
     <>
       <Input
@@ -852,7 +1091,10 @@ async function mintNft(args) {
       />
       <Text mb='8px'>csv file:</Text>
 <Input
+    accept=".csv"
     type="file"
+    id='csvFileSelector'
+    onChange={handleCsvFileChange}
     sx={{
       "::file-selector-button": {
         height: 10,
@@ -864,10 +1106,32 @@ async function mintNft(args) {
       },
     }}
   />
-  <Text mb='8px'>Image:</Text>
+
+  <div className="result">
+    <style jsx>{`
+      .result{
+         display: flex;
+        justify-content: left; 
+        align-items: center;
+      }
+      `}</style>
+ <Text mb='8px'>Image:</Text>
+ <Button
+      onClick={() => {setSelectedFiles([])
+        setSelectedUploads([]);
+        setSelectedSocial([]);
+        setSelectedThumb([]);      
+      }}
+      >
+        Clear
+      </Button>
+  </div>
   <Input
     type="file"
-    multiple
+    name="images"
+    accept="image/png, image/jpeg, image/webp"
+    multiple 
+    onChange={handleImageChange}
     sx={{
       "::file-selector-button": {
         height: 10,
@@ -879,6 +1143,23 @@ async function mintNft(args) {
       },
     }}
   />
+  <div className="result">
+    {renderPhotos(selectedFiles)}
+    <style jsx>{`
+      .result{
+        min-height: 100%;
+        max-height: auto;
+        width: 100%;
+        background-color: #272c34;
+        margin-top:1rem ;
+         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: left; 
+
+      }
+      `}</style>
+  </div>
       <Button
       onClick={() => uploadTheNftsOnBlockchain()}
       >
