@@ -561,7 +561,7 @@ async function createInitialDataStack(args, ledger, publicKey ) {
    * 26 - {long} reservePrice
    */
   const { status, royaltiesFee, auctionTimeout = 0, price, auxPrice, dutchPriceDrop, } = args;
-  const ownerId = Address.fromPublicKey(publicKey).getNumericId();//18040307637715891485; 
+  const ownerId = Address.fromPublicKey(publicKey).getNumericId();
   const statusCode = 0; //need to rewrite
   const currentPrice = safeAmount(price);
   const platformAddress = constants_1.Constants.Accounts.PlatformFee;
