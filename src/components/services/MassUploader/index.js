@@ -30,6 +30,7 @@ const MassUploader = () => {
   const [ selectedCsvArray, setCsvArray] = useState([]);
   
   const { Ledger, Wallet, DAppName } = useAppContext();
+
   const csvConfig = {
     headers: [
       {
@@ -183,6 +184,7 @@ const MassUploader = () => {
   };
 
   async function fetchImage() {
+    console.log("Wallet: ", Wallet)
     let image = await fetch("/demoBanner.jpg")
     let imageBlob = await image.blob();
     console.log(imageBlob)
@@ -806,8 +808,7 @@ async function createNft(args) {
       descriptor: args.descriptorCid,
   });
   console.log(description);
-  const transaction = await ledger.contract.publishContractByReference({
-    senderPrivateKey: signPrivateKey,
+  const {unsignedTransactionBytes} = await ledger.contract.publishContractByReference({
     senderPublicKey: publicKey,
     description,
     feePlanck: "40000000",
@@ -815,9 +816,11 @@ async function createNft(args) {
     activationAmountPlanck,
     name: Contract.BaseName,
     data,
+    deadline: 1440,
+    skipAdditionalSecurityCheck: false,
 });
 // senderPrivateKey: signPrivateKey,
-  return transaction; 
+  return unsignedTransactionBytes; 
  
 }
 async function mintNft(args) {
@@ -886,13 +889,15 @@ async function mintNft(args) {
       console.log("metaDataArray: ",metaDataArray);
       for (let y = 0; y < metaDataArray.length; y++){
         const metaData = metaDataArray[y]
-        const { transaction } = await mintNft({
+        const unsignedTransactionBytes = await mintNft({
             ledger,
             metaData,
           });
-          console.log("transaction: ", transaction )
-          const address = Address.fromNumericId(transaction);
-          console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
+          console.log("createNftResponse: ", unsignedTransactionBytes)
+          const {transaction} = await Wallet.Extension.confirm(unsignedTransactionBytes)
+          // console.log("transaction: ", transaction )
+          // const address = Address.fromNumericId(transaction);
+          // console.log(`Minted NFT [${address.getNumericId()}] - ${address.getReedSolomonAddress()}`);
       }
     }else{ 
       console.log("the number of csv data and the number of images is/are not match.");
