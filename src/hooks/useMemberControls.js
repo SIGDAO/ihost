@@ -11,8 +11,27 @@ import config from "@/config/index";
 import Web3 from "web3";
 import posthog from "posthog-js";
 import axios from "axios";
-
+//not for original iHost 
+import {useAppDispatch} from '../xtWallet/hooks/useAppDispatch';
+import {useAppSelector} from '../xtWallet/hooks/useAppSelector';
+import {useAppContext} from '../xtWallet/hooks/useAppContext';
+import {actions, selectIsWalletConnected} from "../xtWallet/states/walletState";
+import {Address} from '@signumjs/core' 
+import {useNetworkMetadata} from '../xtWallet/hooks/useNetworkMetadata';
+import {LedgerClientFactory} from '@signumjs/core'
+import { Contract, ContractDataView } from "@signumjs/contracts";
 export const useMemberControls = () => {
+      // for signum wallet connection
+      const dispatch = useAppDispatch();
+      const { Ledger, Wallet, DAppName } = useAppContext();
+      const isWalletConnected = useAppSelector(selectIsWalletConnected);
+    
+      function onWalletConnected(connection) {
+          dispatch(actions.setIsWalletConnected(true));
+          dispatch(actions.setWalletNodeHost(connection.currentNodeHost));
+          dispatch(actions.setWalletPublicKey(connection.publicKey || ""));
+      }
+    // for other 
   const toast = useToast({
     title: "Error",
     status: "error",
@@ -28,14 +47,43 @@ export const useMemberControls = () => {
     address: userAddress,
     user,
     setWallet,
+    setVIP,
   } = useUser();
   const { setProvider, provider } = useCore();
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const checkNFTsOwner = async (ledger, accountId) => {
+   
+    let vipNftsCreatorId = "18040307637715891485" //VIP data wallet
+    let dataViews = [];
+    let nftsOwnersLists = [];
+    if (ledger ){
+      let nftStorages = await ledger.contract.getContractsByAccount({
+        accountId: vipNftsCreatorId,
+        machineCodeHash: "15155055045342098571",
+      });
+      console.log("nftStorages:",nftStorages);
+      nftStorages = nftStorages.ats
+      const promises = nftStorages.map(nftStorage => ledger.contract.getContract(nftStorage.at))
+      const results = await Promise.all(promises);
+      console.log("results:",results);
+      dataViews = results.map(result => new ContractDataView(result) );
+      nftsOwnersLists = dataViews.map(dataView => dataView.getVariableAsDecimal(0));
+      console.log("dataViews:", dataViews)
+      console.log(nftsOwnersLists);
+      console.log(accountId)
+      if (nftsOwnersLists.includes(accountId)){
+        console.log("find your nfts in the VIP collection")
+        return true;
+      }
+      return false;
+    }
+
+  } 
   const connect = async (wallet) => {
     try {
       let address = "";
-
+      let isVipAccount = false;
       const CHAIN_ID = process.env.CHAIN_ID;
       const CHAIN_ID_IN_DEC = Number(CHAIN_ID);
       const RPC_URL_MAP = {
@@ -95,6 +143,24 @@ export const useMemberControls = () => {
         setProvider(walletConnect);
         const accounts = await window.web3.eth.getAccounts();
         address = accounts[0];
+        //xtWallet 
+      } else if (wallet === "xtWallet"){
+        console.log(isWalletConnected);
+        console.log(Wallet);
+        let connection = await Wallet.Extension.connect({
+          appName: DAppName,
+          networkName: Ledger.Network,
+      });
+      console.log("connection:",connection)
+      const ledger = LedgerClientFactory.createClient({
+        nodeHost: connection.currentNodeHost
+      });
+      const account = await ledger.account.getAccount({accountId: connection.accountId})
+      console.log("account:", account);
+      setProvider(connection);
+      address = account.accountRS;
+      //check the signum whether hold the vip nfts 
+      isVipAccount = await checkNFTsOwner(ledger,account.account);
       }
 
       const token = await axios.post(
@@ -105,27 +171,27 @@ export const useMemberControls = () => {
         },
       );
 
-      if (!localStorage.getItem("nfthost-user")) {
-        posthog.capture("User logged in with crypto wallet", {
-          wallet,
-        });
-      }
+      // if (!localStorage.getItem("nfthost-user")) {
+      //   posthog.capture("User logged in with crypto wallet", {
+      //     wallet,
+      //   });
+      // }
 
       const encrypted = encrypt(JSON.stringify(token.data));
       localStorage.setItem("nfthost-user", encrypted);
 
       const userData = await getUserByAddress(address);
-
+      console.log(userData);
       if (!userData) throw new Error("Cannot get user data");
 
-      posthog.identify(userData._id);
-      posthog.people.set({ walletAddress: userData.address });
+      // posthog.identify(userData._id);
+      // posthog.people.set({ walletAddress: userData.address });
 
       setUser(userData);
       setAddress(address);
       setWallet(wallet);
       setIsLoggedIn(true);
-
+      setVIP(isVipAccount);
       return true;
     } catch (err) {
       const msg = errorHandler(err);
@@ -141,11 +207,11 @@ export const useMemberControls = () => {
     }
   };
 
-  const logout = async (silent = true) => {
+  const logout = async (silent = true, type = "dashboard") => {
     try {
       const storageToken = localStorage.getItem("nfthost-user");
       if (!storageToken) return;
-
+      if(type === "dashboard"){
       const userData = decryptToken(storageToken);
       if (userData.wallet === "phantom") window.solana.disconnect();
 
@@ -159,17 +225,18 @@ export const useMemberControls = () => {
           Authorization: `Bearer ${token.accessToken}`,
         },
       });
-
-      posthog.reset();
+    
+      // posthog.reset();
 
       localStorage.removeItem("nfthost-user");
-
+    }
       setUser(null);
       setAddress("");
       setIsLoggedIn(false);
-
+      setVIP(false);
+      if(type === "dashboard"){
       router.push("/dashboard/getStarted", undefined, { shallow: true });
-
+      }
       if (!silent) {
         toast({
           title: "Success",
@@ -212,6 +279,7 @@ export const useMemberControls = () => {
   };
 
   const addUnit = async (service) => {
+    console.log("addUnit/ ", userAddress)
     try {
       const accessToken = getAccessToken();
 
@@ -292,6 +360,7 @@ export const useMemberControls = () => {
       const res = await axios.patch(
         `${config.serverUrl}/api/member/updateEmail`,
         {
+          address: userAddress,
           memberId: user._id,
           email,
         },
@@ -304,7 +373,7 @@ export const useMemberControls = () => {
 
       if (res.status !== 200) return;
 
-      posthog.capture("User email has been updated");
+      // posthog.capture("User email has been updated");
 
       setUser((prevUser) => {
         return {
@@ -346,6 +415,7 @@ export const useMemberControls = () => {
   };
 
   const getConnectedAddress = async () => {
+    console.log(userData);
     window.web3 =
       new Web3(window.ethereum) || new Web3(window.web3.currentProvider);
     const accounts = await window.ethereum.request({
@@ -371,7 +441,7 @@ export const useMemberControls = () => {
 
       if (res.status !== 200) return;
 
-      posthog.capture("User deleted account");
+      // posthog.capture("User deleted account");
 
       await logout();
 

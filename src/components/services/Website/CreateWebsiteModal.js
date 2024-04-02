@@ -182,8 +182,8 @@ const CreateWebsiteModal = ({ isOpen, onClose }) => {
             errorText={creationInputState?.route?.message}
             mt="1em"
             maxW="380px"
-            addonRight
-            addonRightText={`.${config?.frontendUrl}`}
+            addonLeft
+            addonLeftText={`${config?.frontendUrl}/mintingwebsite`}
             textTransform="lowercase"
           />
           <Flex mt="2em" alignItems="center" flexDir="column">

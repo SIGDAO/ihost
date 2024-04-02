@@ -21,7 +21,7 @@ export const useCookie = () => {
     localStorage.setItem("nfthost-cookie", "true");
     setIsCookieModal(false);
 
-    posthog.capture("User accepted cookie");
+    // posthog.capture("User accepted cookie");
   };
 
   return {

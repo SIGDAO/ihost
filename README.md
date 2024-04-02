@@ -64,3 +64,6 @@ Want to donate? []()
 ## License
 
 [MIT](https://github.com/sigdao/ihost/blob/main/LICENSE)
+
+
+https://www.npmjs.com/package/react-image-crop#how-can-i-generate-a-crop-preview-in-the-browser

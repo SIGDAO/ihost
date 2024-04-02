@@ -143,12 +143,6 @@ const Landing = () => {
                       h="62.92px"
                       _hover={{ opacity: "1" }}
                       opacity="0.3"
-                      onClick={() =>
-                        posthog?.capture(
-                          "User visited partner from landing page",
-                          { company: partner.company },
-                        )
-                      }
                     >
                       <NextImage
                         src={partner.image}
@@ -165,7 +159,7 @@ const Landing = () => {
         </Flex>
       </Flex>
       <Features />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Pricing />
     </>
   );

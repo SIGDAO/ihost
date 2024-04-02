@@ -19,6 +19,7 @@ import { HiOutlineChevronDown } from "@react-icons/all-files/hi/HiOutlineChevron
 import { HiLogout } from "@react-icons/all-files/hi/HiLogout";
 import { AiOutlineCopy } from "@react-icons/all-files/ai/AiOutlineCopy";
 import { MdPayment } from "@react-icons/all-files/md/MdPayment";
+import { RiVipLine } from  "@react-icons/all-files/ri/RiVipLine";
 import { useUser } from "@/providers/UserProvider";
 import { useCore } from "@/providers/CoreProvider";
 import { useMemberControls } from "@/hooks/useMemberControls";
@@ -30,7 +31,7 @@ const ConnectWalletTag = ({
   isPayments,
   ...styles
 }) => {
-  const { address, isLoggedIn, user } = useUser();
+  const { address, isLoggedIn, user ,isVIP} = useUser();
   const { onProfileOpen } = useCore();
   const { connect, logout } = useMemberControls();
   const { onCopy: onCopyAddress } = useCopy({
@@ -52,12 +53,14 @@ const ConnectWalletTag = ({
         {...styles}
       >
         <HStack>
+        {isVIP && (<RiVipLine/>) }
           <Text
             as={TagLabel}
             noOfLines="1"
             maxW="200px"
             color={toolbarNavColor}
           >
+           
             {isLoggedIn ? address : "Connect Your Wallet"}
           </Text>
           <TagRightIcon as={HiOutlineChevronDown} color={toolbarNavColor} />
@@ -83,6 +86,12 @@ const ConnectWalletTag = ({
                     <Text fontSize="8pt" noOfLines="1">
                       {user?.services?.utils?.units || 0} Utils Units
                     </Text>
+                   {isVIP && ( <HStack >
+                    <RiVipLine/>
+                    <Text fontSize="10pt" noOfLines="1" maxW="150px" color="gold">
+                      VIP user
+                    </Text>
+                     </HStack> ) } 
                   </VStack>
                 </HStack>
               </MenuItem>
@@ -107,7 +116,7 @@ const ConnectWalletTag = ({
           </>
         ) : (
           <>
-            <MenuItem onClick={() => connect("metamask")}>
+            {/* <MenuItem onClick={() => connect("metamask")}>
               <Image
                 boxSize="2rem"
                 borderRadius="full"
@@ -116,8 +125,8 @@ const ConnectWalletTag = ({
                 mr="12px"
               />
               <span>Metamask</span>
-            </MenuItem>
-            <MenuItem onClick={() => connect("phantom")}>
+            </MenuItem> */}
+            {/* <MenuItem onClick={() => connect("phantom")}>
               <Image
                 boxSize="2rem"
                 borderRadius="full"
@@ -126,8 +135,8 @@ const ConnectWalletTag = ({
                 mr="12px"
               />
               <span>Phantom</span>
-            </MenuItem>
-            <MenuItem onClick={() => connect("coinbase")}>
+            </MenuItem> */}
+            {/* <MenuItem onClick={() => connect("coinbase")}>
               <Image
                 boxSize="2rem"
                 borderRadius="full"
@@ -146,6 +155,16 @@ const ConnectWalletTag = ({
                 mr="12px"
               />
               <span>WalletConnect</span>
+            </MenuItem> */}
+            <MenuItem onClick={() => connect("xtWallet")}>
+              <Image
+                boxSize="2rem"
+                borderRadius="full"
+                src="/assets/signumIcon.png"
+                alt="xtWallet Logo"
+                mr="12px"
+              />
+              <span>XT-WalletConnect</span>
             </MenuItem>
           </>
         )}

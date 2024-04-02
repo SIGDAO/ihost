@@ -12,7 +12,7 @@ import { useWebsite } from "@/providers/WebsiteProvider";
 import Embed from "./Embed";
 import Address from "./Address";
 import Links from "./Links";
-
+import ConnectWalletTag from "./ConnectWalletTag"
 const Template9 = () => {
   const { userWebsite } = useWebsite();
 
@@ -38,7 +38,8 @@ const Template9 = () => {
         <Wrap mt="7em" justify="center" w="full" spacing="3em">
           <Links bx={{ color: "white" }} />
           <Flex maxW="230px">
-            <Address />
+            {/* <Address /> */}
+            <ConnectWalletTag/>
           </Flex>
         </Wrap>
         <Divider mt="1em" />

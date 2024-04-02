@@ -41,11 +41,6 @@ const Partners = () => {
             borderRadius=".25em"
             alignItems="flex-start"
             key={idx}
-            onClick={() =>
-              posthog?.capture("User visited partner", {
-                company: partner.company,
-              })
-            }
             border={`1px solid ${borderColor}`}
           >
             <VStack>

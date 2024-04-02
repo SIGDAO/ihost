@@ -22,18 +22,25 @@ import Analytics from "@/components/services/Website/Analytics";
 import ConnectWalletTag from "@/components/ConnectWalletTag";
 import Partners from "@/components/Partners";
 import Payments from "@/components/Payments";
-import Team from "@/components/Team";
 import Utilities from "@/components/services/Utilities";
 import MetadataEditor from "@/components/services/Generator/MetadataEditor";
 import ProfileModal from "@/components/ProfileModal";
 import AreYouSureModal from "@/components/AreYouSureModal";
 import { webColor } from "@/theme/index";
-
+//not for original nfthost 
+import BusinessCard from "@/components/services/BusinessCard";
+import MassUploader from "@/components/services/MassUploader";
+import Certification from "@/components/services/Certification";
+import Credits from "@/components/Credits";
 const Page = () => {
   const router = useRouter();
   const { isLoggedIn } = useUser();
   const app = router.query.app || [];
+
   const currentApp = app[app.length === 2 ? 1 : 0]?.toLowerCase();
+  console.log(router)
+  console.log(app);
+  console.log(currentApp);
   useReAuthenticate();
 
   const bgColor = useColorModeValue(
@@ -45,7 +52,7 @@ const Page = () => {
 
   return (
     <main style={{ background: bgColor, minHeight: "100vh" }}>
-      <Meta title="Dashboard | NFT Host" />
+      <Meta title="Dashboard | iHost" />
       <Layout currentApp={currentApp}>
         {currentApp === "team" || currentApp === "partners" || isLoggedIn ? (
           <>
@@ -73,12 +80,15 @@ const Page = () => {
                 generator: <Generator />,
                 metadata: <MetadataEditor />,
                 utilities: <Utilities />,
+                businesscard: <BusinessCard />,
+                massuploader: <MassUploader />,
                 website: <Website />,
                 templates: <Templates />,
                 analytics: <Analytics />,
                 payments: <Payments />,
                 partners: <Partners />,
-                team: <Team />,
+                credits: <Credits />,
+                certification: <Certification />,
               }[currentApp]}
           </>
         ) : (

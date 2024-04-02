@@ -114,7 +114,7 @@ export const useUtils = () => {
 
       saveAs(content, "NFTHost Updated Metadata.zip");
 
-      posthog.capture("User updated image storage");
+      // posthog.capture("User updated image storage");
 
       setIsDownloading(false);
     } catch (err) {
@@ -132,25 +132,25 @@ export const useUtils = () => {
       // if (Object.keys(newKey)[0].toLowerCase() === 'compiler') throw new Error('Cannot modify compiler key');
 
       const user = await getUserByAddress(address);
-
+      
       const utilsUnits = user.services.utils.units;
-
-      if (utilsUnits <= 0 || !utilsUnits) {
-        pay({
-          service: "Utils",
-          product: `Add ${Object.keys(newKey)[0]} Key on Metadata`,
-          redirect: {
-            origin: "/dashboard/utilities",
-            title: "Utils",
-          },
-          data: {
-            size: 1,
-          },
-        });
-        return;
-      } else if (utilsUnits > 0) {
-        await deductUnit("utils");
-      }
+      // app
+      // if (utilsUnits <= 0 || !utilsUnits) {
+      //   pay({
+      //     service: "Utils",
+      //     product: `Add ${Object.keys(newKey)[0]} Key on Metadata`,
+      //     redirect: {
+      //       origin: "/dashboard/utilities",
+      //       title: "Utils",
+      //     },
+      //     data: {
+      //       size: 1,
+      //     },
+      //   });
+      //   return;
+      // } else if (utilsUnits > 0) {
+      //   await deductUnit("utils");
+      // }
 
       setIsDownloading(true);
 
@@ -186,9 +186,9 @@ export const useUtils = () => {
 
       saveAs(content, "NFTHost Updated Metadata.zip");
 
-      posthog.capture("User added metadata key", {
-        key: Object.keys(newKey)[0],
-      });
+      // posthog.capture("User added metadata key", {
+      //   key: Object.keys(newKey)[0],
+      // });
 
       setIsDownloading(false);
     } catch (err) {
@@ -207,7 +207,7 @@ export const useUtils = () => {
 
       const user = await getUserByAddress(address);
 
-      const utilsUnits = user.services.utils.units;
+      const utilsUnits = user.services_utils_units;
 
       if (utilsUnits <= 0 || !utilsUnits) {
         pay({
@@ -263,7 +263,7 @@ export const useUtils = () => {
 
       saveAs(content, "NFTHost Updated Metadata.zip");
 
-      posthog.capture("User removed metadata key", { key: selectedRemoveKey });
+      // posthog.capture("User removed metadata key", { key: selectedRemoveKey });
 
       setIsDownloading(false);
     } catch (err) {
