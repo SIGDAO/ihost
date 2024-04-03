@@ -1,10 +1,4 @@
-<p align="center">
-    <a href='https://app.sigdao.io/' rel='nofollow'>
-        <img src='./public/assets/logo.png' alt='NFTHost Logo' width='125px'/>
-    </a>
-</p>
-
-<h1 align="center">iHost</h1>
+<h1 align="center"><a href='https://app.sigdao.io/' rel='nofollow'>iHost</a></h1>
 
 <p align="center">
     <img src='https://github.com/sigdao/ihost/actions/workflows/docker-deployment.yml/badge.svg' alt='Docker Deployment'>
