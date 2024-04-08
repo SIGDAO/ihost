@@ -89,6 +89,7 @@ const Page = () => {
                 partners: <Partners />,
                 credits: <Credits />,
                 certification: <Certification />,
+                alias: <Alias/>,
               }[currentApp]}
           </>
         ) : (

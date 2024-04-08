@@ -65,7 +65,7 @@ const Certification = () => {
             })
             .then((data) => {
               console.log('URL successfully saved on the backend:', data);
-            // push(`/certification//${route}`)
+            // push(`/certification/${route}`)
             })
             .catch((error) => {
               console.error('Error saving URL:', error);

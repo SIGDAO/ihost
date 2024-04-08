@@ -3,15 +3,23 @@ import { useWebsite } from "@/providers/WebsiteProvider";
 import Embed from "./Embed";
 import Watermark from "./Watermark";
 import ConnectWalletTag from "./ConnectWalletTag";
-import {getAliasByName} from '@signumjs/core';
-
+import { useAppContext } from '../../../../xtWallet/hooks/useAppContext';
+import {getAliasByName, LedgerClientFactory} from '@signumjs/core';
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 const TemplateC = () => {
+  const {push} = useRouter();
+    const { Ledger, Wallet, DAppName } = useAppContext();
   const { userWebsite } = useWebsite();
   const [isDeploying, setIsDeploying] = useState(false);
   const handleAliasFunction = () => {
-    const result = getAliasByName("test");  
+const ledger = LedgerClientFactory.createClient({
+        nodeHost: Wallet.Extension.connection.currentNodeHost,
+      })
+   
+    push(`/dashboard/alias`);
     console.log("result:", result);
+    const result = ledger;  
   };
   const handleClick = () => {
     setIsDeploying(true);

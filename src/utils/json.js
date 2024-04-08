@@ -32,7 +32,7 @@ export const sidebarArr = [
     ],
   },
   {
-    parent: "Power-ups",
+    parent: "builder",
     items: [
       {
         name: "Generator",
@@ -41,36 +41,44 @@ export const sidebarArr = [
         children: [{ name: "Metadata", link: "/generator/metadata" }],
         isExternal: false,
       },
+      // {
+      //   name: "Utilities",
+      //   link: "/utilities",
+      //   icon: <FaTools />,
+      //   children: [],
+      //   isExternal: false,
+      // },
+      // {
+      //   name: "Website",
+      //   link: "/website",
+      //   icon: <CgWebsite />,
+      //   children: [
+      //     { name: "Templates", link: "/website/templates" },
+      //     // { name: 'Addons', link: '/website/addons' },
+      //     // { name: "Analytics", link: "/website/analytics" },
+      //     // { name: "Domain", link: "/website/domain" },
+      //   ],
+      //   isExternal: false,
+      // },
+     
       {
-        name: "Utilities",
-        link: "/utilities",
-        icon: <FaTools />,
-        children: [],
-        isExternal: false,
-      },
-      {
-        name: "Website",
-        link: "/website",
-        icon: <CgWebsite />,
-        children: [
-          { name: "Templates", link: "/website/templates" },
-          // { name: 'Addons', link: '/website/addons' },
-          // { name: "Analytics", link: "/website/analytics" },
-          // { name: "Domain", link: "/website/domain" },
-        ],
-        isExternal: false,
-      },
-      {
-        name: "Business Card",
-        link: "/businesscard",
+        name: "NFTs Uploader",
+        link: "/massuploader",
         icon: <AiFillIdcard />,
         children: [
         ],
         isExternal: false,
       },
+
+    ],
+
+  },
+  {
+    parent: "power-up",
+    items: [
       {
-        name: "NFTs Uploader",
-        link: "/massuploader",
+        name: "Business Card",
+        link: "/businesscard",
         icon: <AiFillIdcard />,
         children: [
         ],
@@ -84,10 +92,18 @@ export const sidebarArr = [
         ],
         isExternal: false,
       },
+      {
+        name: "Alias",
+        link: "/alias",
+        icon: <AiFillIdcard />,
+        children: [
+        ],
+        isExternal: false,
+      },
     ],
   },
   {
-    parent: "borderLine",
+    parent: "ST Template",
     items: [
 
       // {
