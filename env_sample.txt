@@ -1,7 +1,1 @@
-***create .env and copy the text to .env
 
-CHAIN_ID= '0x1'
-ENCRYPT_KEY= "encrypt"
-POSTHOG_KEY= "phc_jsqgbDIUmskTgERfrG5rGeYljXWUNClKPIqCeT3B9kj"
-CREATE_WEBSITE_TOKEN="accesssstoken"
-INFURA_ID= 
