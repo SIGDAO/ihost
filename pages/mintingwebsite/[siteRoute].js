@@ -201,14 +201,14 @@ const UserWebsite = (props) => {
             <VStack spacing="1em">
               <NextLink href="/" shallow passHref>
                 <HStack spacing=".5em" cursor="pointer" flex="1">
-                  {/* <Image src="/assets/logo.png" alt="NFT Host Logo" w="50px" /> */}
+                  <Image src="/assets/logo.png" alt="NFT Host Logo" w="50px" />
                   <Heading
                     as="h1"
                     fontWeight="bold"
                     fontFamily="inter"
                     fontSize="20pt"
                   >
-                    iHost
+                    NFT Host
                   </Heading>
                 </HStack>
               </NextLink>
@@ -266,10 +266,9 @@ export async function getStaticProps({ params: { siteRoute } }) {
       },
     },
   );
-  const siteProps = await site.json()
-  console.log("siteProps: ", siteProps)
+
   return {
-    props: await siteProps,
+    props: await site.json(),
     revalidate: 30,
   };
 }

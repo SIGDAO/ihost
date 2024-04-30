@@ -1,7 +1,7 @@
-import CloseIcon from "./Closeicon";
+import CloseIcon from "./CloseIcon";
 import ImageCropper from "./ImageCropper";
 
-const TailwindModal = ({ updateAvatar, closeModal, updateLogo }) => {
+const TailwindModal = ({ updateAvatar, closeModal, updateLogo, aspectRatio, minDimension }) => {
   return (
     <div
       className="relative z-10"
@@ -26,6 +26,8 @@ const TailwindModal = ({ updateAvatar, closeModal, updateLogo }) => {
                 updateAvatar={updateAvatar}
                 closeModal={closeModal}
                 updateLogo={updateLogo}
+                aspectRatio={aspectRatio} 
+                minDimension={minDimension}
               />
             </div>
           </div>

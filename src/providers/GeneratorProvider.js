@@ -26,7 +26,7 @@ export const GeneratorProvider = ({ children }) => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [autoSavePercentage, setAutoSavePercentage] = useState(0);
   const [downloadPercentage, setDownloadPercentage] = useState(0);
-  const [metadata, setMetadata] = useState();
+  const [metadata, setMetadata] = useState([]);
   const [curMetadata, setCurMetadata] = useState("");
   const [renderIndex, setRenderIndex] = useState(1);
   const [generateSpeed, setGenerateSpeed] = useState(0);
@@ -65,6 +65,13 @@ export const GeneratorProvider = ({ children }) => {
    const [attributeName,setAttributeName] = useState("");
   const canvasRef = useRef();
   const [attributes, setAttributes] = useState("");
+  const [isCsvEditModal, setIsCsvEditModal] = useState(false);
+  const [isDeployNftModal, setDeployNftModal] = useState(false);
+  const [csvData, setCsvData] = useState([]);
+  const [nftImages, setNftImages] = useState([]);
+  const [uploadImages, setUploadImages] =useState([]);
+  const [thumbImages, setThumbImages] = useState([]);
+  const [socialImages, setSocialImages] = useState([]);
   const controllers = {
     name,
     setName,
@@ -184,6 +191,20 @@ export const GeneratorProvider = ({ children }) => {
      setAttributeType,
      attributeName,
      setAttributeName,
+     isCsvEditModal, 
+     setIsCsvEditModal,
+     isDeployNftModal, 
+     setDeployNftModal,
+     csvData,
+     setCsvData,
+     nftImages,
+     setNftImages,
+     uploadImages,
+     setUploadImages,
+     thumbImages,
+     setThumbImages,
+     socialImages,
+     setSocialImages,
   };
 
   return (

@@ -32,6 +32,8 @@ const DownloadModal = () => {
     downloadPercentage,
     isRandomizedMetadata,
     setIsRandomizedMetadata,
+    isCsvEditModal,
+    setIsCsvEditModal,
   } = useGenerator();
 
   const { DownloadCollection, DownloadMetadata } = useGenerate();
@@ -147,16 +149,34 @@ const DownloadModal = () => {
                 to generate your collection.
               </Text>
             </Box>
-            <Button
-              size="sm"
-              rightIcon={<AiOutlineArrowRight />}
-              onClick={() => {
-                setIsConfetti(false);
-                setIsDownloadModal(false);
-              }}
-            >
-              Finish
-            </Button>
+         
+            <div>   <Box>
+      
+      <Button
+        mt="1em"
+        size="sm"
+        // rightIcon={<AiOutlineArrowRight />}
+        onClick={() => {
+          setIsConfetti(false);
+          setIsDownloadModal(false);
+        }}
+      >
+        Finish Here
+      </Button>
+      </Box>
+      <Box>     <Button
+        mt="1em"
+        size="sm"
+        rightIcon={<AiOutlineArrowRight />}
+        onClick={() => {
+          setIsConfetti(false);
+          setIsDownloadModal(false);
+          setIsCsvEditModal(true);
+        }}
+      >
+        Continue to deploy my NFTs
+      </Button></Box></div>
+            
           </ModalFooter>
         </ModalContent>
       </Modal>

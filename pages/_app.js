@@ -1,6 +1,5 @@
 import "@/styles/globals.scss";
-import "@/styles/globals.css";
-import 'react-image-crop/dist/ReactCrop.css'
+import "@/styles/globals.css"
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ChakraProvider } from "@chakra-ui/react";

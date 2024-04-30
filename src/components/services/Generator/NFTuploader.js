@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@/providers/UserProvider";
+import {useGenerator} from "@/providers/GeneratorProvider"
 import {Stack, Radio, RadioGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, ButtonGroup, Input, Text, Image } from '@chakra-ui/react'
 import { Progress } from '@chakra-ui/react'
 import { Http, HttpClientFactory, HttpResponse, HttpMockBuilder, HttpError } from "@signumjs/http"
@@ -89,7 +90,40 @@ isNumberLowerThan(value, amount) {
   return validator
 
 }
-const MassUploader = () => {
+
+
+const NFTuploader = () => {
+
+  const {
+    metadata,
+    setMetadata,
+    nftImages,
+     setNftImages,
+  isDownloadModal,
+  setIsDownloadModal,
+  setIsConfetti,
+  isGenerated,
+  generateSpeed,
+  isAutoSave,
+  isDownloading,
+  downloadPercentage,
+  isRandomizedMetadata,
+  setIsRandomizedMetadata,
+  isCsvEditModal,
+  setIsCsvEditModal,
+  isDeployNftModal,
+  setDeployNftModal,
+  csvData,
+  setCsvData,
+  uploadImages,
+  setUploadImages,
+  thumbImages,
+  setThumbImages,
+  socialImages,
+  setSocialImages,
+} = useGenerator();
+
+
   const [passPhrase, setPassPhrase] = useState('');
   const [ipfsServiceKey, setIpfsServiceKey] = useState('');
   const [ipfsService, setIpfsService] = useState('1');
@@ -98,11 +132,11 @@ const MassUploader = () => {
   const handlePassPhrase = (event) => setPassPhrase(event.target.value);
   const handleIpfsServiceKey = (event) => setIpfsServiceKey(event.target.value);
   const [src, setSrc] = useState("");
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [selectedUploads, setSelectedUploads] = useState([]);
-  const [selectedSocial, setSelectedSocial] = useState([]);
-  const [selectedThumb, setSelectedThumb] = useState([]);
-  const [selectedCsvArray, setCsvArray] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState(nftImages);
+  const [selectedUploads, setSelectedUploads] = useState(uploadImages);
+  const [selectedSocial, setSelectedSocial] = useState(socialImages);
+  const [selectedThumb, setSelectedThumb] = useState(thumbImages);
+  const [selectedCsvArray, setCsvArray] = useState(metadata);
   const [progressNum, setProgressNum] = useState(0);
   const { Ledger, Wallet, DAppName } = useAppContext();
   const [isRunning, setIsRunning] = useState(false );
@@ -812,6 +846,7 @@ function asStatusCode(status) {
   
   async function uploadTheNftsOnBlockchain() {
     setProgressNum(0);
+
     const ledger = LedgerClientFactory.createClient({
       nodeHost: Wallet.Extension.connection.currentNodeHost,
     })
@@ -848,8 +883,20 @@ function asStatusCode(status) {
     console.log("UT", userTransactionIds)
     //progress modal 
     onOpenModal();
+    // for (let x = 0; x < selectedUploads.length; x++) {
+    //   let arrayNum = selectedUploads.length - 1;
+    //   let imageNum = '000000' ;
+    //   imageNum = imageNum.slice(0, 6 - x.toString().length).concat('',x)
+    //   let thumbPixel = await resizeNft01(selectedUploads[x]);
+    //   let thumbFile = new File([thumbPixel], `${imageNum}.1-thumb.jpg`, { type: "image/webp" })
+    //   let socialPixel = await resizeNft02(selectedUploads[x]);
+    //   let socialFile = new File([socialPixel], `${imageNum}.1-social.jpg`, { type: "image/webp" })
+    //   newFilesArray.push(newFile);
+    //   socialFilesArray.push(socialFile);
+    //   thumbFilesArray.push(thumbFile);
 
-    console.log(selectedCsvArray, selectedFiles);
+    // }
+    // console.log(selectedCsvArray, selectedFiles);
     if (selectedCsvArray[0] && selectedFiles[0] && selectedUploads[0] && selectedThumb[0] && selectedSocial[0] && collectionIdInput) {
       if (selectedCsvArray.length === selectedFiles.length && selectedThumb.length === selectedFiles.length && selectedSocial.length === selectedThumb.length) {
   
@@ -1051,28 +1098,22 @@ function asStatusCode(status) {
         size='sm'
       />
       <Text mb='8px'>csv file:</Text>
-      <Input
-        accept=".csv"
-        type="file"
-        id='csvFileSelector'
-        onChange={handleCsvFileChange}
-        sx={{
-          "::file-selector-button": {
-            height: 10,
-            padding: 0,
-            mr: 4,
-            background: "none",
-            border: "none",
-            fontWeight: "bold",
-          },
+      <Button
+        onClick={() => {
+          // uploadTheNftsOnBlockchain();
+          // console.log(nftImages);
+          setIsCsvEditModal(true)
+          setDeployNftModal(false)
         }}
-      />
+      >
+        Edit Csv files
+      </Button>
 
 
         <Text mb='8px'>Image:</Text>
 
       
-      <div className="result">
+      {/* <div className="result">
 
       <Input
         width="95px"
@@ -1102,7 +1143,7 @@ function asStatusCode(status) {
         >
           Clear
         </Button>
-      </div>
+      </div> */}
       <div className="result">
         {renderPhotos(selectedFiles)}
         <style jsx>{`
@@ -1123,6 +1164,12 @@ function asStatusCode(status) {
       <Button
         onClick={() => {
           
+          
+          // console.log(nftImages);
+          console.log(uploadImages);
+          console.log(socialImages);
+          console.log(thumbImages);
+          console.log(metadata); 
           uploadTheNftsOnBlockchain();
         }}
       >
@@ -1132,4 +1179,4 @@ function asStatusCode(status) {
   )
 };
 
-export default MassUploader;
+export default NFTuploader;

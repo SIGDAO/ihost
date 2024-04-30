@@ -24,6 +24,7 @@ import axios from "axios";
 import posthog from "posthog-js";
 
 const deployCertification = (props) => {
+  console.log("props:", props)
   const toast = useToast({
     title: "Error",
     status: "error",
@@ -31,28 +32,32 @@ const deployCertification = (props) => {
     isClosable: true,
     position: "bottom",
   });
-  // const {push} = useRouter();
   const router = useRouter();
   const { userWebsite, setUserWebsite } = useWebsite();
   const { userWebsiteErrors, checkSubscription, setUserWebsiteErrors } =
     useWebsiteControls();
 
   useEffect(() => {
-    if (!props) return;
+   
+    if (!props) {
+      console.log("no props")
+      return;}
 
     const renderWebsite = async () => {
       try {
         let newUserWebsiteErrors = [];
 
-        if (!Object.keys(props).length)
+        if (!Object.keys(props).length || (props.message && props.message === "Expired Website")){
+            console.log(`Minting Website was not found`);
           newUserWebsiteErrors.push(`Minting Website was not found`);
+        }
         else {
           const {
             isExpired,
             isPublished,
             components: { title },
           } = props;
-
+          // console.log("components:", components);
           if (isExpired)
             newUserWebsiteErrors.push(
               `Error: '${title}' Minting Website has Expired. Go to website settings -> General -> Renew`,
@@ -69,7 +74,12 @@ const deployCertification = (props) => {
             "If you are the owner of this minting website, please check your site settings",
           );
         }
-
+        // if (props.message === "Expired Website") {
+        //   setUserWebsiteErrors(newUserWebsiteErrors);
+        //   throw new Error(
+        //     "This website has expired",
+        //   );
+        // }
         setUserWebsite(props);
       } catch (err) {
         const msg = errorHandler(err);
@@ -169,7 +179,7 @@ const deployCertification = (props) => {
               parse(userWebsite?.components?.script)}
           </Head>
           <main>
-                <TemplateC />
+                <TemplateC memberId={props.memberId} userEmail={props.userEmail} username={props.username} course={props.course} expiredDate={props.expiredDate}/>
           </main>
         </div>
       ) : (
@@ -284,9 +294,9 @@ export async function getStaticProps({ params: { siteRoute } }) {
 //     },
 //     custom: { domain: '' }
 //   }
-console.log(site);
+// console.log(site);
 const siteProps = await site.json()
-  console.log("siteProps: ", siteProps)
+  // console.log("siteProps: ", siteProps)
   return {
     props: siteProps,
     revalidate: 30,

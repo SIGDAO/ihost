@@ -61,11 +61,17 @@ const Certification = () => {
               if(response.status !== 200) {
                 throw new Error("one time url already created !! ")
               }
-              response.json()   
+            return response.json()   
+             
             })
             .then((data) => {
-              console.log('URL successfully saved on the backend:', data);
-            // push(`/certification/${route}`)
+              // console.log('URL successfully saved on the backend:', data);
+              if(data.route){
+                push(`/certification/${data.route}`)
+              }else{
+                push(`/certification/${route}`)
+              }
+            // push(`/certification//${route}`)
             })
             .catch((error) => {
               console.error('Error saving URL:', error);

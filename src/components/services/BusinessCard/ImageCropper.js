@@ -6,10 +6,11 @@ import ReactCrop, {
 } from "react-image-crop";
 import setCanvasPreview from "./setCanvasPreview";
 
-const ASPECT_RATIO = 1;
-const MIN_DIMENSION = 150;
 
-const ImageCropper = ({ closeModal, updateAvatar, updateLogo }) => {
+
+const ImageCropper = ({ closeModal, updateAvatar, updateLogo, aspectRatio, minDimension }) => {
+  const ASPECT_RATIO = aspectRatio;
+const MIN_DIMENSION = minDimension;
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -80,7 +81,7 @@ const ImageCropper = ({ closeModal, updateAvatar, updateLogo }) => {
           <ReactCrop
             crop={crop}
             onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-            circularCrop
+            
             keepSelection
             aspect={ASPECT_RATIO}
             minWidth={MIN_DIMENSION}
@@ -106,7 +107,7 @@ const ImageCropper = ({ closeModal, updateAvatar, updateLogo }) => {
                 )
               );
               const dataUrl = previewCanvasRef.current.toDataURL();
-              console.log(dataUrl);
+              // console.log(dataUrl);
               updateAvatar(dataUrl);
               let bytes = window.atob(dataUrl.split(',')[1])
               let arrayBuffer = new ArrayBuffer(bytes.length)
@@ -115,10 +116,10 @@ const ImageCropper = ({ closeModal, updateAvatar, updateLogo }) => {
                 intArray[i] = bytes.charCodeAt(i)
               }
               let blob = new Blob([intArray], { type: 'image/png' })
-              let newFile = new File([blob], `logo.png`, { type: "image/png" })
-              console.log('b2: ', blob)
-              console.log("pngFile: ", newFile)
-              updateLogo(newFile); 
+              // let newFile = new File([blob], `logo.png`, { type: "image/png" })
+              // console.log('b2: ', blob)
+              // console.log("pngFile: ", newFile)
+              updateLogo(blob); 
               closeModal();
             }}
           >
@@ -134,8 +135,8 @@ const ImageCropper = ({ closeModal, updateAvatar, updateLogo }) => {
             display: "none",
             border: "1px solid black",
             objectFit: "contain",
-            width: 150,
-            height: 150,
+            width: 300,
+            height: 100,
           }}
         />
       )}

@@ -10,7 +10,8 @@ import GenerateModal from "./GenerateModal";
 import useWindowSize from "react-use/lib/useWindowSize";
 import DownloadModal from "./DownloadModal";
 import AreYouSureModal from "@/components/AreYouSureModal";
-
+import CsvEditModal from "./CsvEditModal";
+import DeployNftModal from "./DeployNftModal";
 const Generator = () => {
   const { width, height } = useWindowSize();
   const { isConfetti } = useGenerator();
@@ -37,6 +38,8 @@ const Generator = () => {
       <RarityModal />
       <GenerateModal />
       <DownloadModal />
+      <CsvEditModal />
+      <DeployNftModal />
       <Toolbar />
       <Wrap spacing="1em" mt="1em">
         <Layers />

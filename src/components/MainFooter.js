@@ -48,7 +48,7 @@ const Footer = () => {
                 </Heading>
               </HStack>
               <Text fontSize="9pt" mt="1.25em">
-                &copy; 2022 iHost. All rights Reserved.
+                &copy; 2024 iHost. All rights Reserved.
               </Text>
               {/* <HStack justifyContent="center" mt="1em">
                 <IconButton
@@ -91,16 +91,16 @@ const Footer = () => {
                   Features
                 </Text>
               </NextLink>
-              <NextLink href="/#testimonials" passHref shallow>
+              {/* <NextLink href="/#testimonials" passHref shallow>
                 <Text cursor="pointer" _hover={{ color: navbarButton }}>
                   Testimonials
                 </Text>
-              </NextLink>
-              <NextLink href="/#pricing" passHref shallow>
+              </NextLink> */}
+              {/* <NextLink href="/#pricing" passHref shallow>
                 <Text cursor="pointer" _hover={{ color: navbarButton }}>
                   Pricing
                 </Text>
-              </NextLink>
+              </NextLink> */}
             </VStack>
             <VStack alignItems="flex-start">
               <Text fontWeight="bold">Policies</Text>
@@ -123,14 +123,14 @@ const Footer = () => {
                 </Text>
               </Link>
             </VStack>
-            <VStack alignItems="flex-start">
+            {/* <VStack alignItems="flex-start">
               <Text fontWeight="bold">About</Text>
               <NextLink href="/dashboard/credits" passHref shallow>
                 <Text cursor="pointer" _hover={{ color: navbarButton }}>
                   Credits
                 </Text>
               </NextLink>
-            </VStack>
+            </VStack> */}
           </Wrap>
         </Flex>
       </Wrap>

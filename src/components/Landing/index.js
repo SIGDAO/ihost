@@ -50,12 +50,12 @@ const Landing = () => {
               alignItems="flex-start"
               flex="1"
             >
-              <Heading as="h1" fontSize={!isResizeHeader ? "42pt" : "32pt"}>
-                Generate and Host NFT Collections
+              <Heading as="h1" fontSize={!isResizeHeader ? "20pt" : "20pt"}>
+              A signum blockchain Web3 platform that integrates a smart contract compiler, NFT builder, and power-ups
               </Heading>
-              <Text mt="1em">
+              {/* <Text mt="1em">
                 Create and Host your NFT Collection in under a minute!
-              </Text>
+              </Text> */}
               <NextLink href="/dashboard/getStarted" shallow passHref>
                 <Button mt="1em" size="lg">
                   Get Started 🚀
@@ -125,7 +125,7 @@ const Landing = () => {
             )}
           </Flex>
           <SlideFade in={true} offsetY="20px" delay={1}>
-            <Flex
+            {/* <Flex
               flexDir="column"
               alignItems="center"
               justifyContent="center"
@@ -154,13 +154,13 @@ const Landing = () => {
                   </Link>
                 ))}
               </Wrap>
-            </Flex>
+            </Flex> */}
           </SlideFade>
         </Flex>
       </Flex>
       <Features />
       {/* <Testimonials /> */}
-      <Pricing />
+      {/* <Pricing /> */}
     </>
   );
 };

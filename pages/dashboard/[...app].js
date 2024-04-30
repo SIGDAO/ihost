@@ -30,8 +30,11 @@ import { webColor } from "@/theme/index";
 //not for original nfthost 
 import BusinessCard from "@/components/services/BusinessCard";
 import MassUploader from "@/components/services/MassUploader";
-import Certification from "@/components/services/Certification";
 import Credits from "@/components/Credits";
+import SmartC from "@/components/services/SmartC";
+import Certification from "@/components/services/Certification";
+import Alias from "@/components/services/Alias";
+import SCSample from "@/components/services/SmartC/SCSample";
 const Page = () => {
   const router = useRouter();
   const { isLoggedIn } = useUser();
@@ -88,8 +91,10 @@ const Page = () => {
                 payments: <Payments />,
                 partners: <Partners />,
                 credits: <Credits />,
+                smartc: <SmartC/>,
                 certification: <Certification />,
                 alias: <Alias/>,
+                scsample: <SCSample/>,
               }[currentApp]}
           </>
         ) : (

@@ -57,7 +57,7 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
                   Features
                 </Button>
               </NextLink>
-              <NextLink href="/#testimonials" shallow passHref>
+              {/* <NextLink href="/#testimonials" shallow passHref>
                 <Button
                   bg="transparent"
                   _hover={{ bg: "transparent", color: navbarButton }}
@@ -72,7 +72,7 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
                 >
                   Pricing
                 </Button>
-              </NextLink>
+              </NextLink> */}
             </HStack>
           )}
           {isSocial && (

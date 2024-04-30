@@ -62,6 +62,7 @@ const Layout = ({ children, currentApp }) => {
                 fontWeight="bold"
                 fontFamily="inter"
                 fontSize="16pt"
+                color="#68D391"
               >
                 iHost
               </Heading>
@@ -74,7 +75,7 @@ const Layout = ({ children, currentApp }) => {
             _hover={{ bg: "transparent", color: defaultColor }}
             onClick={() => setIsSidebar(!isSidebar)}
           >
-            <GiHamburgerMenu />
+            <GiHamburgerMenu color="#68D391"/>
           </IconButton>
         </HStack>
         <HStack spacing="2em">
@@ -108,7 +109,7 @@ const Layout = ({ children, currentApp }) => {
         >
           {sidebarArr?.map((item, idx) => (
             <VStack key={idx} spacing="1.5em" alignItems="flex-start" w="full">
-            {(item.parent==="borderLine")?(<Box bg='white' w="full" h="0.1">&nbsp; </Box> ) :( <Text fontSize="10pt">{item.parent.toUpperCase()}</Text>)}
+            {(item.parent==="navigation")?(<Text fontSize="10pt">{item.parent.toUpperCase()}</Text>) :( <Text fontSize="10pt"><span className="green-text">GREEN </span> {item.parent.toUpperCase()}</Text>)}
               <VStack spacing=".25em" w="full">
                 {item.items.map((nav, idx) => (
                   <Box key={idx} w="full">

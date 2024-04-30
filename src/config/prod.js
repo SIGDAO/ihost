@@ -1,7 +1,8 @@
 const production = {
   frontendUrl: "app.sigdao.io",
   clientUrl: "https://app.sigdao.io",
-  serverUrl: "https://ihost02-api.onrender.com",
+  serverUrl: "https://testback-flame.vercel.app",
+  // serverUrl: "https://api.gentea.shop",
   stripe: {
     publicKey:
       "pk_test_51NQjaMKiHVApsU3DUkrtoe4fvF9ljmFL2WbfmKjb04pkHssZknc3f7FjsYXDV2INr2EwOrDHGVbIRUnWxmLdgPz700ABAEGfcz",

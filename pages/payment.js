@@ -1,5 +1,4 @@
 import NextLink from "next/link";
-import { redirect } from 'next/navigation'
 // import { useState } from 'react'
 import {
   Box,

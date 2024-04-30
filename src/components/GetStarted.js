@@ -54,8 +54,13 @@ const GetStarted = () => {
         </Flex>
         <Text fontSize="10pt">
           Welcome to iHost! We created this page to guide you through your
-          NFT journey.
+          iHost journey.
         </Text>
+        <Text fontSize="10pt">
+        In this early stage, the guide of NFT Generator is 
+          completed and the other guide are coming soon.
+          </Text>
+          
       </Flex>
       <Wrap spacing="2em" mt="3em">
         <VStack spacing="2em" alignItems="flex-start" maxW="760px" w="full">
@@ -108,7 +113,7 @@ const GetStarted = () => {
                   <FiExternalLink />
                 </HStack>
               </Link>
-              <Link
+              {/* <Link
                 href="https://www.youtube.com/watch?v=Scw_NeGu6Sw"
                 isExternal
               >
@@ -125,7 +130,7 @@ const GetStarted = () => {
                   <Text fontSize="10pt">How to Modify my json Metadata</Text>
                   <FiExternalLink />
                 </HStack>
-              </Link>
+              </Link> */}
             </VStack>
           </VStack>
 

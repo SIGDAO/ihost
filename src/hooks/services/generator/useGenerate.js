@@ -9,10 +9,25 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { shuffleArray } from "@/utils/tools";
 import errorHandler from "@/utils/errorHandler";
-
+import Resizer from "react-image-file-resizer"
 const zip = new JSZip();
 
 export const useGenerate = () => {
+
+  const resizeNft01 = (file) => new Promise(resolve => {
+    Resizer.imageFileResizer(file, 480, 9999, "WEBP", 50, 0,
+      uri => {
+        resolve(uri);
+      }, 'blob');
+  });
+  const resizeNft02 = (file) => new Promise(resolve => {
+    Resizer.imageFileResizer(file, 480, 9999, "WEBP", 50, 0,
+      uri => {
+        resolve(uri);
+      }, 'blob');
+  });
+
+
   const toast = useToast({
     title: "Error",
     status: "error",
@@ -75,7 +90,19 @@ export const useGenerate = () => {
         setPrice,
         offerPrice, 
         auctionEnd, 
+        nftImages,
+        setNftImages,
+        csvData,
+        setCsvData,
+        uploadImages,
+        setUploadImages,
+        thumbImages,
+        setThumbImages,
+        socialImages,
+        setSocialImages,
+        
   } = useGenerator();
+  // console.log(signumAttributes);
   const { address } = useUser();
   const { getUserByAddress, deductUnit } = useMemberControls();
  
@@ -171,14 +198,27 @@ export const useGenerate = () => {
   const saveCanvas = (curRenderIndex) => {
     return new Promise((resolve, reject) => {
       try {
+        let imageNum = '000000' ;
+        imageNum = imageNum.slice(0, 6 - curRenderIndex.toString().length).concat('',curRenderIndex)
+        if (canvasRef && canvasRef.current) {
+          const dataURL = canvasRef.current.toDataURL();
+          setNftImages(nftImages => [...nftImages, dataURL])
+          
+        }
         canvasRef?.current?.toBlob((blob) => {
+
           zip.folder("Images")?.file(`${curRenderIndex}.png`, blob);
-          resolve();
+          const uploadImg = new File([blob], `${imageNum}.1.jpg`, { type: "image/jpeg" })
+          setUploadImages(uploadImages => [...uploadImages, uploadImg])
+          resolve(blob
+          );
         });
+
       } catch (err) {
         console.log(err);
         reject();
       }
+
     });
   };
 
@@ -244,12 +284,12 @@ export const useGenerate = () => {
         },
       },
       signum: {
-        name: `${name.trim()} #${parseInt(identifier) + parseInt(curRenderIndex)}`,
+        name: `${name.trim()} #${parseInt(identifier) + parseInt(startCount)}`,
         description: description.trim(),
         symbol,
         edition,
         royalties,
-        identifier: `${parseInt(identifier) + parseInt(curRenderIndex)}`,
+        identifier: `${parseInt(identifier) + parseInt(startCount) }`,
         image1: `${externalStorage}/${startCount}.png`,
         image2: "",
         image3: "",
@@ -375,16 +415,20 @@ export const useGenerate = () => {
       let startCount = 0;
       let hashList = [];
       let curMetadata = [];
-
+      const socialFilesArray = [];
+      const thumbFilesArray = [];
       const t0 = performance.now();
       let t1;
-
+      
       setIsGenerated(false);
       setIsAutoSave(false);
       setIsGenerating(true);
       setMetadata([]);
       setCurMetadata("");
-
+      setNftImages([]);
+      setUploadImages([]);
+      setThumbImages([]);
+      setSocialImages([]);
       while (startCount != collectionSize) {
         setRenderIndex(curRenderIndex);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -392,7 +436,15 @@ export const useGenerate = () => {
         const currentHash = MD5(JSON.stringify(attributes)).toString();
         if (!hashList.includes(currentHash)) {
           hashList.push(currentHash);
-          await saveCanvas(startCount);
+          let imageNum = '000000' ;
+          imageNum = imageNum.slice(0, 6 - startCount.toString().length).concat('',startCount)
+          const blob = await saveCanvas(startCount);
+          const thumbPixel = await resizeNft01(blob);
+          const thumbFile = new File([thumbPixel], `${imageNum}.1-thumb.jpg`, { type: "image/webp" })
+          const socialPixel = await resizeNft02(blob);
+          const socialFile = new File([socialPixel], `${imageNum}.1-social.jpg`, { type: "image/webp" })
+          socialFilesArray.push(socialFile);
+          thumbFilesArray.push(thumbFile);
           const nftJson = buildMetadataObj(
             curRenderIndex,
             startCount,
@@ -443,6 +495,21 @@ export const useGenerate = () => {
           }
         }
       }
+      setThumbImages(thumbFilesArray);
+      setSocialImages(socialFilesArray);
+      // for (let x = 0; x < selectedUploads.length; x++) {
+      //   const arrayNum = selectedUploads.length - 1;
+      //   const imageNum = '000000' ;
+      //   imageNum = imageNum.slice(0, 6 - x.toString().length).concat('',x)
+      //   const thumbPixel = await resizeNft01(selectedUploads[x]);
+      //   const thumbFile = new File([thumbPixel], `${imageNum}.1-thumb.jpg`, { type: "image/webp" })
+      //   const socialPixel = await resizeNft02(selectedUploads[x]);
+      //   const socialFile = new File([socialPixel], `${imageNum}.1-social.jpg`, { type: "image/webp" })
+      //   set
+      // }
+
+      // console.log("metadata: ",metadata);
+      // console.log("nftImages: ", nftImages )
     } catch (err) {
       const msg = errorHandler(err);
       toast({ description: msg });
@@ -516,7 +583,8 @@ export const useGenerate = () => {
           csv += row.join(",");
           csv += "\n";
         });
-
+        const csvArray = csv.split("\n");
+        setCsvData(csvArray)
         const csvBlob = new Blob([csv], { type: "text/csv;charset=utf-8" });
         zip.file("CSV metadata.csv", csvBlob);
       }
@@ -533,7 +601,7 @@ export const useGenerate = () => {
 
       saveAs(content, "NFTHost Collection.zip");
       setIsDownloading(false);
-
+ 
       // posthog.capture("User downloaded collection");
     } catch (err) {
       const msg = errorHandler(err);

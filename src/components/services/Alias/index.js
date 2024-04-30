@@ -4,6 +4,21 @@ import AliasResultsList from './AliasResultsList';
 import { Http, HttpClientFactory, HttpResponse, HttpMockBuilder, HttpError } from "@signumjs/http"
 import { Address, LedgerClientFactory } from "@signumjs/core";
 import { useAppContext } from '../../../xtWallet/hooks/useAppContext';
+import {
+  Flex,
+  Wrap,
+  Button,
+  Text,
+  useColorModeValue,
+  VStack,
+  HStack,
+  Link,
+  Box,
+  Image,
+  Heading,
+  Center,
+  Badge,
+} from "@chakra-ui/react";
 const Alias = () => {
     // const [accountData , setAccountData] = useState();
     // const [unconfirmedTransactions, setUnconfirmedTransactions] = useState();
@@ -97,7 +112,17 @@ const Alias = () => {
   };
 
   return (
+    
     <div className="p-4">
+            <Flex flexDir="column" mt=".5em">
+        <Flex>
+   
+        </Flex>
+        <Text fontSize="10pt">
+          Connect your hosted business card or certification link to signum alias 
+        </Text>
+      </Flex>
+      <p className="mt-4 py-2"></p>
       <AliasSearchBar onSearch={handleSearch} />
       {searchResults.length > 0 ? (
         <AliasResultsList searchItem={searchTerm} results={searchResults} />
