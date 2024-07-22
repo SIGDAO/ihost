@@ -417,6 +417,7 @@ export const useGenerate = () => {
       let curMetadata = [];
       const socialFilesArray = [];
       const thumbFilesArray = [];
+      //set the timer #by joe
       const t0 = performance.now();
       let t1;
       

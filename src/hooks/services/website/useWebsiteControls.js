@@ -4,12 +4,11 @@ import { useMemberControls } from "@/hooks/useMemberControls";
 import { usePaymentControls } from "@/hooks/usePaymentControls";
 import { useToast } from "@chakra-ui/react";
 import { useUser } from "@/providers/UserProvider";
-import { getAccessToken } from "@/utils/tools";
 import errorHandler from "@/utils/errorHandler";
 import config from "@/config/index";
 import posthog from "posthog-js";
 import axios from "axios";
-
+import { encrypt, decryptToken, getAccessToken } from "@/utils/tools";
 export const useWebsiteControls = () => {
   const toast = useToast({
     title: "Error",
@@ -1390,6 +1389,200 @@ export const useWebsiteControls = () => {
     }
   };
 
+  const createBusinessCard = async ({
+    route,
+    title,
+    description,
+    logo,
+    script,
+    embed,
+    favicon,
+    robot,
+    language,
+    onClose,
+    businessCard 
+  }) => {
+    try {
+    
+      console.log("data of createBusinessCard: ", {
+        route,
+        title,
+        description,
+        logo,
+        script,
+        embed,
+        favicon,
+        robot,
+        language,
+        onClose,
+        businessCard 
+    })
+      setIsCreatingWebsite(true);
+
+      // if (user.services.website.units !== 1) {
+      //   const freeWebsiteCount = websites.filter(
+      //     (web) => web.isPremium === false,
+      //   ).length;
+      //   if (freeWebsiteCount >= 1)
+      //     throw new Error(
+      //       "You have used your 1 Free minting website. Upgrade your subscription to create more.",
+      //     );
+      // }
+
+      let errorsObj = {};
+      const accessToken = getAccessToken();
+      if (!route.length)
+        errorsObj.route = {
+          status: true,
+          message: "Subdomain must be filled in",
+        };
+      if (route.length > 32)
+        errorsObj.route = {
+          status: true,
+          message: "Max subdomain length is 32 characters",
+        };
+      if (/[^a-z0-9\-]/.test(route))
+        errorsObj.route = {
+          status: true,
+          message: "Subdomain contains an invalid character",
+        };
+      if (!title.length)
+        errorsObj.title = {
+          status: true,
+          message: "Title field must be filled in",
+        };
+      if (title.length > 32)
+        errorsObj.title = {
+          status: true,
+          message: "Max title length is 32 characters",
+        };
+      if (!description.length)
+        errorsObj.description = {
+          status: true,
+          message: "Description field must be filled in",
+        };
+      // if (script.length > 0 && !(/</i.test(script) && />/i.test(script)))
+      //   errorsObj.script = {
+      //     status: true,
+      //     message: "Script/Style code must be a valid html code",
+      //   };
+      // if (!embed.length || !(/</i.test(embed) && />/i.test(embed)))
+      //   errorsObj.embed = {
+      //     status: true,
+      //     message: "Embed code must be a valid html code",
+      //   };
+      if (!logo.length)
+        errorsObj.logo = {
+          status: true,
+          message: "Logo Image Link field must be filled in",
+        };
+      if (logo.match(/\.(jpeg|jpg|gif|png|bmp|svg|webp)$/) == null)
+        errorsObj.logo = {
+          status: true,
+          message: "Logo Image Link field must be an image file",
+        };
+      if (!favicon.length)
+        errorsObj.favicon = {
+          status: true,
+          message: "Favicon Image Link field must be filled in",
+        };
+      if (favicon.match(/\.(jpeg|jpg|gif|png|bmp|svg|webp|ico)$/) == null)
+        errorsObj.favicon = {
+          status: true,
+          message: "Favicon Link field must be an image file",
+        };
+
+      if (Object.keys(errorsObj).length > 0) {
+        setCreationInputState(errorsObj);
+        throw new Error("Please fix all the errors before creating a website");
+      }
+
+      // if (!recaptchaRef.current.getValue().length)
+      //   throw new Error("Please verify that you are a human.");
+ 
+      const res = await axios.post(
+        `${config.serverUrl}/api/website/createBusinessCard`,
+        {
+          memberId: user._id,
+          route: route.toLowerCase(),
+          businessCard,
+          components: {
+            title,
+            unrevealedImage: logo,
+            description,
+            embed,
+            script,
+          },
+          meta: {
+            robot,
+            favicon,
+            language,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, 
+            //to backend's thirdparty token
+          },
+        },
+      );
+
+      if (res.status !== 200)
+        throw new Error("Cannot create website at the moment");
+
+
+
+      await getBusinessCards();
+
+      toast({
+        title: "Success",
+        description: "Successfuly created your business card",
+        status: "success",
+      });
+
+      onClose();
+      setIsCreatingWebsite(false);
+    } catch (err) {
+      setIsCreatingWebsite(false);
+
+      const msg = errorHandler(err);
+      console.log()
+      toast({ description: msg });
+    }
+  };
+
+
+  const getBusinessCards = async () => {
+   
+    try {
+      setIsGettingWebsites(true);
+      
+      const accessToken = getAccessToken();
+     
+      const res = await axios.get(
+        `${config.serverUrl}/api/website/getBusinessCards`,
+        {
+          params: {
+            memberId: user._id,
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      );
+
+      // setWebsites(res.data);
+      console.log(res.data);
+      setIsGettingWebsites(false);
+    } catch (err) {
+      setIsGettingWebsites(false);
+      const msg = errorHandler(err);
+      toast({ description: msg });
+    }
+  };
+
+
+
   return {
     getWebsiteByRoute,
     getWebsites,
@@ -1422,5 +1615,7 @@ export const useWebsiteControls = () => {
     updateSubscription,
     updateExternalLink,
     checkSubscription,
+    createBusinessCard,
+    getBusinessCards,
   };
 };

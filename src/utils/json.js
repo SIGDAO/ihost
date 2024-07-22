@@ -32,13 +32,20 @@ export const sidebarArr = [
         children: [],
         isExternal: false,
       },
+      {
+        name: "Related link",
+         link: "/relatedlink",
+         icon: <VscOrganization />,
+         children: [],
+         isExternal: false,
+       },
     ],
   },
   {
     parent: "builder",
     items: [
       {
-        name: "Generator",
+        name: "NFT Generator",
         link: "/generator",
         icon: <CgSmartHomeWashMachine />,
         children: [{ name: "Metadata", link: "/generator/metadata" }],
@@ -65,7 +72,7 @@ export const sidebarArr = [
       // },
      
       {
-        name: "NFTs Uploader",
+        name: "NFT Uploader",
         link: "/massuploader",
         icon: <RiNftFill />,
         children: [
@@ -75,6 +82,33 @@ export const sidebarArr = [
 
     ],
 
+  },
+  {
+    parent: "smart contract",
+    items: [
+      {
+        name: "Code Editor",
+        link: "/codeeditor",
+        icon: <AiFillCode />,
+        children: [],
+        isExternal: false,
+      },
+      {
+        name: "SmartC",
+        link: "/smartc",
+        icon: <AiFillCode />,
+        // children: [{ name: "Sample Code", link: "/smartc/scsample" }],
+         children: [],
+        isExternal: false,
+      },
+      {
+        name: "Sample Contracts",
+        link: "/smartc/scsample",
+        icon: <AiFillCode />,
+        children: [],
+        isExternal: false,
+      },
+    ],
   },
   {
     parent: "power-up",
@@ -105,42 +139,31 @@ export const sidebarArr = [
       },
     ],
   },
-  {
-    parent: "smart contract",
-    items: [
-      {
-        name: "SmartC",
-        link: "/smartc",
-        icon: <AiFillCode />,
-        children: [{ name: "Smart Contract", link: "/smartc/scsample" }],
-        isExternal: false,
-      },
-    ],
-  },
+ 
   // {
-  //   parent: "about",
+  //   parent: "",
   //   items: [
-  //     {
-  //       name: "Partners",
-  //       link: "/partners",
-  //       icon: <VscOrganization />,
-  //       children: [],
-  //       isExternal: false,
-  //     },
-  //     {
-  //       name: "Credits",
-  //       link: "/credits",
-  //       icon: <AiOutlineTeam />,
-  //       children: [],
-  //       isExternal: false,
-  //     },
-  //     {
-  //       name: "Support",
-  //       link: "https://discord.gg/2BDzCvSTVc",
-  //       icon: <BiSupport />,
-  //       children: [],
-  //       isExternal: true,
-  //     },
+      // {
+      //   name: "Related link",
+      //   link: "/partners",
+      //   icon: <VscOrganization />,
+      //   children: [],
+      //   isExternal: false,
+      // },
+      // {
+      //   name: "Credits",
+      //   link: "/credits",
+      //   icon: <AiOutlineTeam />,
+      //   children: [],
+      //   isExternal: false,
+      // },
+      // {
+      //   name: "Support",
+      //   link: "https://discord.gg/2BDzCvSTVc",
+      //   icon: <BiSupport />,
+      //   children: [],
+      //   isExternal: true,
+      // },
   //   ],
   // },
 ];
@@ -382,31 +405,31 @@ export const utilsMenuArr = [
 
 export const partnersArr = [
   {
-    company: "Flair",
-    image: "/assets/partners/flair.png",
-    link: "https://flair.finance/",
-    description: "Open-source Smart Contracts, React Components & REST APIs",
+    company: "Bettermi.io",
+    image: "/assets/partners/bettermi.png",
+    link: "https://www.bettermi.io/",
+    description: "A web3 lifestyle dAPP that rewards users for their fitness journey",
   },
   {
-    company: "ThirdWeb",
-    image: "/assets/partners/thirdweb.svg",
-    link: "https://thirdweb.com/",
+    company: "Sigdao Web3store",
+    image: "/assets/partners/logoWhite.svg",
+    link: "https://store.sigdao.io/",
     description:
-      "Smart contracts you control. Powerful SDKs and intuitive tools for developers. Ship on-chain faster.",
+      "A platform to register tools and applications for the Signum eco-system",
   },
   {
-    company: "Ambition",
-    image: "/assets/partners/ambition.png",
-    link: "https://ambition.so/",
-    description: "End-to-end tools to help creators build their NFT collection",
+    company: "Signum Community",
+    image: "/assets/partners/signum.png",
+    link: "https://discord.com/invite/QHZkF4KHDS",
+    description: "The community is actively involved in developing and promoting the Signum blockchain, contributing to its growth and evolution",
   },
-  {
-    company: "Web3 Philippines",
-    image: "/assets/partners/web3philippines.png",
-    link: "https://web3philippines.org/discord",
-    description:
-      "Filipino-led community, helping Filipinos to build in Web3 space by providing free access to Web3 education.",
-  },
+  // {
+  //   company: "Web3 Philippines",
+  //   image: "/assets/partners/web3philippines.png",
+  //   link: "https://web3philippines.org/discord",
+  //   description:
+  //     "Filipino-led community, helping Filipinos to build in Web3 space by providing free access to Web3 education.",
+  // },
   // {
   //     company: 'SwiftNFT',
   //     image: '/assets/partners/swiftnft.png',
@@ -941,7 +964,7 @@ export const businessCardActions = {
 
     {
       name: 'Open-Collective',
-      icon: 'open-collective',
+      icon: 'opencollective',
       href: 'https://opencollective.com/',
       placeholder: 'projectname',
       value: null,
@@ -1013,7 +1036,7 @@ export const svgImage = {
   yelp: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#af0606"><path d="M19.589 17.194c-.111.801-1.758 2.893-2.514 3.204a.7.7 0 0 1-.712-.078c-.134-.111-.267-.3-2.047-3.193l-.523-.856c-.2-.312-.167-.712.089-1.024.245-.3.612-.411.923-.29l1.335.446c2.982.979 3.082 1.012 3.215 1.112.19.156.278.39.234.668zM13.604 12.8c-.223-.323-.212-.701 0-.968l.834-1.135c1.836-2.48 1.936-2.614 2.058-2.703.212-.134.468-.145.723-.023.723.356 2.18 2.526 2.27 3.36v.022a.69.69 0 0 1-.278.668c-.145.078-.267.133-3.671.957l-1.002.267.023-.023c-.334.112-.712-.055-.935-.4zm-2.092-1.29c-.155.055-.656.2-1.268-.78 0 0-4.105-6.463-4.205-6.674a.723.723 0 0 1 .222-.668c.601-.645 3.927-1.569 4.784-1.357.29.067.49.256.556.5.056.279.445 6.286.512 7.632.056 1.146-.445 1.302-.6 1.346zm.545 6.574c0 3.148-.01 3.26-.066 3.404a.712.712 0 0 1-.568.445c-.8.134-3.304-.79-3.827-1.413a.823.823 0 0 1-.178-.411.556.556 0 0 1 .034-.29c.066-.155.155-.289 2.403-2.925l.667-.78c.223-.288.623-.377 1.001-.222.356.134.579.445.557.78v1.4zm-6.82-2.002a.7.7 0 0 1-.6-.4 2.681 2.681 0 0 1-.2-.846c-.111-1.08.033-2.715.356-3.227.156-.244.378-.367.623-.367.156 0 .3.056 3.526 1.38l.935.378c.334.111.556.467.534.868-.033.39-.256.69-.59.778l-1.335.423c-2.992.968-3.092 1.001-3.248.98ZM17.72 22Z" style="stroke-width:1.11249"/></svg>`,
   xmpp: `<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M7.778,17.504c-1.33,0.602 -2.321,0.785 -2.321,0.785c-0.474,0.086 -0.822,0.502 -0.822,0.984c0,0.549 0.452,1 1,1c0,0 0.001,0 0.001,0c1.781,0 3.498,-0.332 5.113,-0.91c-1.041,-0.534 -2.035,-1.156 -2.971,-1.859Zm10.586,2.769c0,0 0.001,0 0.001,0c0.548,0 1,-0.451 1,-1c-0,-0.482 -0.348,-0.898 -0.822,-0.984c-0.474,-0.086 -9.179,-1.698 -9.179,-11.744c-0,-0.445 -0.298,-0.839 -0.726,-0.961l-6.363,-1.818c-0.089,-0.026 -0.182,-0.039 -0.275,-0.039c-0.548,0 -1,0.452 -1,1c-0,2.294 1.216,5.285 3.353,8.028c3.141,4.029 8.238,7.518 14.011,7.518Zm-5.732,-6.729c1.168,-1.694 2.004,-3.966 2.004,-6.999c0,-0.445 0.298,-0.839 0.726,-0.961l6.363,-1.818c0.089,-0.026 0.182,-0.039 0.275,-0.039c0.548,0 1,0.452 1,1c-0,2.294 -1.216,5.285 -3.353,8.028c-1.037,1.328 -2.226,2.53 -3.543,3.581c-0.63,-0.324 -1.229,-0.706 -1.789,-1.14c1.411,-1.049 2.674,-2.284 3.754,-3.671c1.417,-1.817 2.404,-3.742 2.772,-5.427l-4.22,1.206c-0.136,3.336 -1.167,5.837 -2.542,7.703c-0.531,-0.437 -1.016,-0.927 -1.447,-1.463Zm-2.066,2.265c-1.769,-1.164 -3.335,-2.612 -4.635,-4.284c-1.417,-1.817 -2.404,-3.742 -2.772,-5.427l4.22,1.206c0.157,3.837 1.496,6.569 3.183,8.501l0.004,0.004Z" style="fill:#fff;"/></svg>`,
   x: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M18 6 6 18M6 6l12 12" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"/></svg>`,
-  whatspp: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M18 6 6 18M6 6l12 12" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"/></svg>`,
+  whatsapp: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M18 6 6 18M6 6l12 12" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"/></svg>`,
   wechat: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M96 20c-.734 0-1.45-.071-2.138-.207L90 22v-3.801c-2.428-1.643-4-4.257-4-7.199 0-4.967 4.481-9 10-9s10 4.033 10 9c0 .461-.039.913-.113 1.356" style="fill:none;stroke:#fff;stroke-width:2.5px" transform="matrix(.8 0 0 .8 -66.8 .4)"/><path d="M90 18.199c-2.428-1.643-4-4.257-4-7.199 0-4.967 4.481-9 10-9s10 4.033 10 9-4.481 9-10 9c-.734 0-1.45-.071-2.138-.207L90 22v-3.801Z" style="fill:none;stroke:#fff;stroke-width:3.33px" transform="matrix(-.6 0 0 .6 73.6 8.8)"/><circle cx="131" cy="36" r="1" style="fill:#fff" transform="translate(-124 -29)"/><circle cx="131" cy="36" r="1" style="fill:#fff" transform="translate(-118 -29)"/><circle cx="131" cy="36" r="1" style="fill:#fff" transform="translate(-117 -22)"/><circle cx="131" cy="36" r="1" style="fill:#fff" transform="translate(-113 -22)"/></svg>`,
   website: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><g><path style="fill:none" d="M0 0h24v24H0z"/><clipPath id="a"><path d="M0 0h24v24H0z"/></clipPath><g clip-path="url(#a)"><circle cx="12" cy="12" r="10" style="fill:none;stroke:#fff;stroke-width:2px"/><ellipse cx="40" cy="40" rx="4" ry="10" style="fill:none;stroke:#fff;stroke-width:2px;stroke-linejoin:miter" transform="translate(-28 -28)"/><path d="M40 50s-2-4-2-10 2-10 2-10" style="fill:none;stroke:#fff;stroke-width:2px" transform="rotate(-90 11.5 39.5)"/></g></g></svg>`,
   vk: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M21.079 6.855c.14-.465 0-.806-.662-.806h-2.193c-.558 0-.813.295-.953.619 0 0-1.115 2.719-2.695 4.482-.51.513-.743.675-1.021.675-.139 0-.341-.162-.341-.627V6.855c0-.558-.161-.806-.626-.806H9.142c-.348 0-.558.258-.558.504 0 .528.79.65.871 2.138v3.228c0 .707-.127.836-.407.836-.743 0-2.551-2.729-3.624-5.853-.209-.607-.42-.852-.98-.852H2.252c-.627 0-.752.295-.752.619 0 .582.743 3.462 3.461 7.271 1.812 2.601 4.363 4.011 6.687 4.011 1.393 0 1.565-.313 1.565-.853v-1.966c0-.626.133-.752.574-.752.324 0 .882.164 2.183 1.417 1.486 1.486 1.732 2.153 2.567 2.153h2.192c.626 0 .939-.313.759-.931-.197-.615-.907-1.51-1.849-2.569-.512-.604-1.277-1.254-1.51-1.579-.325-.419-.231-.604 0-.976.001.001 2.672-3.761 2.95-5.04z" fill="#fff" fill-rule="nonzero"/></svg>`,
@@ -1056,7 +1079,7 @@ pause: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="p
 patreon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff"><circle cx="14.51" cy="9.83" r="6.5"/><path d="M3 3.33h3.17v17.33H3z"/></svg>`,
 openCollective: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#b8d3f4" d="M19.69 12c0 1.5-.46 2.95-1.25 4.2l3.14 3.14A12.15 12.15 0 0 0 24 12.06c0-2.75-.92-5.24-2.48-7.27l-3.08 3.08A7.5 7.5 0 0 1 19.68 12z"/><path fill="#7fadf2" d="M11.97 19.74a7.74 7.74 0 0 1 0-15.48c1.57 0 3 .46 4.18 1.25l3.08-3.09A11.99 11.99 0 0 0 0 12c0 6.62 5.36 12 11.97 12 2.63 0 5.18-.87 7.26-2.5l-3.14-3.14a6.38 6.38 0 0 1-4.12 1.38z"/></svg>`,
 monero: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M12 1.983c-5.53 0-10.022 4.491-10.015 10.016.001 1.105.178 2.168.508 3.163H5.49V6.736l6.51 6.51 6.509-6.51v8.426h2.998c.331-.995.506-2.058.508-3.163C22.025 6.468 17.53 1.984 12 1.984v-.001Z" style="fill:#f26821;fill-rule:nonzero"/><path d="m10.503 14.742-2.841-2.841v5.302H5.49l-2.05.001a10.018 10.018 0 0 0 17.12-.001h-4.223v-5.302l-2.841 2.841L12 16.239l-1.497-1.497Z" style="fill:#4d4d4d;fill-rule:nonzero"/></svg>`,
-messaenger: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M90 18.199c-2.428-1.643-4-4.257-4-7.199 0-4.967 4.481-9 10-9s10 4.033 10 9-4.481 9-10 9c-.734 0-1.45-.071-2.138-.207L90 22v-3.801ZM91 13l3-3 4 2 3-3" style="fill:none;stroke:#fff;stroke-width:2px" transform="translate(-84)"/></svg>`,
+messenger: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M90 18.199c-2.428-1.643-4-4.257-4-7.199 0-4.967 4.481-9 10-9s10 4.033 10 9-4.481 9-10 9c-.734 0-1.45-.071-2.138-.207L90 22v-3.801ZM91 13l3-3 4 2 3-3" style="fill:none;stroke:#fff;stroke-width:2px" transform="translate(-84)"/></svg>`,
 medium: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" fill="#fff"><path d="M13.278 11.995c0 3.135-2.525 5.677-5.639 5.677C4.524 17.672 2 15.13 2 11.994c0-3.135 2.524-5.677 5.639-5.677 3.114 0 5.639 2.542 5.639 5.678zm6.185.006c0 2.951-1.262 5.344-2.82 5.344-1.556 0-2.819-2.393-2.819-5.344 0-2.951 1.263-5.345 2.819-5.345 1.558 0 2.82 2.394 2.82 5.345zM22 11.994c0 2.644-.443 4.789-.991 4.789s-.992-2.145-.992-4.789c0-2.644.444-4.788.992-4.788S22 9.349 22 11.994z"/></svg>`,
 matrix: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M218.5 38.917V41v-1.215c0-.23.094-.451.26-.614a.9.9 0 0 1 .629-.254c.236 0 .462.091.628.254a.858.858 0 0 1 .261.614V41v-1.215c0-.23.093-.451.26-.614a.9.9 0 0 1 .629-.254c.235 0 .462.091.628.254a.858.858 0 0 1 .261.614V41" style="fill:none;stroke:#fff;stroke-width:.7px" transform="matrix(2.8125 0 0 2.88 -607.531 -103.08)"/><path d="M170.5 60.714h2v14.572h-2" style="fill:none;stroke:#fff;stroke-width:.92px" transform="matrix(1 0 0 1.16667 -150 -67.333)"/><path d="M170.5 60.714h2v14.572h-2" style="fill:none;stroke:#fff;stroke-width:.92px" transform="matrix(-1 0 0 1.16667 174 -67.333)"/></svg>`,
 mastodon: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" fill="#fff"><path d="M20.93 13.99c-.274 1.411-2.455 2.955-4.961 3.254-1.307.156-2.594.299-3.966.236-2.243-.103-4.013-.535-4.013-.535 0 .218.013.426.04.621.291 2.214 2.195 2.346 3.999 2.408 1.82.063 3.441-.448 3.441-.448l.075 1.645s-1.274.684-3.542.81c-1.25.068-2.803-.032-4.612-.511-3.923-1.038-4.598-5.22-4.701-9.462-.031-1.26-.012-2.448-.012-3.441 0-4.339 2.842-5.611 2.842-5.611 1.434-.658 3.894-.935 6.45-.956h.063c2.557.021 5.018.298 6.452.956 0 0 2.842 1.272 2.842 5.611 0 0 .036 3.201-.397 5.423zm-2.956-5.087v5.253h-2.081V9.058c0-1.075-.453-1.621-1.357-1.621-1.001 0-1.501.647-1.501 1.927v2.791h-2.07V9.364c0-1.28-.501-1.927-1.501-1.927-.904 0-1.357.546-1.357 1.621v5.098H6.025V8.903c0-1.074.275-1.927.823-2.558.567-.632 1.308-.955 2.228-.955 1.066 0 1.872.409 2.405 1.228l.519.87.519-.87c.532-.819 1.339-1.228 2.404-1.228.921 0 1.662.323 2.228.955.549.631.823 1.484.823 2.558z"/></svg>`,
@@ -1085,7 +1108,7 @@ funkwhale: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" clip-rul
 fackbook: `<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z"/></svg>`,
 friendica: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5"><path d="M20.5 5.5a2 2 0 0 0-2-2h-13a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-13z" fill="none" stroke="#ffc019"/><path d="M14.906 3.5v4.533H9.167V12h5.687v3.967H9.167V20.5H5.5a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2h9.406z" fill="#ffc019"/></svg>`,
 file: `fi<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M89 109a2 2 0 0 1 2-2h6l6 6v10a2 2 0 0 1-2 2H91a2 2 0 0 1-2-2v-14Z" style="fill:none;stroke:#fff;stroke-width:2px" transform="translate(-84 -104)"/><path d="M97 107v4a2 2 0 0 0 2 2h4" style="fill:none;stroke:#fff;stroke-width:2px" transform="translate(-84 -104)"/></svg>`,
-dribble: `<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M20.66 6.98a9.932 9.932 0 0 0-3.641-3.64C15.486 2.447 13.813 2 12 2s-3.486.447-5.02 1.34c-1.533.893-2.747 2.107-3.64 3.64S2 10.187 2 12s.446 3.487 1.34 5.02a9.924 9.924 0 0 0 3.641 3.64C8.514 21.553 10.187 22 12 22s3.486-.447 5.02-1.34a9.932 9.932 0 0 0 3.641-3.64C21.554 15.487 22 13.813 22 12s-.446-3.487-1.34-5.02zM12 3.66c2 0 3.772.64 5.32 1.919-.92 1.174-2.286 2.14-4.1 2.9-1.002-1.813-2.088-3.327-3.261-4.54A7.715 7.715 0 0 1 12 3.66zM5.51 6.8a8.116 8.116 0 0 1 2.711-2.22c1.212 1.201 2.325 2.7 3.34 4.5-2 .6-4.114.9-6.341.9-.573 0-1.006-.013-1.3-.04A8.549 8.549 0 0 1 5.51 6.8zM3.66 12c0-.054.003-.12.01-.2.007-.08.01-.146.01-.2.254.014.641.02 1.161.02 2.666 0 5.146-.367 7.439-1.1.187.373.381.793.58 1.26-1.32.293-2.674 1.006-4.061 2.14S6.4 16.247 5.76 17.5c-1.4-1.587-2.1-3.42-2.1-5.5zM12 20.34c-1.894 0-3.594-.587-5.101-1.759.601-1.187 1.524-2.322 2.771-3.401 1.246-1.08 2.483-1.753 3.71-2.02a29.441 29.441 0 0 1 1.56 6.62 8.166 8.166 0 0 1-2.94.56zm7.08-3.96a8.351 8.351 0 0 1-2.58 2.621c-.24-2.08-.7-4.107-1.379-6.081.932-.066 1.765-.1 2.5-.1.799 0 1.686.034 2.659.1a8.098 8.098 0 0 1-1.2 3.46zm-1.24-5c-1.16 0-2.233.047-3.22.14a27.053 27.053 0 0 0-.68-1.62c2.066-.906 3.532-2.006 4.399-3.3 1.2 1.414 1.854 3.027 1.96 4.84-.812-.04-1.632-.06-2.459-.06z"/></svg>`,
+dribbble: `<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M20.66 6.98a9.932 9.932 0 0 0-3.641-3.64C15.486 2.447 13.813 2 12 2s-3.486.447-5.02 1.34c-1.533.893-2.747 2.107-3.64 3.64S2 10.187 2 12s.446 3.487 1.34 5.02a9.924 9.924 0 0 0 3.641 3.64C8.514 21.553 10.187 22 12 22s3.486-.447 5.02-1.34a9.932 9.932 0 0 0 3.641-3.64C21.554 15.487 22 13.813 22 12s-.446-3.487-1.34-5.02zM12 3.66c2 0 3.772.64 5.32 1.919-.92 1.174-2.286 2.14-4.1 2.9-1.002-1.813-2.088-3.327-3.261-4.54A7.715 7.715 0 0 1 12 3.66zM5.51 6.8a8.116 8.116 0 0 1 2.711-2.22c1.212 1.201 2.325 2.7 3.34 4.5-2 .6-4.114.9-6.341.9-.573 0-1.006-.013-1.3-.04A8.549 8.549 0 0 1 5.51 6.8zM3.66 12c0-.054.003-.12.01-.2.007-.08.01-.146.01-.2.254.014.641.02 1.161.02 2.666 0 5.146-.367 7.439-1.1.187.373.381.793.58 1.26-1.32.293-2.674 1.006-4.061 2.14S6.4 16.247 5.76 17.5c-1.4-1.587-2.1-3.42-2.1-5.5zM12 20.34c-1.894 0-3.594-.587-5.101-1.759.601-1.187 1.524-2.322 2.771-3.401 1.246-1.08 2.483-1.753 3.71-2.02a29.441 29.441 0 0 1 1.56 6.62 8.166 8.166 0 0 1-2.94.56zm7.08-3.96a8.351 8.351 0 0 1-2.58 2.621c-.24-2.08-.7-4.107-1.379-6.081.932-.066 1.765-.1 2.5-.1.799 0 1.686.034 2.659.1a8.098 8.098 0 0 1-1.2 3.46zm-1.24-5c-1.16 0-2.233.047-3.22.14a27.053 27.053 0 0 0-.68-1.62c2.066-.906 3.532-2.006 4.399-3.3 1.2 1.414 1.854 3.027 1.96 4.84-.812-.04-1.632-.06-2.459-.06z"/></svg>`,
 email: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M22 33.75c0-.966-.896-1.75-2-1.75H4c-1.104 0-2 .784-2 1.75v10.5c0 .966.896 1.75 2 1.75h16c1.104 0 2-.784 2-1.75v-10.5Z" style="fill:none;stroke:#fff;stroke-width:1.86px" transform="matrix(1 0 0 1.14286 0 -32.571)"/><path d="m18 7.042-6 2.625-6-2.625" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:1.86px" transform="matrix(1 0 0 1.14286 0 1.952)"/></svg>`,
 ellipsis: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#edf2f7" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>`,
 drag: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#4B5563"><path d="M8 4a2 2 0 1 0 0 4 2 2 0 1 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 1 0 0-4zm-8 6a2 2 0 1 0 0 4 2 2 0 1 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 1 0 0-4zm-8 6a2 2 0 1 0 0 4 2 2 0 1 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 1 0 0-4z"/></svg>`,
@@ -1117,648 +1140,973 @@ copy: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="pr
 codeberg: `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 6.349 6.349"><defs><linearGradient id="b" x1="42519.285" x2="42575.336" y1="-7078.789" y2="-6966.931" gradientUnits="userSpaceOnUse" xlink:href="#a"/><linearGradient id="a"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".495" stop-color="#fff"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><g paint-order="stroke markers fill"><path style="font-variation-settings:normal;fill:url(#b)" fill="url(#b)" d="M42519.285-7078.79a.76.568 0 0 0-.738.675l33.586 125.888a87.182 87.182 0 0 0 39.381-33.763l-71.565-92.52a.76.568 0 0 0-.664-.28z" opacity=".5" transform="translate(-1066.143 180.113) scale(.02515)"/><path fill="#fff" d="M3.167 1.058A2.193 2.193 0 0 0 .982 3.251a2.193 2.193 0 0 0 .335 1.166l1.828-2.365a.034.026 0 0 1 .06 0l1.827 2.364a2.193 2.193 0 0 0 .335-1.166 2.193 2.193 0 0 0-2.192-2.19 2.193 2.193 0 0 0-.008 0z"/></g></svg>`,
 check: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M21 5 8 18l-5-5" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"/></svg>`,
 clone: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="M18 6 6 18M6 6l12 12" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"/></svg>`,
-store: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="m59 37 .721-4.329A2.001 2.001 0 0 1 61.694 31h12.612c.977 0 1.812.707 1.973 1.671L77 37" style="fill:none;stroke:#fff;stroke-width:2px" transform="translate(-56 -28)"/><path d="M71 39a2 2 0 0 1-4 0" style="fill:none;stroke:#fff;stroke-width:1.33px" transform="matrix(1.5 0 0 1.5 -85.5 -49.5)"/><path d="M71 39a2 2 0 0 1-4 0" style="fill:none;stroke:#fff;stroke-width:1.33px" transform="matrix(1.5 0 0 1.5 -91.5 -49.5)"/><path d="M71 39a2 2 0 0 1-4 0" style="fill:none;stroke:#fff;stroke-width:1.33px" transform="matrix(1.5 0 0 1.5 -97.5 -49.5)"/><path d="M61 39.235V47c0 .53.184 1.039.513 1.414.328.375.773.586 1.237.586h10.5c.464 0 .909-.211 1.237-.586A2.15 2.15 0 0 0 75 47v-7.765" style="fill:none;stroke:#fff;stroke-width:1.86px" transform="matrix(1.14286 0 0 1 -65.714 -28)"/></svg>`
+store: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"><path style="fill:none" d="M0 0h24v24H0z"/><path d="m59 37 .721-4.329A2.001 2.001 0 0 1 61.694 31h12.612c.977 0 1.812.707 1.973 1.671L77 37" style="fill:none;stroke:#fff;stroke-width:2px" transform="translate(-56 -28)"/><path d="M71 39a2 2 0 0 1-4 0" style="fill:none;stroke:#fff;stroke-width:1.33px" transform="matrix(1.5 0 0 1.5 -85.5 -49.5)"/><path d="M71 39a2 2 0 0 1-4 0" style="fill:none;stroke:#fff;stroke-width:1.33px" transform="matrix(1.5 0 0 1.5 -91.5 -49.5)"/><path d="M71 39a2 2 0 0 1-4 0" style="fill:none;stroke:#fff;stroke-width:1.33px" transform="matrix(1.5 0 0 1.5 -97.5 -49.5)"/><path d="M61 39.235V47c0 .53.184 1.039.513 1.414.328.375.773.586 1.237.586h10.5c.464 0 .909-.211 1.237-.586A2.15 2.15 0 0 0 75 47v-7.765" style="fill:none;stroke:#fff;stroke-width:1.86px" transform="matrix(1.14286 0 0 1 -65.714 -28)"/></svg>`,
+facebook: `<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z"/></svg>`,
+tumblr: `<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M14.078 20.953c-2.692 0-4.699-1.385-4.699-4.7v-5.308H6.931V8.07c2.694-.699 3.821-3.017 3.95-5.023h2.796v4.558h3.263v3.34h-3.263v4.622c0 1.386.699 1.864 1.813 1.864h1.58v3.522h-2.992z"/></svg>`,
+spotify: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M17.916 10.866C14.692 8.951 9.374 8.774 6.298 9.709a.935.935 0 0 1-.544-1.79c3.533-1.072 9.405-.866 13.116 1.338a.935.935 0 0 1-.954 1.609zM17.81 13.7a.78.78 0 0 1-1.072.258c-2.688-1.652-6.786-2.131-9.965-1.166A.78.78 0 1 1 6.32 11.3c3.631-1.102 8.147-.568 11.233 1.329a.778.778 0 0 1 .257 1.071zm-1.223 2.723a.624.624 0 0 1-.858.208c-2.348-1.435-5.303-1.76-8.785-.964a.624.624 0 0 1-.277-1.215c3.809-.871 7.076-.496 9.712 1.115a.623.623 0 0 1 .208.856zM12 2C6.478 2 2 6.477 2 12s4.478 10 10 10c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="#fff" fill-rule="nonzero"/></svg>`,
+opencollective: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#b8d3f4" d="M19.69 12c0 1.5-.46 2.95-1.25 4.2l3.14 3.14A12.15 12.15 0 0 0 24 12.06c0-2.75-.92-5.24-2.48-7.27l-3.08 3.08A7.5 7.5 0 0 1 19.68 12z"/><path fill="#7fadf2" d="M11.97 19.74a7.74 7.74 0 0 1 0-15.48c1.57 0 3 .46 4.18 1.25l3.08-3.09A11.99 11.99 0 0 0 0 12c0 6.62 5.36 12 11.97 12 2.63 0 5.18-.87 7.26-2.5l-3.14-3.14a6.38 6.38 0 0 1-4.12 1.38z"/></svg>`,
 }
 
-export const scDescription = {
-  configurableTimer: "The contract will act as a timer for any incoming transactions, dispatching all balance to target address on next block that is multiple of a configurable number. Creator must configure target address with a message.",
-  liquidityPool: `Implements a liquidity pool (constant product formula).
-  Includes measures to protect traders from sandwich attack: bots that monitor transactions to manipulate prices by changing transactions order.
-  Liquity providers receive liquitidy tokens (lpToken) to redeem the balance later.
-  Holders of lpTokens receive payments from trades fees.`,
-  EchoAnySize: `Simple contract that reads the incoming text message until a zero byte is found on last byte of last page read. Clears the rest of message buffer and then send the "same message" to sender. Smart contracts only can send 32 bytes each time, so expect the received message to be multiple of 32, padded with zero bytes. Online at tesnet TS-LZYH-PE75-JZTB-FJ88Y. Note that there is no API to get the message size, so the program must handle the input end in some way. Activation amount is huge because the fees to read/send info for a smart contract are much higher than sending manually and the contract must handle input text up the 1000 bytes, the current blockchain limit.`,
-  GetATCreatorID: `Simple contract that receives a message with some AT ID (text message in decimal representation) and return to sender a message with the creator's ID of that AT (also in text unsigned decimal representation). Online at tesnet TS-7MUA-SSZ8-W6QR-6M892`,
-  PublicMethodsOnSmartC: `SmartJ uses a simple concept to integrate Smart Contracts. It works by defining a public method that can be called by other classes and also imported in other projects. SmartC does not have this kind of java integration, but the same result can be achieved.
+// export const scDescription = {
+//   configurableTimer: "The contract will act as a timer for any incoming transactions, dispatching all balance to target address on next block that is multiple of a configurable number. Creator must configure target address with a message.",
+//   liquidityPool: `Implements a liquidity pool (constant product formula).
+//   Includes measures to protect traders from sandwich attack: bots that monitor transactions to manipulate prices by changing transactions order.
+//   Liquity providers receive liquitidy tokens (lpToken) to redeem the balance later.
+//   Holders of lpTokens receive payments from trades fees.`,
+//   EchoAnySize: `Simple contract that reads the incoming text message until a zero byte is found on last byte of last page read. Clears the rest of message buffer and then send the "same message" to sender. Smart contracts only can send 32 bytes each time, so expect the received message to be multiple of 32, padded with zero bytes. Online at tesnet TS-LZYH-PE75-JZTB-FJ88Y. Note that there is no API to get the message size, so the program must handle the input end in some way. Activation amount is huge because the fees to read/send info for a smart contract are much higher than sending manually and the contract must handle input text up the 1000 bytes, the current blockchain limit.`,
+//   GetATCreatorID: `Simple contract that receives a message with some AT ID (text message in decimal representation) and return to sender a message with the creator's ID of that AT (also in text unsigned decimal representation). Online at tesnet TS-7MUA-SSZ8-W6QR-6M892`,
+//   PublicMethodsOnSmartC: `SmartJ uses a simple concept to integrate Smart Contracts. It works by defining a public method that can be called by other classes and also imported in other projects. SmartC does not have this kind of java integration, but the same result can be achieved.
 
-  To be clear, skeleton codes for SmartC and SmartJ are shown. The main loop for processing messages is hidden in SmartJ, and this part calls the protected methods. Also the switch statement for routing transactions to the public methods is prepared. This is reached using magic numbers to make relationship between the message and the method.`,
-}
+//   To be clear, skeleton codes for SmartC and SmartJ are shown. The main loop for processing messages is hidden in SmartJ, and this part calls the protected methods. Also the switch statement for routing transactions to the public methods is prepared. This is reached using magic numbers to make relationship between the message and the method.`,
+//   remoteControl: `The contract will dispatch transactions according to instructions from its creator.`,
+//   dropper: `Sends a fixed amount of signa to a defined account every N blocks. `,
+//   get3Random: `When a message arrives, the program tries to parse a number
+//   from message. Number must be bigger or equal 5 and lower or equal 9999999. If
+//   found, then program mixes random hash for 3 blocks and send back a message
+//   to the sender with the random numbers without repetition. When there is no  more
+//   pending messages, all balance remaining is sent to program creator.`,
+//   remoteControl: `The contract will dispatch transactions according to instructions from its creator.`,
 
-export const scCode = {
-  configurableTimer: `#define MULTIPLE 5
 
-  #program name MultipleOf
-  #program description Creator deploys the contract and send a binary
-   message with target address. The contract will act as a timer for
-   any incoming transactions, dispatching all balance to target address on
-   next block that is multiple of MULTIPLE.
-  #program activationAmount 1_1000_0000
+// }
+
+// export const scCode = {
+//   configurableTimer: `#define MULTIPLE 5
+
+//   #program name MultipleOf
+//   #program description Creator deploys the contract and send a binary
+//    message with target address. The contract will act as a timer for
+//    any incoming transactions, dispatching all balance to target address on
+//    next block that is multiple of MULTIPLE.
+//   #program activationAmount 1_1000_0000
   
-  /* Do not change below here */
+//   /* Do not change below here */
   
-  #include APIFunctions
-  #pragma version 1.0
+//   #include APIFunctions
+//   #pragma version 1.0
   
-  const long multiple = MULTIPLE, n32 = 32;
-  long lastTimestamp, sleepBlocks, creator;
+//   const long multiple = MULTIPLE, n32 = 32;
+//   long lastTimestamp, sleepBlocks, creator;
   
-  B_To_Address_Of_Creator();
-  creator = Get_B1();
+//   B_To_Address_Of_Creator();
+//   creator = Get_B1();
   
-  // phase 1: wait to receive target address from creator
-  do {
-      A_To_Tx_After_Timestamp(lastTimestamp);
-      if (Get_A1() == 0) {
-          halt;
-          continue;
-      }
-      lastTimestamp = Get_Timestamp_For_Tx_In_A();
-      B_To_Address_Of_Tx_In_A();
-      if (Get_B1() == creator) {
-          Message_From_Tx_In_A_To_B();
-          break;
-      }
-  } while (true);
+//   // phase 1: wait to receive target address from creator
+//   do {
+//       A_To_Tx_After_Timestamp(lastTimestamp);
+//       if (Get_A1() == 0) {
+//           halt;
+//           continue;
+//       }
+//       lastTimestamp = Get_Timestamp_For_Tx_In_A();
+//       B_To_Address_Of_Tx_In_A();
+//       if (Get_B1() == creator) {
+//           Message_From_Tx_In_A_To_B();
+//           break;
+//       }
+//   } while (true);
   
-  // phase 2: Endless timer transaction
-  do {
-      sleepBlocks = multiple - ((Get_Block_Timestamp() >> 32) % multiple);
-      if (sleepBlocks != multiple) {
-          sleep sleepBlocks;
-      }
-      Send_All_To_Address_In_B();
-  } while (true);`,
-  liquidityPool: `#program name TMGSignaLiquidityPool
-  #program description 1) Implements a liquidity pool (constant product formula).
-   2) Includes measures to protect traders from sandwich attack: bots that
-   monitor transactions to manipulate prices by changing transactions order.
-   3) Liquity providers receive liquitidy tokens (lcToken) to redeem the balance
-   later. 4) Holders of lcTokens receive payments from trades fees.
-  #define ACTIVATION_AMOUNT 4200_0000
-  #program activationAmount ACTIVATION_AMOUNT
+//   // phase 2: Endless timer transaction
+//   do {
+//       sleepBlocks = multiple - ((Get_Block_Timestamp() >> 32) % multiple);
+//       if (sleepBlocks != multiple) {
+//           sleep sleepBlocks;
+//       }
+//       Send_All_To_Address_In_B();
+//   } while (true);`,
+//   liquidityPool: `#program name TMGSignaLiquidityPool
+//   #program description 1) Implements a liquidity pool (constant product formula).
+//    2) Includes measures to protect traders from sandwich attack: bots that
+//    monitor transactions to manipulate prices by changing transactions order.
+//    3) Liquity providers receive liquitidy tokens (lcToken) to redeem the balance
+//    later. 4) Holders of lcTokens receive payments from trades fees.
+//   #define ACTIVATION_AMOUNT 4200_0000
+//   #program activationAmount ACTIVATION_AMOUNT
   
-  // #pragma verboseAssembly
-  #pragma optimizationLevel 3
+//   // #pragma verboseAssembly
+//   #pragma optimizationLevel 3
   
-  #pragma version 2.1.1
+//   #pragma version 2.1.1
   
-  #define SIMULATOR
-  // Name for liquidity token (max 8, only letters and number)
-  #define LP_TICKER "lcTMG"
-  // Pool fee in parts per thousand for each trade
-  #define POOL_FEE 20
-  // Platform fee in percent for each distribution (only signa part)
-  #define PLATFORM_FEE 5
-  // If true, fees collected in asset will be traded inside the pool before
-  // distribution, so liquidity providers receive only Signa. If false, the
-  // distribution will have Signa and assets
-  #define DISTRIBUTE_ONLY_SIGNA false
+//   #define SIMULATOR
+//   // Name for liquidity token (max 8, only letters and number)
+//   #define LP_TICKER "lcTMG"
+//   // Pool fee in parts per thousand for each trade
+//   #define POOL_FEE 20
+//   // Platform fee in percent for each distribution (only signa part)
+//   #define PLATFORM_FEE 5
+//   // If true, fees collected in asset will be traded inside the pool before
+//   // distribution, so liquidity providers receive only Signa. If false, the
+//   // distribution will have Signa and assets
+//   #define DISTRIBUTE_ONLY_SIGNA false
   
-  #ifdef SIMULATOR
-    // Try distribution every block
-    #define DISTRIBUTION_INTERVAL 1
-    #define ASSET_ID 222333
-    #program codeHashId 12551049878178174318
-  #else
-    // Try distribution every day
-    #define DISTRIBUTION_INTERVAL 360
-    #define ASSET_ID 11955007191311588286
-    #program codeHashId 5997699537277718563
-  #endif
+//   #ifdef SIMULATOR
+//     // Try distribution every block
+//     #define DISTRIBUTION_INTERVAL 1
+//     #define ASSET_ID 222333
+//     #program codeHashId 12551049878178174318
+//   #else
+//     // Try distribution every day
+//     #define DISTRIBUTION_INTERVAL 360
+//     #define ASSET_ID 11955007191311588286
+//     #program codeHashId 5997699537277718563
+//   #endif
   
-  /* End of configurations */
+//   /* End of configurations */
   
-  #define FIELD_TRADE_AMOUNT 0
-  #define FIELD_TRADE_SENDER 1
-  #define FIELD_REMOVE_AMOUNT 2
-  #define FIELD_REMOVE_SENDER 3
+//   #define FIELD_TRADE_AMOUNT 0
+//   #define FIELD_TRADE_SENDER 1
+//   #define FIELD_REMOVE_AMOUNT 2
+//   #define FIELD_REMOVE_SENDER 3
   
-  #define sqrt(val) (powf(val,half))
+//   #define sqrt(val) (powf(val,half))
   
-  const fixed half = 0.5;
-  const long assetId = ASSET_ID;
-  const long distributeOnlySigna = DISTRIBUTE_ONLY_SIGNA;
-  long liquidityToken;
+//   const fixed half = 0.5;
+//   const long assetId = ASSET_ID;
+//   const long distributeOnlySigna = DISTRIBUTE_ONLY_SIGNA;
+//   long liquidityToken;
   
-  struct TXINFO {
-      long txid;
-      long sender;
-      long amount;
-      long quantity;
-      long message[2];
-  } currentTX;
+//   struct TXINFO {
+//       long txid;
+//       long sender;
+//       long amount;
+//       long quantity;
+//       long message[2];
+//   } currentTX;
   
-  struct TOTAL {
-      long signaTotal;
-      long assetTotal;
-  } pool, block;
+//   struct TOTAL {
+//       long signaTotal;
+//       long assetTotal;
+//   } pool, block;
   
-  struct STATS {
-      long trades, volume;
-  } stats;
+//   struct STATS {
+//       long trades, volume;
+//   } stats;
   
-  long currentLiquidity;
-  long enqueuedTrades, enqueuedRemovals;
-  long lastDistribution;
-  long i;
+//   long currentLiquidity;
+//   long enqueuedTrades, enqueuedRemovals;
+//   long lastDistribution;
+//   long i;
   
-  // Constructor
-  long owner = getCreator();
-  long newOwner = 0;
-  long shutdown = false;
-  liquidityToken = issueAsset(LP_TICKER, "", 0);
-  lastDistribution = getCurrentBlockheight();
-  // end Constructor
+//   // Constructor
+//   long owner = getCreator();
+//   long newOwner = 0;
+//   long shutdown = false;
+//   liquidityToken = issueAsset(LP_TICKER, "", 0);
+//   lastDistribution = getCurrentBlockheight();
+//   // end Constructor
   
-  void main () {
-      enqueuedTrades = 0;
-      enqueuedRemovals = 0;
-      block.assetTotal = 0;
-      block.signaTotal = 0;
-      while ((currentTX.txid = getNextTx()) != 0) {
-          // get details
-          currentTX.sender = getSender(currentTX.txid);
-          currentTX.amount = getAmount(currentTX.txid);
-          readShortMessage(currentTX.txid, currentTX.message, currentTX.message.length);
-          currentTX.quantity = getQuantity(currentTX.txid, assetId);
-          if (shutdown != 0) {
-              refundTransaction();
-              continue;
-          }
-          // process command
-          switch (currentTX.message[0]) {
-          case 'add':
-              addLiquidity();
-              break;
-          case 'remove':
-              removeLiquidity();
-              break;
-          case 'trade':
-              processTrade();
-              break;
-          case "":
-              // No message, do not process
-              break;
-          case 'accept':
-              // new owner accepts ownership
-              if (currentTX.sender == newOwner) {
-                  owner = currentTX.sender;
-                  newOwner = 0;
-              }
-              break;
-          default:
-              // unknow command
-              if (currentTX.sender == owner) {
-                  processCreatorCommand();
-                  break;
-              }
-              refundTransaction();
-          }
-      }
-      // After all transactions processed
-      processEnqueuedTrades();
-      processEnqueuedRemovals();
-      shutdownHandler();
-  }
+//   void main () {
+//       enqueuedTrades = 0;
+//       enqueuedRemovals = 0;
+//       block.assetTotal = 0;
+//       block.signaTotal = 0;
+//       while ((currentTX.txid = getNextTx()) != 0) {
+//           // get details
+//           currentTX.sender = getSender(currentTX.txid);
+//           currentTX.amount = getAmount(currentTX.txid);
+//           readShortMessage(currentTX.txid, currentTX.message, currentTX.message.length);
+//           currentTX.quantity = getQuantity(currentTX.txid, assetId);
+//           if (shutdown != 0) {
+//               refundTransaction();
+//               continue;
+//           }
+//           // process command
+//           switch (currentTX.message[0]) {
+//           case 'add':
+//               addLiquidity();
+//               break;
+//           case 'remove':
+//               removeLiquidity();
+//               break;
+//           case 'trade':
+//               processTrade();
+//               break;
+//           case "":
+//               // No message, do not process
+//               break;
+//           case 'accept':
+//               // new owner accepts ownership
+//               if (currentTX.sender == newOwner) {
+//                   owner = currentTX.sender;
+//                   newOwner = 0;
+//               }
+//               break;
+//           default:
+//               // unknow command
+//               if (currentTX.sender == owner) {
+//                   processCreatorCommand();
+//                   break;
+//               }
+//               refundTransaction();
+//           }
+//       }
+//       // After all transactions processed
+//       processEnqueuedTrades();
+//       processEnqueuedRemovals();
+//       shutdownHandler();
+//   }
   
-  void refundTransaction() {
-      if (currentTX.quantity > 0) {
-          sendQuantityAndAmount(currentTX.quantity, assetId, currentTX.amount, currentTX.sender);
-      } else if (currentTX.amount > 0) {
-          sendAmount(currentTX.amount, currentTX.sender);
-      }
-  }
+//   void refundTransaction() {
+//       if (currentTX.quantity > 0) {
+//           sendQuantityAndAmount(currentTX.quantity, assetId, currentTX.amount, currentTX.sender);
+//       } else if (currentTX.amount > 0) {
+//           sendAmount(currentTX.amount, currentTX.sender);
+//       }
+//   }
   
-  void addLiquidity() {
-      long operationAsset,  operationSigna;
-      long operationLiquidity, excessSigna;
-      if (currentTX.amount == 0 || currentTX.quantity == 0) {
-          refundTransaction();
-          return;
-      }
-      if (currentLiquidity == 0) {
-          excessSigna = 0;
-          operationSigna = currentTX.amount;
-          operationAsset = currentTX.quantity;
-          operationLiquidity = sqrt(operationAsset) * sqrt(operationSigna);
-      } else {
-          excessSigna = currentTX.amount - mdv(currentTX.quantity, pool.signaTotal, pool.assetTotal);
-          long excessAsset = currentTX.quantity - mdv(currentTX.amount, pool.assetTotal, pool.signaTotal);
-          if (excessSigna < 0) {
-              // Refund the excess of asset
-              sendQuantity(excessAsset, assetId, currentTX.sender);
-              operationAsset = currentTX.quantity - excessAsset;
-              operationSigna = currentTX.amount;
-          } else {
-              // Refund the excess of signa
-              operationAsset = currentTX.quantity;
-              operationSigna = currentTX.amount - excessSigna;
-          }
-          operationLiquidity = currentLiquidity * operationSigna / pool.signaTotal ;
-      }
-      // Issue/send liquidity token
-      mintAsset(operationLiquidity, liquidityToken);
-      sendQuantityAndAmount(operationLiquidity, liquidityToken, excessSigna, currentTX.sender);
-      // Update totals
-      pool.signaTotal += operationSigna;
-      pool.assetTotal += operationAsset;
-      currentLiquidity += operationLiquidity;
-  }
+//   void addLiquidity() {
+//       long operationAsset,  operationSigna;
+//       long operationLiquidity, excessSigna;
+//       if (currentTX.amount == 0 || currentTX.quantity == 0) {
+//           refundTransaction();
+//           return;
+//       }
+//       if (currentLiquidity == 0) {
+//           excessSigna = 0;
+//           operationSigna = currentTX.amount;
+//           operationAsset = currentTX.quantity;
+//           operationLiquidity = sqrt(operationAsset) * sqrt(operationSigna);
+//       } else {
+//           excessSigna = currentTX.amount - mdv(currentTX.quantity, pool.signaTotal, pool.assetTotal);
+//           long excessAsset = currentTX.quantity - mdv(currentTX.amount, pool.assetTotal, pool.signaTotal);
+//           if (excessSigna < 0) {
+//               // Refund the excess of asset
+//               sendQuantity(excessAsset, assetId, currentTX.sender);
+//               operationAsset = currentTX.quantity - excessAsset;
+//               operationSigna = currentTX.amount;
+//           } else {
+//               // Refund the excess of signa
+//               operationAsset = currentTX.quantity;
+//               operationSigna = currentTX.amount - excessSigna;
+//           }
+//           operationLiquidity = currentLiquidity * operationSigna / pool.signaTotal ;
+//       }
+//       // Issue/send liquidity token
+//       mintAsset(operationLiquidity, liquidityToken);
+//       sendQuantityAndAmount(operationLiquidity, liquidityToken, excessSigna, currentTX.sender);
+//       // Update totals
+//       pool.signaTotal += operationSigna;
+//       pool.assetTotal += operationAsset;
+//       currentLiquidity += operationLiquidity;
+//   }
   
-  void removeLiquidity() {
-      long liquidityWithdraw = getQuantity(currentTX.txid, liquidityToken);
-      if (liquidityWithdraw == 0) {
-          return;
-      }
-      setMapValue(FIELD_REMOVE_AMOUNT, enqueuedRemovals, liquidityWithdraw);
-      setMapValue(FIELD_REMOVE_SENDER, enqueuedRemovals, currentTX.sender);
-      enqueuedRemovals++;
-  }
+//   void removeLiquidity() {
+//       long liquidityWithdraw = getQuantity(currentTX.txid, liquidityToken);
+//       if (liquidityWithdraw == 0) {
+//           return;
+//       }
+//       setMapValue(FIELD_REMOVE_AMOUNT, enqueuedRemovals, liquidityWithdraw);
+//       setMapValue(FIELD_REMOVE_SENDER, enqueuedRemovals, currentTX.sender);
+//       enqueuedRemovals++;
+//   }
   
-  void processEnqueuedRemovals() {
-      for (i = 0; i < enqueuedRemovals; i++) {
-          long qty = getMapValue(FIELD_REMOVE_AMOUNT, i);
-          long sender = getMapValue(FIELD_REMOVE_SENDER, i);
-          long calculatedSigna = pool.signaTotal * qty / currentLiquidity;
-          long calculatedAsset = pool.assetTotal * qty / currentLiquidity;
-          // Burn liquidity token
-          sendQuantity(qty, liquidityToken, 0);
-          // Send withdraw
-          sendQuantityAndAmount(calculatedAsset, assetId, calculatedSigna, sender);
-          // Update totals
-          pool.signaTotal -= calculatedSigna;
-          pool.assetTotal -= calculatedAsset;
-          if (pool.signaTotal <= 0 || pool.assetTotal <= 0) {
-              pool.signaTotal = 0;
-              pool.assetTotal = 0;
-              currentLiquidity = 0;
-              return;
-          }
-          currentLiquidity -= qty;
-      }
-  }
+//   void processEnqueuedRemovals() {
+//       for (i = 0; i < enqueuedRemovals; i++) {
+//           long qty = getMapValue(FIELD_REMOVE_AMOUNT, i);
+//           long sender = getMapValue(FIELD_REMOVE_SENDER, i);
+//           long calculatedSigna = pool.signaTotal * qty / currentLiquidity;
+//           long calculatedAsset = pool.assetTotal * qty / currentLiquidity;
+//           // Burn liquidity token
+//           sendQuantity(qty, liquidityToken, 0);
+//           // Send withdraw
+//           sendQuantityAndAmount(calculatedAsset, assetId, calculatedSigna, sender);
+//           // Update totals
+//           pool.signaTotal -= calculatedSigna;
+//           pool.assetTotal -= calculatedAsset;
+//           if (pool.signaTotal <= 0 || pool.assetTotal <= 0) {
+//               pool.signaTotal = 0;
+//               pool.assetTotal = 0;
+//               currentLiquidity = 0;
+//               return;
+//           }
+//           currentLiquidity -= qty;
+//       }
+//   }
   
-  void processTrade() {
-      if (currentTX.amount == 0 && currentTX.quantity == 0) {
-          return;
-      }
-      if (currentLiquidity == 0) {
-          refundTransaction();
-          return;
-      }
-      if (currentTX.quantity != 0) {
-          // User sending asset to get Signa
-          sendAmount(currentTX.amount, currentTX.sender);
-          setMapValue(FIELD_TRADE_AMOUNT, enqueuedTrades, -currentTX.quantity);
-          setMapValue(FIELD_TRADE_SENDER, enqueuedTrades, currentTX.sender);
-          block.assetTotal += currentTX.quantity;
-          enqueuedTrades++;
-          return;
-      }
-      // User sending Signa to get asset
-      setMapValue(FIELD_TRADE_AMOUNT, enqueuedTrades, currentTX.amount);
-      setMapValue(FIELD_TRADE_SENDER, enqueuedTrades, currentTX.sender);
-      block.signaTotal += currentTX.amount;
-      enqueuedTrades++;
-  }
+//   void processTrade() {
+//       if (currentTX.amount == 0 && currentTX.quantity == 0) {
+//           return;
+//       }
+//       if (currentLiquidity == 0) {
+//           refundTransaction();
+//           return;
+//       }
+//       if (currentTX.quantity != 0) {
+//           // User sending asset to get Signa
+//           sendAmount(currentTX.amount, currentTX.sender);
+//           setMapValue(FIELD_TRADE_AMOUNT, enqueuedTrades, -currentTX.quantity);
+//           setMapValue(FIELD_TRADE_SENDER, enqueuedTrades, currentTX.sender);
+//           block.assetTotal += currentTX.quantity;
+//           enqueuedTrades++;
+//           return;
+//       }
+//       // User sending Signa to get asset
+//       setMapValue(FIELD_TRADE_AMOUNT, enqueuedTrades, currentTX.amount);
+//       setMapValue(FIELD_TRADE_SENDER, enqueuedTrades, currentTX.sender);
+//       block.signaTotal += currentTX.amount;
+//       enqueuedTrades++;
+//   }
   
-  void processEnqueuedTrades() {
-      struct TRADES {
-          long signa, quantity, sender;
-      } currTrade;
-      long opSigna, opAsset, deltaSigna, deltaAsset;
-      struct TOTAL newTotal;
+//   void processEnqueuedTrades() {
+//       struct TRADES {
+//           long signa, quantity, sender;
+//       } currTrade;
+//       long opSigna, opAsset, deltaSigna, deltaAsset;
+//       struct TOTAL newTotal;
   
-      if (enqueuedTrades == 0) {
-          return;
-      }
-      // Process the sum of all trades as only two trades.
-      // Avoid manipulation for trades order in blockchain.
-      // The order is choosed to reward traders that help pool stability.
-      block.signaTotal = mdv(block.signaTotal , 1000 - POOL_FEE, 1000);
-      block.assetTotal = mdv(block.assetTotal , 1000 - POOL_FEE, 1000);
-      long assetForSigna = pool.assetTotal * block.signaTotal / pool.signaTotal;
-      long signaForAsset = pool.signaTotal * block.assetTotal / pool.assetTotal;
-      if (assetForSigna > block.assetTotal) {
-          // more signa incoming than asset. Process signa trade first
-          deltaAsset = mdv(pool.signaTotal, pool.assetTotal, pool.signaTotal + block.signaTotal);
-          deltaSigna = pool.signaTotal + block.signaTotal;
-          newTotal.signaTotal = mdv(deltaAsset, deltaSigna, deltaAsset + block.assetTotal);
-          newTotal.assetTotal = deltaAsset + block.assetTotal;
-      } else {
-          // Process signa trade second
-          deltaSigna = mdv(pool.assetTotal, pool.signaTotal, pool.assetTotal + block.assetTotal);
-          deltaAsset = pool.assetTotal + block.assetTotal;
-          newTotal.assetTotal = mdv(deltaSigna, deltaAsset, deltaSigna + block.signaTotal);
-          newTotal.signaTotal = deltaSigna + block.signaTotal;
-      }
-      // process all trades with same price ratio
-      for (i = 0; i < enqueuedTrades; i++ ) {
-          long temp = getMapValue(FIELD_TRADE_AMOUNT, i);
-          currTrade.sender = getMapValue(FIELD_TRADE_SENDER, i);
-          if (temp < 0) {
-              currTrade.signa = 0;
-              currTrade.quantity = -temp;
-          } else {
-              currTrade.signa = temp;
-              currTrade.quantity = 0;
-          }
-          if (currTrade.quantity == 0) {
-              // User sending Signa to get asset
-              opSigna = mdv(currTrade.signa, 1000 - POOL_FEE, 1000);
-              opAsset = mdv(opSigna, pool.assetTotal, newTotal.signaTotal);
-              sendQuantity(opAsset, assetId, currTrade.sender);
-          } else {
-              // User sending asset to get Signa
-              opAsset = mdv(currTrade.quantity, 1000 - POOL_FEE, 1000);
-              opSigna = mdv(opAsset, pool.signaTotal, newTotal.assetTotal);
-              sendAmount(opSigna, currTrade.sender);
-          }
-          stats.volume += opSigna;
-      }
-      stats.trades += enqueuedTrades;
-      pool.signaTotal = newTotal.signaTotal;
-      pool.assetTotal = newTotal.assetTotal;
-  }
+//       if (enqueuedTrades == 0) {
+//           return;
+//       }
+//       // Process the sum of all trades as only two trades.
+//       // Avoid manipulation for trades order in blockchain.
+//       // The order is choosed to reward traders that help pool stability.
+//       block.signaTotal = mdv(block.signaTotal , 1000 - POOL_FEE, 1000);
+//       block.assetTotal = mdv(block.assetTotal , 1000 - POOL_FEE, 1000);
+//       long assetForSigna = pool.assetTotal * block.signaTotal / pool.signaTotal;
+//       long signaForAsset = pool.signaTotal * block.assetTotal / pool.assetTotal;
+//       if (assetForSigna > block.assetTotal) {
+//           // more signa incoming than asset. Process signa trade first
+//           deltaAsset = mdv(pool.signaTotal, pool.assetTotal, pool.signaTotal + block.signaTotal);
+//           deltaSigna = pool.signaTotal + block.signaTotal;
+//           newTotal.signaTotal = mdv(deltaAsset, deltaSigna, deltaAsset + block.assetTotal);
+//           newTotal.assetTotal = deltaAsset + block.assetTotal;
+//       } else {
+//           // Process signa trade second
+//           deltaSigna = mdv(pool.assetTotal, pool.signaTotal, pool.assetTotal + block.assetTotal);
+//           deltaAsset = pool.assetTotal + block.assetTotal;
+//           newTotal.assetTotal = mdv(deltaSigna, deltaAsset, deltaSigna + block.signaTotal);
+//           newTotal.signaTotal = deltaSigna + block.signaTotal;
+//       }
+//       // process all trades with same price ratio
+//       for (i = 0; i < enqueuedTrades; i++ ) {
+//           long temp = getMapValue(FIELD_TRADE_AMOUNT, i);
+//           currTrade.sender = getMapValue(FIELD_TRADE_SENDER, i);
+//           if (temp < 0) {
+//               currTrade.signa = 0;
+//               currTrade.quantity = -temp;
+//           } else {
+//               currTrade.signa = temp;
+//               currTrade.quantity = 0;
+//           }
+//           if (currTrade.quantity == 0) {
+//               // User sending Signa to get asset
+//               opSigna = mdv(currTrade.signa, 1000 - POOL_FEE, 1000);
+//               opAsset = mdv(opSigna, pool.assetTotal, newTotal.signaTotal);
+//               sendQuantity(opAsset, assetId, currTrade.sender);
+//           } else {
+//               // User sending asset to get Signa
+//               opAsset = mdv(currTrade.quantity, 1000 - POOL_FEE, 1000);
+//               opSigna = mdv(opAsset, pool.signaTotal, newTotal.assetTotal);
+//               sendAmount(opSigna, currTrade.sender);
+//           }
+//           stats.volume += opSigna;
+//       }
+//       stats.trades += enqueuedTrades;
+//       pool.signaTotal = newTotal.signaTotal;
+//       pool.assetTotal = newTotal.assetTotal;
+//   }
   
-  void shutdownHandler() {
-      switch (shutdown) {
-      case 0:
-          // regular distribution
-          distributeDividends();
-          break;
-      case 1:
-          // Return values to liquidity providers
-          do {
-              // Retry every block until distribution is done!
-              distributeToHolders(
-                  0,
-                  liquidityToken,
-                  getCurrentBalance() - ACTIVATION_AMOUNT,
-                  assetId,
-                  getAssetBalance(assetId)
-              );
-              if (getCurrentBalance() > ACTIVATION_AMOUNT) {
-                  sleep;
-                  continue;
-              }
-          } while (false);
-          pool.signaTotal = 0;
-          pool.assetTotal = 0;
-          currentLiquidity = 0;
-          shutdown = 2;
-          break;
-      default:
-          // burn excess
-          sendAmount(getCurrentBalance() - ACTIVATION_AMOUNT, 0);
-          shutdown++;
-      }
-  }
+//   void shutdownHandler() {
+//       switch (shutdown) {
+//       case 0:
+//           // regular distribution
+//           distributeDividends();
+//           break;
+//       case 1:
+//           // Return values to liquidity providers
+//           do {
+//               // Retry every block until distribution is done!
+//               distributeToHolders(
+//                   0,
+//                   liquidityToken,
+//                   getCurrentBalance() - ACTIVATION_AMOUNT,
+//                   assetId,
+//                   getAssetBalance(assetId)
+//               );
+//               if (getCurrentBalance() > ACTIVATION_AMOUNT) {
+//                   sleep;
+//                   continue;
+//               }
+//           } while (false);
+//           pool.signaTotal = 0;
+//           pool.assetTotal = 0;
+//           currentLiquidity = 0;
+//           shutdown = 2;
+//           break;
+//       default:
+//           // burn excess
+//           sendAmount(getCurrentBalance() - ACTIVATION_AMOUNT, 0);
+//           shutdown++;
+//       }
+//   }
   
-  void distributeDividends() {
-      long thisBlock = getCurrentBlockheight();
-      if (thisBlock - lastDistribution >= DISTRIBUTION_INTERVAL) {
-          long feesBalance = getCurrentBalance() - pool.signaTotal - ACTIVATION_AMOUNT;
-          if (feesBalance < ACTIVATION_AMOUNT) {
-              // do not distribute dust
-              return;
-          }
-          long assetFeesBalance = getAssetBalance(assetId) - pool.assetTotal;
-          if (distributeOnlySigna) {
-              // Trade the asset fees to send only signa to liquidity providers
-              long tradeAmount = mdv(pool.signaTotal, assetFeesBalance, pool.assetTotal + assetFeesBalance);
-              pool.signaTotal -= tradeAmount;
-              pool.assetTotal += assetFeesBalance;
-              feesBalance += tradeAmount;
-              assetFeesBalance = 0;
-          }
-          long platformFee = mdv(feesBalance, PLATFORM_FEE, 100);
-          feesBalance -= platformFee;
-          sendAmount(platformFee, owner);
-          distributeToHolders(0, liquidityToken, feesBalance, assetId, assetFeesBalance);
-          lastDistribution = thisBlock;
-      }
-  }
+//   void distributeDividends() {
+//       long thisBlock = getCurrentBlockheight();
+//       if (thisBlock - lastDistribution >= DISTRIBUTION_INTERVAL) {
+//           long feesBalance = getCurrentBalance() - pool.signaTotal - ACTIVATION_AMOUNT;
+//           if (feesBalance < ACTIVATION_AMOUNT) {
+//               // do not distribute dust
+//               return;
+//           }
+//           long assetFeesBalance = getAssetBalance(assetId) - pool.assetTotal;
+//           if (distributeOnlySigna) {
+//               // Trade the asset fees to send only signa to liquidity providers
+//               long tradeAmount = mdv(pool.signaTotal, assetFeesBalance, pool.assetTotal + assetFeesBalance);
+//               pool.signaTotal -= tradeAmount;
+//               pool.assetTotal += assetFeesBalance;
+//               feesBalance += tradeAmount;
+//               assetFeesBalance = 0;
+//           }
+//           long platformFee = mdv(feesBalance, PLATFORM_FEE, 100);
+//           feesBalance -= platformFee;
+//           sendAmount(platformFee, owner);
+//           distributeToHolders(0, liquidityToken, feesBalance, assetId, assetFeesBalance);
+//           lastDistribution = thisBlock;
+//       }
+//   }
   
-  void processCreatorCommand() {
-      switch (currentTX.message[0]) {
-      case 'extract':
-          if (currentTX.message[1] == 0 || currentTX.message[1] == assetId) {
-              // owner can get stuck tokens in the contract, but not signa or
-              // the pool asset.
-              // message = { 'extract', stuckAssetId }
-              return;
-          }
-          sendQuantity(0x7fffffffffffffff, currentTX.message[1], owner);
-          return;
-      case 'shutdown':
-          shutdown = 1;
-          return;
-      case 'newowner':
-          // prepare to change ownership.
-          newOwner = currentTX.message[1];
-          return;
-      }
-  }`,
-  EchoAnySize: `#program name EchoAnySize
-  #program description Reads the incoming message until a zero byte
-   is found on last byte of last page read. Clears the rest of buffer
-   and then send the same message to sender. Expect text messages.
-  #program activationAmount 5_0000_0000
+//   void processCreatorCommand() {
+//       switch (currentTX.message[0]) {
+//       case 'extract':
+//           if (currentTX.message[1] == 0 || currentTX.message[1] == assetId) {
+//               // owner can get stuck tokens in the contract, but not signa or
+//               // the pool asset.
+//               // message = { 'extract', stuckAssetId }
+//               return;
+//           }
+//           sendQuantity(0x7fffffffffffffff, currentTX.message[1], owner);
+//           return;
+//       case 'shutdown':
+//           shutdown = 1;
+//           return;
+//       case 'newowner':
+//           // prepare to change ownership.
+//           newOwner = currentTX.message[1];
+//           return;
+//       }
+//   }`,
+//   EchoAnySize: `#program name EchoAnySize
+//   #program description Reads the incoming message until a zero byte
+//    is found on last byte of last page read. Clears the rest of buffer
+//    and then send the same message to sender. Expect text messages.
+//   #program activationAmount 5_0000_0000
   
-  struct TXINFO {
-     long txId;
-     long sender;
-     long amount;
-     long message[132];
-  } currentTX;
+//   struct TXINFO {
+//      long txId;
+//      long sender;
+//      long amount;
+//      long message[132];
+//   } currentTX;
   
-  long zero;
+//   long zero;
   
-  while (true)
-  {
-      while ((currentTX.txId = getNextTx()) != 0) {
-          currentTX.sender = getSender(currentTX.txId);
-          currentTX.amount = getAmount(currentTX.txId);
-          readMessage(currentTX.txId, 0, currentTX.message);
+//   while (true)
+//   {
+//       while ((currentTX.txId = getNextTx()) != 0) {
+//           currentTX.sender = getSender(currentTX.txId);
+//           currentTX.amount = getAmount(currentTX.txId);
+//           readMessage(currentTX.txId, 0, currentTX.message);
   
-          processTX();
-      }
-      sendBalance(getCreator());
-  }
+//           processTX();
+//       }
+//       sendBalance(getCreator());
+//   }
   
-  // just echoes a received message back to sender.
-  void processTX(void) {
+//   // just echoes a received message back to sender.
+//   void processTX(void) {
   
-      long messagePage, currentLong;
+//       long messagePage, currentLong;
   
-      // Last read on getNextTxDetails
-      currentLong = 4;
-      while (currentLong < currentTX.message.length) {
-          if (((currentTX.message[currentLong - 1]) >>  56) == 0) {
-             // Found a null byte at last byte of last page that was read.
-             break;
-          }
-          messagePage = currentLong / 4;
-          readMessage(currentTX.txId, messagePage,  currentTX.message + currentLong);
-          currentLong += 4;
-      }
-      while (currentLong < currentTX.message.length) {
-          // clear the rest of buffer.
-          currentTX.message[currentLong++] = zero;
-          currentTX.message[currentLong++] = zero;
-          currentTX.message[currentLong++] = zero;
-          currentTX.message[currentLong++] = zero;
-      }
-      currentLong = 0;
-      do {
-          // send message loop
-          sendMessage(currentTX.message + currentLong, currentTX.sender);
-          currentLong += 4;
-      } while (((currentTX.message[currentLong - 1]) >>  56) != 0 && currentLong < currentTX.message.length);
-  }`,
-  GetATCreatorID: `#program name GetATCreator
-  #program description Receives a message with some AT ID and return to sender a\
-   message with the creator${"`"}s ID of that AT.
-  #program activationAmount 1_5000_0000
+//       // Last read on getNextTxDetails
+//       currentLong = 4;
+//       while (currentLong < currentTX.message.length) {
+//           if (((currentTX.message[currentLong - 1]) >>  56) == 0) {
+//              // Found a null byte at last byte of last page that was read.
+//              break;
+//           }
+//           messagePage = currentLong / 4;
+//           readMessage(currentTX.txId, messagePage,  currentTX.message + currentLong);
+//           currentLong += 4;
+//       }
+//       while (currentLong < currentTX.message.length) {
+//           // clear the rest of buffer.
+//           currentTX.message[currentLong++] = zero;
+//           currentTX.message[currentLong++] = zero;
+//           currentTX.message[currentLong++] = zero;
+//           currentTX.message[currentLong++] = zero;
+//       }
+//       currentLong = 0;
+//       do {
+//           // send message loop
+//           sendMessage(currentTX.message + currentLong, currentTX.sender);
+//           currentLong += 4;
+//       } while (((currentTX.message[currentLong - 1]) >>  56) != 0 && currentLong < currentTX.message.length);
+//   }`,
+//   GetATCreatorID: `#program name GetATCreator
+//   #program description Receives a message with some AT ID and return to sender a\
+//    message with the creator${"`"}s ID of that AT.
+//   #program activationAmount 1_5000_0000
   
-  struct TXINFO {
-     long txId;
-     long sender;
-     long amount;
-     long message[4];
-  } currentTX;
+//   struct TXINFO {
+//      long txId;
+//      long sender;
+//      long amount;
+//      long message[4];
+//   } currentTX;
   
-  long messageToSend[4];
+//   long messageToSend[4];
   
-  while (true)
-  {
-      while ((currentTX.txId = getNextTx()) != 0) {
-          currentTX.sender = getSender(currentTX.txId);
-          currentTX.amount = getAmount(currentTX.txId);
-          readMessage(currentTX.txId, 0, currentTX.message);
+//   while (true)
+//   {
+//       while ((currentTX.txId = getNextTx()) != 0) {
+//           currentTX.sender = getSender(currentTX.txId);
+//           currentTX.amount = getAmount(currentTX.txId);
+//           readMessage(currentTX.txId, 0, currentTX.message);
   
-          processTX();
-      }
-      sendBalance(getCreator());
-  }
+//           processTX();
+//       }
+//       sendBalance(getCreator());
+//   }
   
-  // Return to sender the creator of a given AT.
-  void processTX(void) {
-      long atId = messageToId();
-      long creatorID = getCreatorOf(atId);
-      IdToMessage(creatorID);
-      sendMessage(messageToSend, currentTX.sender);
-  }
+//   // Return to sender the creator of a given AT.
+//   void processTX(void) {
+//       long atId = messageToId();
+//       long creatorID = getCreatorOf(atId);
+//       IdToMessage(creatorID);
+//       sendMessage(messageToSend, currentTX.sender);
+//   }
   
   
-  long i, auxDiv, auxShift, auxMask, auxNum;
-  const long n8 = 8, n10 = 10, n15 = 15, n48 = 48, n57 = 57, n255 = 255;
-  void IdToMessage(long id){
-      long currDiv = 10;
-      messageToSend[] = "00000000000000000000            ";
-      // using i as temp var;
-      i = (id >> 1) / 5;
-      messageToSend[2] |= (id - (i * 10)) << 24;
-      id = i;
+//   long i, auxDiv, auxShift, auxMask, auxNum;
+//   const long n8 = 8, n10 = 10, n15 = 15, n48 = 48, n57 = 57, n255 = 255;
+//   void IdToMessage(long id){
+//       long currDiv = 10;
+//       messageToSend[] = "00000000000000000000            ";
+//       // using i as temp var;
+//       i = (id >> 1) / 5;
+//       messageToSend[2] |= (id - (i * 10)) << 24;
+//       id = i;
   
-      for (i = 18; id != 0; i--) {
-          auxNum = id % currDiv;
-          id /= 10;
-          auxDiv = i/8;
-          auxShift = (i % 8) * 8;
-          auxMask = 0xff << auxShift;
-          messageToSend[i/8] |= auxNum << auxShift;
-      }
-  }
+//       for (i = 18; id != 0; i--) {
+//           auxNum = id % currDiv;
+//           id /= 10;
+//           auxDiv = i/8;
+//           auxShift = (i % 8) * 8;
+//           auxMask = 0xff << auxShift;
+//           messageToSend[i/8] |= auxNum << auxShift;
+//       }
+//   }
   
-  // Expects a numeric ID in currentTX.message[0] to [3]
-  // return its long representation
-  long messageToId(void) {
-      long currMul = 1;
-      long ret=0;
+//   // Expects a numeric ID in currentTX.message[0] to [3]
+//   // return its long representation
+//   long messageToId(void) {
+//       long currMul = 1;
+//       long ret=0;
       
-      for (i = 19; i>=0; i--) {
-          auxDiv = i/8;
-          auxShift = (i % 8) * 8;
-          auxMask = 0xff << auxShift;
-          auxNum = (currentTX.message[i/8] & auxMask) >> auxShift;
-          if (auxNum == 0) {
-              continue;
-          }
-          if (auxNum < '0' || auxNum > '9' ) {
-              // invalid char
-              return 0;
-          }
-          auxNum &= 0xF;
-          auxNum *= currMul;
-          ret += auxNum;
-          currMul *= 10;
-      }
-      return ret;
-  }`,
-  PublicMethodsOnSmartC: `// global variables, will be available in all functions
-  long myVar;
+//       for (i = 19; i>=0; i--) {
+//           auxDiv = i/8;
+//           auxShift = (i % 8) * 8;
+//           auxMask = 0xff << auxShift;
+//           auxNum = (currentTX.message[i/8] & auxMask) >> auxShift;
+//           if (auxNum == 0) {
+//               continue;
+//           }
+//           if (auxNum < '0' || auxNum > '9' ) {
+//               // invalid char
+//               return 0;
+//           }
+//           auxNum &= 0xF;
+//           auxNum *= currMul;
+//           ret += auxNum;
+//           currMul *= 10;
+//       }
+//       return ret;
+//   }`,
+//   PublicMethodsOnSmartC: `// global variables, will be available in all functions
+//   long myVar;
   
-  // ****** This part of processing is hidden in SmartJ ******
+//   // ****** This part of processing is hidden in SmartJ ******
   
-  // Set public functions magic numbers
-  #define GET_SNACKS 0xfc73947c1b89e15e
-  #define GET_DRINKS 0x2ad652b169fff962
+//   // Set public functions magic numbers
+//   #define GET_SNACKS 0xfc73947c1b89e15e
+//   #define GET_DRINKS 0x2ad652b169fff962
   
-  struct TXINFO {
-      long txId,
-          timestamp,
-          sender,
-          amount,
-          message[4];
-  } currentTX;
+//   struct TXINFO {
+//       long txId,
+//           timestamp,
+//           sender,
+//           amount,
+//           message[4];
+//   } currentTX;
   
-  constructor();
+//   constructor();
   
-  void main(void) {
-      blockStarted();
-      while ((currentTX.txId = getNextTx()) != 0) {
-          currentTX.sender = getSender(currentTX.txId);
-          currentTX.amount = getAmount(currentTX.txId);
-          readMessage(currentTX.txId, 0, currentTX.message);
+//   void main(void) {
+//       blockStarted();
+//       while ((currentTX.txId = getNextTx()) != 0) {
+//           currentTX.sender = getSender(currentTX.txId);
+//           currentTX.amount = getAmount(currentTX.txId);
+//           readMessage(currentTX.txId, 0, currentTX.message);
   
-          switch (currentTX.message[0]) {
-          case GET_SNACKS:
-              GetSnacks(currentTX.message[1]);
-              break;
-          case GET_DRINKS:
-              GetDrinks(currentTX.message[1], currentTX.message[2]);
-              break;
-          default:
-              txReceived();
-          }
-      }
-      blockFinished();
-  }
-  // ****** end of hidden part ****** 
+//           switch (currentTX.message[0]) {
+//           case GET_SNACKS:
+//               GetSnacks(currentTX.message[1]);
+//               break;
+//           case GET_DRINKS:
+//               GetDrinks(currentTX.message[1], currentTX.message[2]);
+//               break;
+//           default:
+//               txReceived();
+//           }
+//       }
+//       blockFinished();
+//   }
+//   // ****** end of hidden part ****** 
   
-  // ****** These are public methods in SmartJ ****** 
-  void GetSnacks(long bites) {
-      // Do your stuff
-      myPrivateMethod();
-  }
+//   // ****** These are public methods in SmartJ ****** 
+//   void GetSnacks(long bites) {
+//       // Do your stuff
+//       myPrivateMethod();
+//   }
   
-  void GetDrinks(long type, long quantity) {
-      // Do your stuff
-  }
+//   void GetDrinks(long type, long quantity) {
+//       // Do your stuff
+//   }
   
-  // ****** These are private methods in SmartJ ****** 
-  void myPrivateMethod() {
-      // Do your stuff
-  }
+//   // ****** These are private methods in SmartJ ****** 
+//   void myPrivateMethod() {
+//       // Do your stuff
+//   }
   
-  // ****** These are protected methods in SmartJ ****** 
-  void constructor(void) {
-      // this function will be called only once on first activation.
-  }
+//   // ****** These are protected methods in SmartJ ****** 
+//   void constructor(void) {
+//       // this function will be called only once on first activation.
+//   }
   
-  void txReceived(void) {
-      // Will handle any incoming message that is not direct to public methods
-  }
+//   void txReceived(void) {
+//       // Will handle any incoming message that is not direct to public methods
+//   }
   
-  void blockStarted(void) {
-      // Run when contract is activated by a transaction, but before
-      // to get the currentTX details. currentTX will have details from last
-      // transaction received in a a previous block.
-  }
+//   void blockStarted(void) {
+//       // Run when contract is activated by a transaction, but before
+//       // to get the currentTX details. currentTX will have details from last
+//       // transaction received in a a previous block.
+//   }
   
-  void blockFinished(void) {
-      // Run when all transactions were already processed. currentTX will
-      // keep the values of last transaction processed.
-  }`,
-}
+//   void blockFinished(void) {
+//       // Run when all transactions were already processed. currentTX will
+//       // keep the values of last transaction processed.
+//   }`,
+//   remoteControl: `#program name RemoteControl
+//   #program description I just do what the boss tells me to.
+//   #define ACTIVATION_AMOUNT 1010_0000
+//   #program activationAmount ACTIVATION_AMOUNT
+  
+//   #pragma verboseAssembly
+//   #pragma optimizationLevel 3
+  
+//   #pragma version 2.1.1
+//   #pragma maxConstVars 4
+  
+//   #program codeHashId 0
+  
+//   /* End of configurations */
+  
+//   struct TXINFO {
+//       long txid;
+//       long sender;
+//       long commands;
+//       long currentPage;
+//       long pageContent[4];
+//   } currentTX;
+  
+//   // Constructor
+//   long owner = getCreator();
+//   // end Constructor
+  
+//   void main () {
+//       while ((currentTX.txid = getNextTx()) != 0) {
+//           // get details
+//           currentTX.sender = getSender(currentTX.txid);
+//           readShortMessage(currentTX.txid, &currentTX.commands, 1);
+//           if (currentTX.sender != owner) {
+//               break;
+//           }
+//           currentTX.currentPage = 1;
+//           while ((currentTX.commands & 0x7) != 0) {
+//               sendCommand();
+//               currentTX.commands >>= 3;
+//           }
+//       }
+//       // After all transactions processed
+//   }
+  
+//   void sendCommand() {
+//       // process command
+//       readMessage(currentTX.txid, currentTX.currentPage, currentTX.pageContent);
+//       ++currentTX.currentPage;
+//       switch (currentTX.commands & 0x7) {
+//           case 1: // Send amount
+//               sendAmount(currentTX.pageContent[0], currentTX.pageContent[1]);
+//               break;
+//           case 2: // Send short message (16 bytes)
+//               sendShortMessage(currentTX.pageContent + 2, 2, currentTX.pageContent[1]);
+//               sendAmount(currentTX.pageContent[0], currentTX.pageContent[1]);
+//               break;
+//           case 3: // Send long message (up to 900 bytes)
+//               long noOfPages = currentTX.pageContent[2];
+//               long recipient = currentTX.pageContent[1];
+//               sendAmount(currentTX.pageContent[0], recipient);
+//               while (noOfPages > 0) {
+//                   readMessage(currentTX.txid, currentTX.currentPage, currentTX.pageContent);
+//                   ++currentTX.currentPage;
+//                   --noOfPages;
+//                   sendMessage(currentTX.pageContent, recipient);
+//               }
+//               break;
+//           case 4: // Send quantity
+//               sendQuantityAndAmount(currentTX.pageContent[2], currentTX.pageContent[3], currentTX.pageContent[0], currentTX.pageContent[1]);
+//               break;
+//       }
+//   }`,
+//   dropper: `#program name Dropper
+//   #program description Sends a fixed amount of signa to a defined account every N blocks. 
+//   #program activationAmount 0.2
+  
+//   // Configure how many blocks to sleep until next send. 
+//   #define SLP_BLOCKS 2
+//   // Configure balance to stay on contract
+//   #define CONTRACT_MIN_BALANCE 1.0
+//   // Configure the amount to send every time
+//   #define EACH_BLOCK .2
+//   // Set the desired account
+//   #define RECIPIENT "S-3A2N-ZD7P-KZKU-FPWKQ"
+  
+//   // Endless loop
+//   while (true) {
+//      if (getCurrentBalanceFx() < CONTRACT_MIN_BALANCE) {
+//          // Stops contracts before it hits end of balance
+//          halt;
+//      } else {
+//          sendAmountFx(EACH_BLOCK, RECIPIENT);
+//          sleep SLP_BLOCKS;
+//      }
+//   }`,
+//   get3Random: `/* DEPRECATION NOTICE:
+//   * This contract may be not compatible with SmartC version greater or equal 2
+//   * because Signum Rainbow Hard Fork broke some compatibilities.  Test before
+//   * use or convert the API calls to new built-in functions.
+//   */
+ 
+//  #program name Get3Random
+//  #program description When a message arrives, the program tries to parse a number\
+//   from message. Number must be bigger or equal 5 and lower or equal 9999999. If\
+//   found, then program mixes random hash for 3 blocks and send back a message\
+//   to the sender with the random numbers without repetition. When there is no  more\
+//   pending messages, all balance remaining is sent to program creator.
+//  #program activationAmount 1_0000_0000
+ 
+//  #pragma version 0.2
+//  #pragma maxAuxVars 2
+//  #pragma maxConstVars 2
+//  #pragma globalOptimization
+ 
+//  #include APIFunctions
+ 
+//  struct TXINFO
+//  {
+//     long timestamp;
+//     long sender;
+//     long amount;
+//  } currentTX;
+ 
+//  long i, userNumber, result_1, result_2, result_3, result_4;
+//  const long n8=8, n10=10, n0xff=0xff;
+ 
+//  B_To_Address_Of_Creator();
+//  long CREATOR = Get_B1();
+ 
+//  while (true) {
+ 
+//      // Loop all incoming TX
+//      for (A_To_Tx_After_Timestamp(currentTX.timestamp); Get_A1() != 0; A_To_Tx_After_Timestamp(currentTX.timestamp) ) {
+ 
+//          // Get TX details
+//          currentTX.amount = Get_Amount_For_Tx_In_A();
+//          currentTX.timestamp = Get_Timestamp_For_Tx_In_A();
+//          Message_From_Tx_In_A_To_B();
+//          userNumber = atoi(Get_B1());
+//          B_To_Address_Of_Tx_In_A();
+//          currentTX.sender = Get_B1();
+ 
+//          if (userNumber < 5) {
+//              // Send an error message
+//              Set_A1_A2("Please s","end a va");
+//              Set_A3_A4("lue >= 5", 0);
+//              Send_A_To_Address_In_B();
+//              // Return any excess balance given
+//              if (currentTX.amount > 0)
+//                  Send_To_Address_In_B(currentTX.amount);
+//              // Proceed to next message.
+//              continue;
+//          }
+ 
+//          // Draw mixing randomness of 3 blocks
+//          Clear_A_And_B();
+//          i = 0;
+//          do {
+//              do {
+//                  if (i != 0)
+//                      sleep 1;
+//                  Put_Last_Block_Hash_In_A();
+//                  XOR_B_with_A();
+//                  i++;
+//              } while (i <= 2);
+ 
+//              // Get 4 random numbers between 1 and userNumber
+//              result_1 = ((Get_B1() >> 2 ) % userNumber) + 1;
+//              result_2 = ((Get_B2() >> 2 ) % userNumber) + 1;
+//              result_3 = ((Get_B3() >> 2 ) % userNumber) + 1;
+//              result_4 = ((Get_B4() >> 2 ) % userNumber) + 1;
+//              // Try to avoid a new round using 4th number
+//              if (result_1 == result_2)
+//                  result_1 = result_4;
+//              else if (result_1 ==  result_3)
+//                  result_1 = result_4;
+//              else if (result_2 ==  result_3)
+//                  result_2 =  result_4;
+//          // Repeat process next block if still there are repeated numbers.
+//          } while (result_1 == result_2 || result_1 == result_3 || result_2 == result_3);
+ 
+//          // Send message with draw numbers
+//          Set_B1(currentTX.sender);
+//          Set_A1_A2("Draw:   ", itoa_plus(result_1));
+//          Set_A3_A4(itoa_plus(result_2), itoa_plus(result_3));
+//          Send_A_To_Address_In_B();
+//          Send_To_Address_In_B(currentTX.amount);
+ 
+//      }
+ 
+//      // Send all remaining balance to creator and freeze contract until next message
+//      Set_B1(CREATOR);
+//      Send_All_To_Address_In_B();
+//  }
+ 
+ 
+//  /* **************   Library functions    **************************** */
+ 
+//  // Iterative function to implement atoi() function in C
+//  // Expects a long containing a string. If any byte is not a char numeric
+//  // representation, then stop and return. Only positive numbers, decimal, 
+//  // and integers are converted. Returns zero if no number was processed.
+//  long atoi(long val)
+//  {
+//      long ret = 0, chr;
+//      do {
+//          chr = (0xff & val) - '0';
+//          if (chr < 0 || chr >= n10)
+//              break;
+//          ret *= n10;
+//          ret += chr;
+//          val >>= n8;
+//      } while (1);
+//      return ret;
+//  }
+ 
+//  // Iterative function to implement itoa() function in C
+//  // Expects a long. If number is negative or bigger than MAX_STRING
+//  // (it will not fit in a long), returns long meaning "#error".
+//  // Pad beginning with spaces to allow easy concatenation
+//  long itoa_plus(long val)
+//  {
+//      long ret = "        ";
+//      if (val == 0) {
+//          return (ret << n8) + '0';
+//      }
+ 
+//      if (val > 0 && val <= 9999999) {
+//          do {
+//              if (val == 0) {
+//                  return ret;
+//              }
+//              ret <<= n8;
+//              ret += '0' + val % n10;
+//              val /= n10;
+//          } while (1);
+//      }
+//      return "  #error";
+//  }`,
+//  remoteControl: `#program name RemoteControl
+//  #program description I just do what the boss tells me to.
+//  #define ACTIVATION_AMOUNT 1010_0000
+//  #program activationAmount ACTIVATION_AMOUNT
+ 
+//  #pragma verboseAssembly
+//  #pragma optimizationLevel 3
+ 
+//  #pragma version 2.1.1
+//  #pragma maxConstVars 4
+ 
+//  #program codeHashId 0
+ 
+//  /* End of configurations */
+ 
+//  struct TXINFO {
+//      long txid;
+//      long sender;
+//      long commands;
+//      long currentPage;
+//      long pageContent[4];
+//  } currentTX;
+ 
+//  // Constructor
+//  long owner = getCreator();
+//  // end Constructor
+ 
+//  void main () {
+//      while ((currentTX.txid = getNextTx()) != 0) {
+//          // get details
+//          currentTX.sender = getSender(currentTX.txid);
+//          readShortMessage(currentTX.txid, &currentTX.commands, 1);
+//          if (currentTX.sender != owner) {
+//              break;
+//          }
+//          currentTX.currentPage = 1;
+//          while ((currentTX.commands & 0x7) != 0) {
+//              sendCommand();
+//              currentTX.commands >>= 3;
+//          }
+//      }
+//      // After all transactions processed
+//  }
+ 
+//  void sendCommand() {
+//      // process command
+//      readMessage(currentTX.txid, currentTX.currentPage, currentTX.pageContent);
+//      ++currentTX.currentPage;
+//      switch (currentTX.commands & 0x7) {
+//          case 1: // Send amount
+//              sendAmount(currentTX.pageContent[0], currentTX.pageContent[1]);
+//              break;
+//          case 2: // Send short message (16 bytes)
+//              sendShortMessage(currentTX.pageContent + 2, 2, currentTX.pageContent[1]);
+//              sendAmount(currentTX.pageContent[0], currentTX.pageContent[1]);
+//              break;
+//          case 3: // Send long message (up to 900 bytes)
+//              long noOfPages = currentTX.pageContent[2];
+//              long recipient = currentTX.pageContent[1];
+//              sendAmount(currentTX.pageContent[0], recipient);
+//              while (noOfPages > 0) {
+//                  readMessage(currentTX.txid, currentTX.currentPage, currentTX.pageContent);
+//                  ++currentTX.currentPage;
+//                  --noOfPages;
+//                  sendMessage(currentTX.pageContent, recipient);
+//              }
+//              break;
+//          case 4: // Send quantity
+//              sendQuantityAndAmount(currentTX.pageContent[2], currentTX.pageContent[3], currentTX.pageContent[0], currentTX.pageContent[1]);
+//              break;
+//      }
+//  }`,
+// }

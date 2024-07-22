@@ -38,14 +38,29 @@ const deployCertification = (props) => {
     useWebsiteControls();
 
   useEffect(() => {
-   
-    if (!props) {
-      console.log("no props")
-      return;}
+    console.log("props:", props)
+    // if (!props) {
+    //   console.log("no props")
+    //   return;}
 
+      
     const renderWebsite = async () => {
       try {
-        let newUserWebsiteErrors = [];
+
+      
+        let newUserWebsiteErrors = [];  
+        if (Object.keys(props).length !== 0) {
+        const expiredDate  = props.expiredDate;
+        const expiredDateISOstring = new Date(expiredDate).toISOString();
+        const nowDateISOstring = new Date().toISOString();
+        console.log(nowDateISOstring,expiredDateISOstring);
+          
+        if(expiredDateISOstring < nowDateISOstring) {
+          newUserWebsiteErrors.push(
+            `Error: 'This certification page is blank or expired'`,
+          );
+        }
+        
 
         if (!Object.keys(props).length || (props.message && props.message === "Expired Website")){
             console.log(`Minting Website was not found`);
@@ -67,11 +82,15 @@ const deployCertification = (props) => {
               `Error: '${title}' Minting Website is not Published yet. Go to website settings -> Advanced -> Publish`,
             );
         }
-
+        }else{
+          newUserWebsiteErrors.push(
+            `Error: 'no website props'`,
+          );
+        }
         if (newUserWebsiteErrors.length > 0) {
           setUserWebsiteErrors(newUserWebsiteErrors);
           throw new Error(
-            "If you are the owner of this minting website, please check your site settings",
+            "Error: 'This certification page is blank or expired'",
           );
         }
         // if (props.message === "Expired Website") {
@@ -80,6 +99,7 @@ const deployCertification = (props) => {
         //     "This website has expired",
         //   );
         // }
+        
         setUserWebsite(props);
       } catch (err) {
         const msg = errorHandler(err);
@@ -279,7 +299,7 @@ export async function getStaticProps({ params: { siteRoute } }) {
 //     },
 //     meta: {
 //       robot: '',
-//       favicon: 'https://www.nfthost.app/favicon.ico',
+//       favicon: 'https://app.sigdao,io/favicon.ico"',
 //       language: 'EN'
 //     },
 //     externalLinks: {

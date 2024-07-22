@@ -1,7 +1,7 @@
 const development = {
   frontendUrl: "localhost:3000",
   clientUrl: "http://localhost:3000",
-  serverUrl: "http://localhost:8080",
+  serverUrl: "http://localhost:8090",
   stripe: {
     publicKey:
       "pk_test_51NQjaMKiHVApsU3DUkrtoe4fvF9ljmFL2WbfmKjb04pkHssZknc3f7FjsYXDV2INr2EwOrDHGVbIRUnWxmLdgPz700ABAEGfcz",

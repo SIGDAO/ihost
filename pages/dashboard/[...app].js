@@ -20,7 +20,7 @@ import Templates from "@/components/services/Website/Templates";
 import SelectedWebsite from "@/components/services/Website/SelectedWebsite";
 import Analytics from "@/components/services/Website/Analytics";
 import ConnectWalletTag from "@/components/ConnectWalletTag";
-import Partners from "@/components/Partners";
+import RelatedLink from "@/components/RelatedLink";
 import Payments from "@/components/Payments";
 import Utilities from "@/components/services/Utilities";
 import MetadataEditor from "@/components/services/Generator/MetadataEditor";
@@ -35,6 +35,7 @@ import SmartC from "@/components/services/SmartC";
 import Certification from "@/components/services/Certification";
 import Alias from "@/components/services/Alias";
 import SCSample from "@/components/services/SmartC/SCSample";
+import CodeEditor from "@/components/services/CodeEditor"
 const Page = () => {
   const router = useRouter();
   const { isLoggedIn } = useUser();
@@ -89,12 +90,13 @@ const Page = () => {
                 templates: <Templates />,
                 analytics: <Analytics />,
                 payments: <Payments />,
-                partners: <Partners />,
+                relatedlink: <RelatedLink />,
                 credits: <Credits />,
                 smartc: <SmartC/>,
                 certification: <Certification />,
                 alias: <Alias/>,
                 scsample: <SCSample/>,
+                codeeditor: <CodeEditor/>,
               }[currentApp]}
           </>
         ) : (

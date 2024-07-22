@@ -36,9 +36,9 @@ const Certification = () => {
           },
         },
       );
-
+      console.log("getCertification Response:", res)
       if (res.status === 200) {
-      
+      console.log("to the next step")
        const route = generateRandomUrl();
        const username = res.data.username;
        const userEmail = res.data.userEmail;
@@ -46,7 +46,11 @@ const Certification = () => {
        
 
        const date = new Date()
-       const nextDay = new Date(date.setDate(date.getDate() + 1))
+       const nextDay = new Date(date.setDate(date.getDay() + 1))
+       console.log("nextDay: ", nextDay)
+       const nextHours = new Date(date.setHours(date.getHours() + 1))
+       console.log("nextHours: ", nextHours)
+       
        const expiredDay = nextDay.toISOString()
         // console.log("date:", DateTime)
         const resSaveURL = fetch(`${config.serverUrl}/api/core/saveURL`, {
@@ -58,6 +62,7 @@ const Certification = () => {
             body: JSON.stringify({username, userEmail,course ,route,  memberId, expiredDay }),
           })
             .then((response) => {
+              console.log(response);
               if(response.status !== 200) {
                 throw new Error("one time url already created !! ")
               }
@@ -65,7 +70,7 @@ const Certification = () => {
              
             })
             .then((data) => {
-              // console.log('URL successfully saved on the backend:', data);
+              console.log('URL successfully saved on the backend:', data);
               if(data.route){
                 push(`/certification/${data.route}`)
               }else{

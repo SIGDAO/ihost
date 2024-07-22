@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isVIP, setVIP]=useState(false);
-
+  const [sigdao, setSigdao]=useState(false);
   const controllers = {
     address,
     setAddress,
@@ -21,6 +21,8 @@ export const UserProvider = ({ children }) => {
     setWallet,
     isVIP,
     setVIP,
+    sigdao,
+    setSigdao
   };
 
   return (

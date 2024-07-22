@@ -77,7 +77,8 @@ const MIN_DIMENSION = minDimension;
       </label>
       {error && <p className="text-red-400 text-xs">{error}</p>}
       {imgSrc && (
-        <div className="flex flex-col items-center">
+        // <div className="flex flex-col items-center">
+           <div className="flex flex-col items-center">
           <ReactCrop
             crop={crop}
             onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}

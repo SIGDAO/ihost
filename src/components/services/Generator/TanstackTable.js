@@ -3,14 +3,15 @@ import { useState,useEffect} from "react";
 import { flexRender, getCoreRowModel, useReactTable} from "@tanstack/react-table";
 import { useGenerator } from "@/providers/GeneratorProvider";
 import EditableCell from "./EditableCell";
-
+import EditableNameCell from "./EditableNameCell";
+import { Image,Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 
 const columns = [
     {
         accessorKey: 'name',
         size: 200,
         header: "Name",
-        cell: EditableCell
+        cell: EditableNameCell
     },
     {
         accessorKey: 'description',
@@ -120,39 +121,83 @@ const TanstackTable = () => {
         metadata,
         setMetadata,
         csvData,
-        setCsvData,    
+        setCsvData,   
+        nftImages, 
       } = useGenerator();
-
     const [data, setData] = useState(metadata)
-    const table = useReactTable({
+    const [imageID, setImageID] = useState(0)
+    const [selectedFiles, setSelectedFiles] = useState(nftImages);
+        const table = useReactTable({
         data,
         columns,
         getCoreRowModel : getCoreRowModel(),
         columnResizeMode: "onChange",
         meta:{
-            updateData: (rowIndex, columnId, value) => 
+            updateData: (rowIndex, columnId, value) => {
+            setImageID(rowIndex);
             setData((prev) => 
-            prev.map((row, index) =>
+            
+            prev.map((row, index) => 
                 index === rowIndex 
                     ? {
                         ...prev[rowIndex],
                         [columnId]: value,
                     }
                     : row
+            
+            
         )
-        )
+        
+    )}
         }
     })
-    // console.log("Header:",table.getHeaderGroups());
-    // console.log("Header:",table);
-    // console.log("Row:",table.getRowModel())
+    const renderPhotos = (source) => {
+        return source.map((photo) => {
+          return <Image boxSize='100px'
+            objectFit='cover' src={photo} alt="" key={photo} />;
+        });
+      };
+    console.log("Header:",table.getHeaderGroups());
+    console.log("Header:",table);
+    console.log("Row:",table.getRowModel())
+    console.log("imageID", imageID)
     console.log("Data",data);
     useEffect(() => {
         // Update the document title using the browser API
         setMetadata(data)
-        console.log("metaData:" , metadata)
+        console.log("metaData:" , metadata);
+        console.log("imageID", imageID);
       }, [data]);
-    return <Box>
+
+      useEffect(() => {
+        // Update the document title using the browser API
+        console.log("imageID", imageID);
+      }, [imageID]);
+    return <div>
+        {/* <div>{"imageID: " + imageID}</div> */}
+        {/* <Card>
+        <CardBody>
+        <div className="result">
+        {renderPhotos(selectedFiles)}
+        <style jsx>{`
+        .result{
+        min-height: 100%;
+        max-height: auto;
+        width: 100%;
+        
+        margin-top:1rem ;
+         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: left; 
+
+      }
+      `}</style>
+      </div>
+      </CardBody>
+      </Card> */}
+        {/* <Image boxSize='100px'  objectFit='cover' src={nftImages[imageID]}></Image> */}
+        <Box>
         <Box className="table" w={table.getTotalSize()}>
             {table.getHeaderGroups().map((headerGroup) =>(
                 <Box className="tr" key={headerGroup.id}>
@@ -179,6 +224,7 @@ const TanstackTable = () => {
                 </Box>))
             }
         </Box>
-    </Box>;
+    </Box>
+    </div>;
 };
 export default TanstackTable;

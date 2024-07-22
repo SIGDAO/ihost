@@ -607,3 +607,14 @@ footer {
 .green-text{
   color: #68D391;
 }
+
+.businessCard .chakra-modal__content-container {
+    justify-content: flex-start;
+    padding-inline: 2rem;
+
+}
+.chakra-modal__content-container.css-1ocl83d{
+  justify-content: flex-end!important;
+  padding-inline: 2rem;
+}
+

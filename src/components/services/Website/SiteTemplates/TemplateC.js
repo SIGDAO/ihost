@@ -26,7 +26,7 @@ const TemplateC = (memberId, userEmail, username, course, expiredDate) => {
     let image = await fetch("/nftCertS.png")
 let imageBlob = await image.blob();
 console.log(imageBlob)
-resizeImage(imageT, 250, 250, username).then((result) => {
+resizeImage(imageT, 250, 250, 'iacademy-admin').then((result) => {
   setImgT(result);
   return result
 });
@@ -120,7 +120,7 @@ useEffect( () => {
       minH="100vh"
       position="relative"
     >
-      <Watermark position="absolute" bottom="4" right="4" />
+      {/* <Watermark position="absolute" bottom="4" right="4" /> */}
       <Wrap spacing="10em" p="3em" borderRadius="20px" justify="center">
         <Flex
           flexDir="column"
@@ -169,7 +169,7 @@ useEffect( () => {
           objectFit="scale-down"
         />
       </Wrap>
-      <p>Image resize using canvas</p>
+      {/* <p>Image resize using canvas</p>
       <div>
         <input type="file" accept="image/*" onChange={handleChange} />
         <h4>Original Image</h4>
@@ -180,7 +180,7 @@ useEffect( () => {
         <div className="resized_image_container">
           {imageResizedUrl && <img src={imageResizedUrl} />}
         </div>
-      </div>
+      </div> */}
 
 
     </Flex>

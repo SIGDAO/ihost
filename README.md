@@ -1,5 +1,17 @@
-<h1 align="center"><a href='https://app.sigdao.io/' rel='nofollow'>iHost</a></h1>
+<p align="center">
+    <a href='https://app.sigdao.io/' rel='nofollow'>
+        <img src='./public/assets/logo.png' alt='NFTHost Logo' width='125px'/>
+    </a>
+</p>
 
+<h1 align="center">iHost</h1>
+
+<p align="center">
+    <img src='https://github.com/sigdao/ihost/actions/workflows/docker-deployment.yml/badge.svg' alt='Docker Deployment'>
+    <a href="https://discord.gg/BMZZXZMnmv" rel="nofollow">
+        <img src='https://img.shields.io/discord/925910496354381854.svg?color=7289da&label=discord&logo=discord&style=flat' alt='NFTHost Discord' />
+    </a>
+</p>
 
 <p align="center">
     Create and Host your Web3 dApp in under a minute!. This repository is iHost's frontend.
@@ -13,7 +25,7 @@
 </ul>
 
 ## Setup
-gi
+
 <ul>
     <li><a href='https://hub.docker.com/repository/docker/sigdao/ihost' rel="nofollow">DockerHub: Frontend</a></li>
     <li><a href='https://hub.docker.com/repository/docker/sigdao/ihost-backend' rel="nofollow">DockerHub: Backend</a></li>
@@ -52,6 +64,3 @@ Want to donate? []()
 ## License
 
 [MIT](https://github.com/sigdao/ihost/blob/main/LICENSE)
-
-
-https://www.npmjs.com/package/react-image-crop#how-can-i-generate-a-crop-preview-in-the-browser

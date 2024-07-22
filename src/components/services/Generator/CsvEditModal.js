@@ -1,3 +1,4 @@
+import { useState,useEffect} from "react";
 import {
     HStack,
     Text,
@@ -38,8 +39,15 @@ import {
       setDeployNftModal,
       csvData,
       setCsvData,
+      nftImages,
     } = useGenerator();
-  
+    const renderPhotos = (source) => {
+      return source.map((photo) => {
+        return <Image boxSize='100px'
+          objectFit='cover' src={photo} alt="" key={photo} />;
+      });
+    };
+    const [selectedFiles, setSelectedFiles] = useState(nftImages);
     return ( 
         <Modal
           onClose={() => {
@@ -59,9 +67,27 @@ import {
               <Text fontWeight="normal" fontSize="10pt">
                 Please edit your csv file for the information of Nfts 
               </Text>
+        
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
+            <div className="result">
+        {renderPhotos(selectedFiles)}
+        <style jsx>{`
+        .result{
+        min-height: 100%;
+        max-height: auto;
+        width: 100%;
+        background-color: #272c34;
+        margin-top:1rem ;
+         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: left; 
+
+      }
+      `}</style>
+      </div>
               {/* <Flex justifyContent="center" alignItems="center" my="3em">
                 <HStack spacing="4em">
                   <VStack alignItems="flex-start">

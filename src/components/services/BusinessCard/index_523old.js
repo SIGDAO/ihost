@@ -4,7 +4,7 @@ import {cssTheme} from '@/utils/json'
 import {useAppContext} from '../../../xtWallet/hooks/useAppContext';
 import { businessCardActions,svgImage } from "@/utils/json";
 import JSZip from "jszip"
-import {Card, CardHeader,Heading,Divider,CardBody,CardFooter,Flex,Stack, Radio, RadioGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, ButtonGroup, Input, Text, Image, useDisclosure,IconButton, Toast,
+import {Flex,Stack, Radio, RadioGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, ButtonGroup, Input, Text, Image, useDisclosure,IconButton, Toast,
   useToast,} from '@chakra-ui/react'
 // for website 
 import { useWebsite } from "@/providers/WebsiteProvider";
@@ -99,7 +99,7 @@ const BusinessCard = () => {
     profileUrl.current = imgSrc;
   };
   // const downloadZip = () => {
-    
+
   // }
   const downloadPackage = () => {
         const dataSet = {}
@@ -472,191 +472,105 @@ const BusinessCard = () => {
   function handleBusinessDescriptionChange(event) {
     setBusinessDescri(event.target.value);
   }
-
   return (
-      <div className="businessCard">
-   
-   
-        <div className="mx-auto text-gray-100" style={{ style }}>
-   
-   
-          {/*Step1  background&icon */}
-          <div className="md:grid md:grid-cols-2">
-            <div className="px-4">
-              <div id="step-1" className="pt-8">
-                <h2 className="font-extrabold text-2xl">Header attachments</h2>
-                <div className="stepC">
-               <div className="py-4"> <label  >Add logo <span className="text-gray-400">- suggested format: svg, png or gif</span></label></div>
-               <div className="relative">
-                 <Button colorScheme='teal' size='md' onClick={()=> {setModalOpen(true);setModal01Open(false);setModal02Open(false);}}>
-                 Add logo
-                </Button>
-                <img
-               
-                 src={avatarUrl.current}
-                alt="Avatar"
-                className="mt-4 w-[150px] h-[150px] border-2 border-gray-400"
-                />
-                {modalOpen && (
-                <TailwindModal
-                updateAvatar={updateAvatar}
-                updateLogo={setLogo}
-                closeModal={() => setModalOpen(false)}
-                aspectRatio={1}
-                minDimension={300}
-                />
-                )}
-                </div>
-                 
-                <div className="py-4"> <label >Add  cover photo <span className="text-gray-400">- suggested format: svg, jpeg, png or gif</span></label></div>
-                <div className="relative">
-                <Button colorScheme='teal' size='md'  onClick={()=> {setModalOpen(false); setModal01Open(true);setModal02Open(false);}} >
-                 Add cover photo
-                </Button>
-                {modalOpen01 && (
-                <TailwindModal
-                updateAvatar={updateCover}
-                updateLogo={setCoverPhoto}
-                closeModal={() => setModal01Open(false)}
-                aspectRatio={3/2}
-                minDimension={600}
-                />
-                )}
-                </div>
-                <img
-                 src={coverUrl.current}
-                alt="Cover"
-                className="mt-4 w-[450px] h-[300px] border-2 border-gray-400"
-                />
-                  <p className="mt-6 border p-4 rounded border-gray-700 text-gray-400">
-                    Recommended cover photo size is 960 x 640 pixels, with an aspect
-                    ratio of 3:2
-                  </p>
-                </div>
-   
-   
+    <div className="businessCard">
+
+      <div className="mx-auto text-gray-100" style={{ style }}>
+
+        {/*Step1  background&icon */}
+        <div className="md:grid md:grid-cols-2">
+          <div className="px-4">
+            <div id="step-1" className="pt-8">
+              <h2 className="font-extrabold text-2xl">Header attachments</h2>
+              <div className="stepC">
+             <div className="py-4"> <label  >Add logo <span className="text-gray-400">- suggested format: svg, png or gif</span></label></div>
+             <div className="relative">
+               <Button colorScheme='teal' size='md' onClick={()=> {setModalOpen(true);setModal01Open(false);setModal02Open(false);}}>
+               Add logo
+              </Button>
+              <img
+              
+               src={avatarUrl.current}
+              alt="Avatar"
+              className="mt-4 w-[150px] h-[150px] border-2 border-gray-400"
+              />
+              {modalOpen && (
+              <TailwindModal
+              updateAvatar={updateAvatar}
+              updateLogo={setLogo}
+              closeModal={() => setModalOpen(false)}
+              aspectRatio={1}
+              minDimension={300}
+              />
+              )}
               </div>
-              {/* step 2 */}
-              <div id="step-2" className="mt-16">
-                <h2 className="font-extrabold text-2xl">Contact information</h2>
-                <div className="py-4"> <label  > Add profile photo <span className="text-gray-400">- suggested format: jpeg, png or gif</span></label></div>
-                <Button colorScheme='teal' size='md' onClick={()=> {setModalOpen(false);setModal01Open(false);setModal02Open(true);}}>
-                 Add profile photo
-                </Button>
-                {modalOpen02 && (
-                <TailwindModal
-                updateAvatar={updateProfile}
-                updateLogo={setProfilePhoto}
-                closeModal={() => setModal02Open(false)}
-                aspectRatio={1}
-                minDimension={300}
-                fileName={""}
-                />
-                )}
-                <img
-                 src={profileUrl.current}
-                alt="Profile"
-                className="mt-4 w-[150px] h-[150px] border-2 border-gray-400"
-                />
-   
-   
+                
+              <div className="py-4"> <label >Add  cover photo <span className="text-gray-400">- suggested format: svg, jpeg, png or gif</span></label></div>
+              <div className="relative">
+              <Button colorScheme='teal' size='md'  onClick={()=> {setModalOpen(false); setModal01Open(true);setModal02Open(false);}} >
+               Add cover photo
+              </Button>
+              {modalOpen01 && (
+              <TailwindModal
+              updateAvatar={updateCover}
+              updateLogo={setCoverPhoto}
+              closeModal={() => setModal01Open(false)}
+              aspectRatio={3/2}
+              minDimension={600}
+              />
+              )}
+              </div>
+              <img
+               src={coverUrl.current}
+              alt="Cover"
+              className="mt-4 w-[450px] h-[300px] border-2 border-gray-400"
+              />
                 <p className="mt-6 border p-4 rounded border-gray-700 text-gray-400">
-                  Recommended profile photo size is 320 x 320 pixels, with an aspect
-                  ratio of 1:1
+                  Recommended cover photo size is 960 x 640 pixels, with an aspect
+                  ratio of 3:2
                 </p>
-                <div className="stepC mt-6 grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="ml-4">First name</label>
-                    <input
-                      id="firstname"
-                      name="firstname"
-                      spellCheck="false"
-                      type="text"
-                      autoCapitalize="words"
-                      value={firstName}
-                      onChange={handleFirstNameChange}
-                      ref={firstNameRef}
-                      className="
-                    mt-2
-                    px-4
-                    w-full
-                    h-12
-                    bg-black
-                    rounded
-                    border border-transparent
-                    transition-colors
-                    duration-200
-                    focus:outline-none focus:border-gray-600
-                    hover:border-gray-600
-                  "
-                    />
-                  </div>
-                  <div>
-                    <label  className="ml-4">Last name</label>
-                    <input
-                      id="lastname"
-                      name="lastname"
-                      spellCheck="false"
-                      type="text"
-                      autoCapitalize="words"
-                      value={lastName}
-                      onChange={handleLastNameChange}
-                      ref={lastNameRef}
-                      className="
-                    mt-2
-                    px-4
-                    w-full
-                    h-12
-                    bg-black
-                    rounded
-                    border border-transparent
-                    transition-colors
-                    duration-200
-                    focus:outline-none focus:border-gray-600
-                    hover:border-gray-600
-                  "
-                    />
-                  </div>
-                </div>
-                <div className="stepC mt-6">
-                  <label  className="ml-4">Gender pronouns</label>
+              </div>
+
+            </div>
+            {/* step 2 */}
+            <div id="step-2" className="mt-16">
+              <h2 className="font-extrabold text-2xl">Contact information</h2>
+              <div className="py-4"> <label  > Add profile photo <span className="text-gray-400">- suggested format: jpeg, png or gif</span></label></div>
+              <Button colorScheme='teal' size='md' onClick={()=> {setModalOpen(false);setModal01Open(false);setModal02Open(true);}}>
+               Add profile photo
+              </Button>
+              {modalOpen02 && (
+              <TailwindModal
+              updateAvatar={updateProfile}
+              updateLogo={setProfilePhoto}
+              closeModal={() => setModal02Open(false)}
+              aspectRatio={1}
+              minDimension={300}
+              fileName={""}
+              />
+              )}
+              <img
+               src={profileUrl.current}
+              alt="Profile"
+              className="mt-4 w-[150px] h-[150px] border-2 border-gray-400"
+              />
+
+              <p className="mt-6 border p-4 rounded border-gray-700 text-gray-400">
+                Recommended profile photo size is 320 x 320 pixels, with an aspect
+                ratio of 1:1
+              </p>
+              <div className="stepC mt-6 grid grid-cols-2 gap-4">
+                <div>
+                  <label className="ml-4">First name</label>
                   <input
-                    id="pronouns"
-                    name="pronouns"
+                    id="firstname"
+                    name="firstname"
                     spellCheck="false"
                     type="text"
-                    ref={genderPronounsRef}
-                    value={genderPronouns}
-                    onChange={handleGenderPronounsChange}
-                    placeholder="He/Him/His"
                     autoCapitalize="words"
-                    className="
-                  mt-2
-                  px-4
-                  w-full
-                  h-12
-                  bg-black
-                  placeholder-gray-600
-                  rounded
-                  border border-transparent
-                  transition-colors
-                  duration-200
-                  focus:outline-none focus:border-gray-600
-                  hover:border-gray-600
-                "
-                  />
-                </div>
-                <div className="stepC mt-6">
-                  <label  className="ml-4">Job title</label>
-                  <input
-                    id="job-title"
-                    name="jobTitle"
-                    type="text"
-                    ref={jobTitleRef}
-                    value={jobTitle}
-                    onChange={handleJobTitleChange}
-                    spellCheck="true"
-                    autoCapitalize="words"
+                    value={firstName}
+                    onChange={handleFirstNameChange}
+                    ref={firstNameRef}
                     className="
                   mt-2
                   px-4
@@ -672,17 +586,17 @@ const BusinessCard = () => {
                 "
                   />
                 </div>
-                <div className="stepC mt-6">
-                  <label className="ml-4">Business name</label>
+                <div>
+                  <label  className="ml-4">Last name</label>
                   <input
-                    id="business-name"
-                    name="businessName"
+                    id="lastname"
+                    name="lastname"
                     spellCheck="false"
                     type="text"
-                    ref={businessNameRef}
-                    value={businessName}
-                    onChange={handleBusinessNameChange}
                     autoCapitalize="words"
+                    value={lastName}
+                    onChange={handleLastNameChange}
+                    ref={lastNameRef}
                     className="
                   mt-2
                   px-4
@@ -697,451 +611,578 @@ const BusinessCard = () => {
                   hover:border-gray-600
                 "
                   />
-                </div>
-                <div className="stepC mt-6">
-                  <label  className="ml-4">Business address</label>
-                  <textarea
-                    id="business-address"
-                    name="businessAddress"
-                    ref={businessAddressRef}
-                    value={businessAddress}
-                    onChange={handleBusinessAddressChange}
-                    className="
-                  block
-                  mt-2
-                  px-4
-                  py-3
-                  w-full
-                  bg-black
-                  rounded
-                  border border-transparent
-                  transition-colors
-                  duration-200
-                  focus:outline-none focus:border-gray-600
-                  resize-none
-                  hover:border-gray-600
-                "
-                    rows="4"
-                  ></textarea>
-                </div>
-                <div className="stepC mt-6">
-                  <label className="ml-4"
-                  >Business description
-                  </label>
-                  <textarea
-                    id="business-description"
-                    name="businessDescription"
-                    ref={businessDescriptionRef}
-                    value={businessDescription}
-                    onChange={handleBusinessDescriptionChange}
-                    className="
-                  block
-                  mt-2
-                  px-4
-                  py-3
-                  w-full
-                  bg-black
-                  rounded
-                  border border-transparent
-                  transition-colors
-                  duration-200
-                  focus:outline-none focus:border-gray-600
-                  resize-none
-                  hover:border-gray-600
-                "
-                    rows="4"
-                  ></textarea>
                 </div>
               </div>
-            {/*text information input*/}
-            <h2 className="font-extrabold text-2xl mt-6">Primary actions</h2>
-            
-             <div
-               className="mt-6 border-gray-800"
-             // :className="{ 'border-t pt-6': secondaryActions.length }"
-             >
-                 {selectedPrimaries.map((selectedPrimary, index) => (
-               <div className="stepC actions" key={index}>
-                 <div className="flex">
-                 <div className="flex-initial w-100">
-                 <button
-                   className="
-                     p-3
-                     flex
-                     items-center
-                     shrink-0
-                     rounded
-                     hover:brightness-125
-                     focus:brightness-125
-                     transition-all
-                     duration-200
-                     focus:outline-none
-                   "
-                   onClick={() =>handleReleaseAction(selectedPrimary , index)}
-                 >
-                   <div
-                     className="w-6 h-6 mr-3 shrink-0"
-                   >
-                   <div className="icon">
-           <svg
-             viewBox="0 0 24 24"
-             xmlns="https://www.w3.org/2000/svg"
-             xmlSpace="preserve"
-             style={{
-               fillRule: "evenodd",
-               clipRule: "evenodd",
-               strokeLinecap: "round",
-               strokeLinejoin: "round",
-               strokeMiterlimit: 2
-             }}
-           >
-             <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
-             <path
-               d="M18 6 6 18M6 6l12 12"
-               style={{
-                 fill: "none",
-                 fillRule: "nonzero",
-                 stroke: "#fff",
-                 strokeWidth: 2
-               }}
-             />
-           </svg>
-         </div>
-                   </div>
-          
-                   <p
-                     className="whitespace-nowrap"
-               
-                   >
-                     {selectedPrimary.name}
-             
-                   </p>
-                 </button>
-                 </div>
-                 <div className="flex-initial w-80 p-3
-                     flex
-                     items-center
-                     shrink-0
-                     rounded
-                     hover:brightness-125
-                     focus:brightness-125
-                     transition-all
-                     duration-200
-                     focus:outline-none">
-                    <input type="text" name="price" id="price" className="block w-full rounded-md border-0 py-1.5 pl-7 pr-10 text-white-900 ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder={selectedPrimary.placeholder}
-                     value={selectedPrimary.value}
-                     onChange={event => handlePrimaryActionChange(event, selectedPrimary, index)}
-                    />
-                 </div>
-                 </div>
-               </div>
-               ))}
-               <p className="p-3" v-if="filteredSecondaryActions.length < 1">
-                 Can't find an action? Please
-                 <a
-                   href="#help"
-                   className="
-                     cursor-pointer
-                     underline
-                     font-extrabold
-                     text-emerald-600
-                     hover:text-emerald-500
-                     focus:text-emerald-500
-                     transition-colors
-                     duration-200
-                     px-2
-                   "
-                 >leave your suggestion</a>
-                 on Telegram
-               </p>
-             
-               <div className="stepC actions" >
-               {primaryActions.map((primaryAction, index) => (
-                 <button
-                   className="
-                     p-3
-                     flex
-                     items-center
-                     shrink-0
-                     rounded
-                     hover:brightness-125
-                     focus:brightness-125
-                     transition-all
-                     duration-200
-                     focus:outline-none
-                     text-sm
-                    
-                   "
-                   style={{backgroundColor:  "rgb(5, 150, 105)"}}
-                   key={index}
-                   onClick={() =>handleDelete(primaryAction, index)}
-                 >
-                   <div
-                     className="w-6 h-6 mr-3 shrink-0"
-                   >
-                   <Image
-                   src={`/assets/icons/${primaryAction.icon}.svg`}
-                   alt={primaryAction.icon}
-                   />
-                   </div>
-                   <p
-                     className="whitespace-nowrap"
-                   >
-                     {primaryAction.name}
-                   </p>
-                 </button>
-                 ))}
-               </div>
-             
-             </div>
-   
-   
-             <div id="step-4" className="mt-16">
-            <h2 className="font-extrabold text-2xl">Secondary actions</h2>
-          
-             <div
-              className="mt-6 border-gray-800"
-             >
-                          {selectedSecondaries.map((selectedSecondary, index) => (
-              <div className="stepC actions" key={index}>
-                <div className="flex">
-                <div className="flex-initial w-100">
-                <button
+              <div className="stepC mt-6">
+                <label  className="ml-4">Gender pronouns</label>
+                <input
+                  id="pronouns"
+                  name="pronouns"
+                  spellCheck="false"
+                  type="text"
+                  ref={genderPronounsRef}
+                  value={genderPronouns}
+                  onChange={handleGenderPronounsChange}
+                  placeholder="He/Him/His"
+                  autoCapitalize="words"
                   className="
-                    p-3
-                    flex
-                    items-center
-                    shrink-0
-                    rounded
-                    hover:brightness-125
-                    focus:brightness-125
-                    transition-all
-                    duration-200
-                    focus:outline-none
-                  "
-                  onClick={() =>handleReleaseSecondAction(selectedSecondary , index)}
+                mt-2
+                px-4
+                w-full
+                h-12
+                bg-black
+                placeholder-gray-600
+                rounded
+                border border-transparent
+                transition-colors
+                duration-200
+                focus:outline-none focus:border-gray-600
+                hover:border-gray-600
+              "
+                />
+              </div>
+              <div className="stepC mt-6">
+                <label  className="ml-4">Job title</label>
+                <input
+                  id="job-title"
+                  name="jobTitle"
+                  type="text"
+                  ref={jobTitleRef}
+                  value={jobTitle}
+                  onChange={handleJobTitleChange}
+                  spellCheck="true"
+                  autoCapitalize="words"
+                  className="
+                mt-2
+                px-4
+                w-full
+                h-12
+                bg-black
+                rounded
+                border border-transparent
+                transition-colors
+                duration-200
+                focus:outline-none focus:border-gray-600
+                hover:border-gray-600
+              "
+                />
+              </div>
+              <div className="stepC mt-6">
+                <label className="ml-4">Business name</label>
+                <input
+                  id="business-name"
+                  name="businessName"
+                  spellCheck="false"
+                  type="text"
+                  ref={businessNameRef}
+                  value={businessName}
+                  onChange={handleBusinessNameChange}
+                  autoCapitalize="words"
+                  className="
+                mt-2
+                px-4
+                w-full
+                h-12
+                bg-black
+                rounded
+                border border-transparent
+                transition-colors
+                duration-200
+                focus:outline-none focus:border-gray-600
+                hover:border-gray-600
+              "
+                />
+              </div>
+              <div className="stepC mt-6">
+                <label  className="ml-4">Business address</label>
+                <textarea
+                  id="business-address"
+                  name="businessAddress"
+                  ref={businessAddressRef}
+                  value={businessAddress}
+                  onChange={handleBusinessAddressChange}
+                  className="
+                block
+                mt-2
+                px-4
+                py-3
+                w-full
+                bg-black
+                rounded
+                border border-transparent
+                transition-colors
+                duration-200
+                focus:outline-none focus:border-gray-600
+                resize-none
+                hover:border-gray-600
+              "
+                  rows="4"
+                ></textarea>
+              </div>
+              <div className="stepC mt-6">
+                <label className="ml-4"
+                >Business description
+                </label>
+                <textarea
+                  id="business-description"
+                  name="businessDescription"
+                  ref={businessDescriptionRef}
+                  value={businessDescription}
+                  onChange={handleBusinessDescriptionChange}
+                  className="
+                block
+                mt-2
+                px-4
+                py-3
+                w-full
+                bg-black
+                rounded
+                border border-transparent
+                transition-colors
+                duration-200
+                focus:outline-none focus:border-gray-600
+                resize-none
+                hover:border-gray-600
+              "
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* step 3 */}
+       
+  
+        
+        <h2 className="font-extrabold text-2xl mt-6">Primary actions</h2>
+           
+          <div
+            className="mt-6 border-gray-800"
+          // :className="{ 'border-t pt-6': secondaryActions.length }"
+          >
+              {selectedPrimaries.map((selectedPrimary, index) => (
+            <div className="stepC actions" key={index}>
+              <div className="flex">
+              <div className="flex-initial w-100">
+              <button
+                className="
+                  p-3
+                  flex
+                  items-center
+                  shrink-0
+                  rounded
+                  hover:brightness-125
+                  focus:brightness-125
+                  transition-all
+                  duration-200
+                  focus:outline-none
+                "
+                onClick={() =>handleReleaseAction(selectedPrimary , index)}
+              >
+                <div
+                  className="w-6 h-6 mr-3 shrink-0"
                 >
-                  <div
-                    className="w-6 h-6 mr-3 shrink-0"
-                  >
-                        <svg
-            viewBox="0 0 24 24"
-            xmlns="https://www.w3.org/2000/svg"
-            xmlSpace="preserve"
+                <div className="icon">
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+          xmlSpace="preserve"
+          style={{
+            fillRule: "evenodd",
+            clipRule: "evenodd",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeMiterlimit: 2
+          }}
+        >
+          <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
+          <path
+            d="M18 6 6 18M6 6l12 12"
             style={{
-              fillRule: "evenodd",
-              clipRule: "evenodd",
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeMiterlimit: 2
+              fill: "none",
+              fillRule: "nonzero",
+              stroke: "#fff",
+              strokeWidth: 2
+            }}
+          />
+        </svg>
+      </div>
+
+                </div>
+        
+                <p
+                  className="whitespace-nowrap"
+             
+                >
+                  {selectedPrimary.name}
+           
+                </p>
+              </button>
+              </div>
+              <div className="flex-initial w-80 p-3
+                  flex
+                  items-center
+                  shrink-0
+                  rounded
+                  hover:brightness-125
+                  focus:brightness-125
+                  transition-all
+                  duration-200
+                  focus:outline-none">
+                 <input type="text" name="price" id="price" className="block w-full rounded-md border-0 py-1.5 pl-7 pr-10 text-white-900 ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder={selectedPrimary.placeholder}
+                  value={selectedPrimary.value} 
+                  onChange={event => handlePrimaryActionChange(event, selectedPrimary, index)}
+                 />
+              </div>
+              </div>
+            </div>
+            ))}
+
+            <p className="p-3" v-if="filteredSecondaryActions.length < 1">
+              Can't find an action? Please 
+              <a
+                href="#help"
+                className="
+                  cursor-pointer
+                  underline
+                  font-extrabold
+                  text-emerald-600
+                  hover:text-emerald-500
+                  focus:text-emerald-500
+                  transition-colors
+                  duration-200
+                  px-2
+                "
+              >leave your suggestion</a>
+              on Telegram
+            </p>
+           
+            <div className="stepC actions" >
+            {primaryActions.map((primaryAction, index) => (
+              <button
+                className="
+                  p-3
+                  flex
+                  items-center
+                  shrink-0
+                  rounded
+                  hover:brightness-125
+                  focus:brightness-125
+                  transition-all
+                  duration-200
+                  focus:outline-none
+                  text-sm
+                  
+                "
+                style={{backgroundColor:  "rgb(5, 150, 105)"}}
+                key={index}
+                onClick={() =>handleDelete(primaryAction, index)}
+              >
+                <div
+                  className="w-6 h-6 mr-3 shrink-0"
+                >
+                <Image
+                src={`/assets/icons/${primaryAction.icon}.svg`}
+                alt={primaryAction.icon}
+                />
+                </div>
+                <p
+                  className="whitespace-nowrap"
+                >
+                  {primaryAction.name}
+
+                </p>
+              </button> 
+              ))}
+            </div>
+           
+          </div>
+          
+        {/* step 4 */}
+        <div id="step-4" className="mt-16">
+          <h2 className="font-extrabold text-2xl">Secondary actions</h2>
+         
+           <div
+            className="mt-6 border-gray-800"
+  
+          >
+                        {selectedSecondaries.map((selectedSecondary, index) => (
+            <div className="stepC actions" key={index}>
+              <div className="flex">
+              <div className="flex-initial w-100">
+              <button
+                className="
+                  p-3
+                  flex
+                  items-center
+                  shrink-0
+                  rounded
+                  hover:brightness-125
+                  focus:brightness-125
+                  transition-all
+                  duration-200
+                  focus:outline-none
+                "
+                onClick={() =>handleReleaseSecondAction(selectedSecondary , index)}
+              >
+                <div
+                  className="w-6 h-6 mr-3 shrink-0"
+                >
+                      <svg
+          viewBox="0 0 24 24"
+          xmlns="https://www.w3.org/2000/svg"
+          xmlSpace="preserve"
+          style={{
+            fillRule: "evenodd",
+            clipRule: "evenodd",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeMiterlimit: 2
+          }}
+        >
+          <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
+          <path
+            d="M18 6 6 18M6 6l12 12"
+            style={{
+              fill: "none",
+              fillRule: "nonzero",
+              stroke: "#fff",
+              strokeWidth: 2
+            }}
+          />
+        </svg>
+                </div>
+                <p
+                  className="whitespace-nowrap"
+              
+                >
+                  {selectedSecondary.name}
+      
+                </p>
+              </button>
+              </div>
+              <div className="flex-initial w-80 p-3
+                  flex
+                  items-center
+                  shrink-0
+                  rounded
+                  hover:brightness-125
+                  focus:brightness-125
+                  transition-all
+                  duration-200
+                  focus:outline-none">
+                 <input type="text" name="price" id="price" className="block w-full rounded-md border-0 py-1.5 pl-7 pr-10 text-white-900 ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder={selectedSecondary.placeholder}
+                  value={selectedSecondary.value} 
+                  onChange={event => handleSecondaryActionChange(event, selectedSecondary, index)}
+                 />
+              </div>
+              </div>
+            </div>
+            ))}
+         
+            <p className="p-3" v-if="filteredSecondaryActions.length < 1">
+              Can't find an action? Please
+              <a
+                href="#help"
+                className="
+                  cursor-pointer
+                  underline
+                  font-extrabold
+                  text-emerald-600
+                  hover:text-emerald-500
+                  focus:text-emerald-500
+                  transition-colors
+                  duration-200
+                  px-2
+                "
+              >leave your suggestion</a
+              >
+              on Telegram
+            </p>
+
+            
+            <div className="stepC actions" >
+              {secondaryActions.map((secondaryAction, index) => (
+              <button
+
+                className="
+                  p-3
+                  flex
+                  items-center
+                  shrink-0
+                  rounded
+                  hover:brightness-125
+                  focus:brightness-125
+                  transition-all
+                  duration-200
+                  focus:outline-none
+                "
+                style={{backgroundColor:  "rgb(5, 150, 105)"}}
+                key={index}
+                onClick={() =>handleAddActions(secondaryAction, index)}
+              
+              >
+                <div
+                  className="w-6 h-6 mr-3 shrink-0"
+              
+                >
+                  <Image
+                  src={`/assets/icons/${secondaryAction.icon}.svg`}
+                   alt="My SVG"
+                />
+                </div>
+                <p
+                  className="whitespace-nowrap text-sm"
+      
+                >
+                  {secondaryAction.name}
+     
+                </p>
+              </button> 
+              ))}
+            </div>
+           
+          </div>
+   
+        </div>
+       
+
+      <div id="step-9" className="mt-16">
+      <Button
+         onClick={() => {
+         downloadPackage()
+        }}
+      >Download as ZIP 
+      </ Button>
+      <Button
+            leftIcon={<MdAdd />}
+            color="white"
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              const freeWebsiteCount =
+                websites?.filter((web) => web.isPremium === false)?.length || 0;
+              //Not to send error message after business card created 
+              // if (freeWebsiteCount >= 1) {
+              //   toast({
+              //     description:
+              //       "You have used your 1 Free minting website. Upgrade your subscription to create more.",
+              //   });
+              //   return;
+              // }
+              onCreateWebsiteOpen();
             }}
           >
-            <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
-            <path
-              d="M18 6 6 18M6 6l12 12"
-              style={{
-                fill: "none",
-                fillRule: "nonzero",
-                stroke: "#fff",
-                strokeWidth: 2
-              }}
-            />
-          </svg>
-                  </div>
-                  <p
-                    className="whitespace-nowrap"
-               
-                  >
-                    {selectedSecondary.name}
+            Create Website
+          </Button>
+     
+      <div className="fixed bottom-0 right-0 w-16 h-16 mr-12 mb-8 cursor-pointer" id="box_btn">
+      <Button
+          size='lg'
+          colorScheme='teal'
+         ref={btnRef} onClick={onOpen}
+      >Preview
+      </ Button>
+      </div>
+      </div>
+     
+      <CreateBCWebsiteModal
+        isOpen={isCreateWebsiteOpen}
+        onClose={onCreateWebsiteClose}
+        profilePhoto={profilePhoto}
+        businessCardLogo={logo}
+        coverPhoto={coverPhoto}
+        firstName={firstName}
+        lastName={lastName}
+        genderPronouns={genderPronouns}
+        jobTitle={jobTitle}
+        businessName={businessName}
+        businessAddress={businessAddress}
+        businessDescription={businessDescription}
+        selectedPrimaries={selectedPrimaries}
+        selectedSecondaries={selectedSecondaries}
+      />
        
-                  </p>
-                </button>
-                </div>
-                <div className="flex-initial w-80 p-3
-                    flex
-                    items-center
-                    shrink-0
-                    rounded
-                    hover:brightness-125
-                    focus:brightness-125
-                    transition-all
-                    duration-200
-                    focus:outline-none">
-                   <input type="text" name="price" id="price" className="block w-full rounded-md border-0 py-1.5 pl-7 pr-10 text-white-900 ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder={selectedSecondary.placeholder}
-                    value={selectedSecondary.value}
-                    onChange={event => handleSecondaryActionChange(event, selectedSecondary, index)}
-                   />
-                </div>
-                </div>
-              </div>
-              ))}
-          
-              <p className="p-3" v-if="filteredSecondaryActions.length < 1">
-                Can't find an action? Please
-                <a
-                  href="#help"
-                  className="
-                    cursor-pointer
-                    underline
-                    font-extrabold
-                    text-emerald-600
-                    hover:text-emerald-500
-                    focus:text-emerald-500
-                    transition-colors
-                    duration-200
-                    px-2
-                  "
-                >leave your suggestion</a
-                >
-                on Telegram
-              </p>
-   
-   
-             
-              <div className="stepC actions" >
-                {secondaryActions.map((secondaryAction, index) => (
-                <button
-   
-   
-                  className="
-                    p-3
-                    flex
-                    items-center
-                    shrink-0
-                    rounded
-                    hover:brightness-125
-                    focus:brightness-125
-                    transition-all
-                    duration-200
-                    focus:outline-none
-                  "
-                  style={{backgroundColor:  "rgb(5, 150, 105)"}}
-                  key={index}
-                  onClick={() =>handleAddActions(secondaryAction, index)}
-               
-                >
-                  <div
-                    className="w-6 h-6 mr-3 shrink-0"
-               
-                  >
-                    <Image
-                    src={`/assets/icons/${secondaryAction.icon}.svg`}
-                     alt="My SVG"
-                  />
+      <Modal
+      blockScrollOnMount={false} 
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        isOpen={isOpen}
+        scrollBehavior='inside'
+        id="businessCardModal"
+        closeOnOverlayClick={false}
+        trapFocus={false}
+        autoFocus={false}
+        
+      >
+        {/* <ModalOverlay /> */}
+        <ModalContent>
+          <ModalHeader>Preview</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <>
+
+{/*preview*/}
+              <style
+                dangerouslySetInnerHTML={{
+                  __html:
+                    "\n    #body {\n      font-family: sans-serif;\n    }\n\n    input[type='range']::-moz-range-track {\n      background: none;\n    }\n\n    input[type='range']::-moz-range-thumb {\n      -moz-appearance: none;\n      width: 1.5rem;\n      height: 1.5rem;\n      border-radius: 100%;\n      border: none;\n      background: #059669;\n      z-index: 3;\n      cursor: pointer;\n    }\n\n    input[type='range']::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      width: 1.5rem;\n      height: 1.5rem;\n      border-radius: 100%;\n      border: none;\n      background: #059669;\n      z-index: 3;\n      cursor: pointer;\n    }\n\n    .closeColor {\n      filter: invert(1)\n    }\n\n    .topAction {}\n\n    .iconColor {\n      color: #eee;\n    }\n\n    .cardColor {\n      color: #222 !important\n    }\n\n    .textColor {\n      color: #222 !important\n    }\n\n    .seekbarColor {\n      background: #05966980 !important\n    }\n  "
+                }}
+              />{" "}
+              {/**/} {/**/}
+              <div id="previewBodyT1"  style={{
+                  backgroundColor: "rgb(5, 150, 105)"
+                }}>
+              <div
+                id="modal"
+                style={{
+                  backgroundColor: "rgb(221, 221, 221)",
+                  visibility: "hidden",
+                  top: "2rem",
+                  opacity: 0
+                }}
+              >
+                <a id="close" className="closeColor">
+                  <div className="icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlSpace="preserve"
+                      style={{
+                        fillRule: "evenodd",
+                        clipRule: "evenodd",
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeMiterlimit: 2
+                      }}
+                    >
+                      <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
+                      <path
+                        d="M18 6 6 18M6 6l12 12"
+                        style={{
+                          fill: "none",
+                          fillRule: "nonzero",
+                          stroke: "#fff",
+                          strokeWidth: 2
+                        }}
+                      />
+                    </svg>
                   </div>
-                  <p
-                    className="whitespace-nowrap text-sm"
-       
+                </a>
+                <div id="keyView">
+                  <p className="textColor">
+                    Use my public key to send me encrypted messages
+                  </p>{" "}
+                  <a
+                    download=""
+                    target="_blank"
+                    id="dlKey"
+                    rel="noreferrer"
+                    tabIndex={-1}
+                    style={{ backgroundColor: "rgb(5, 150, 105)" }}
+                    href="./sdsf dfd's public key.asc"
                   >
-                    {secondaryAction.name}
-      
-                  </p>
-                </button>
-                ))}
-              </div>
-            
-            </div>
-    
-          </div>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-            </div>
-          </div>
-          {/* step 3 */}
-        
-    
-        <div id="step-9" className="mt-16">
-        <Button
-           onClick={() => {
-           downloadPackage()
-          }}
-        >Download as ZIP
-        </ Button>
-        <Button
-              leftIcon={<MdAdd />}
-              m={2}
-              onClick={() => {
-                const freeWebsiteCount =
-                  websites?.filter((web) => web.isPremium === false)?.length || 0;
-                //Not to send error message after business card created
-                // if (freeWebsiteCount >= 1) {
-                //   toast({
-                //     description:
-                //       "You have used your 1 Free minting website. Upgrade your subscription to create more.",
-                //   });
-                //   return;
-                // }
-                onCreateWebsiteOpen();
-              }}
-            >
-              Create Website
-            </Button>
-        </div>
-      
-        <CreateBCWebsiteModal
-          isOpen={isCreateWebsiteOpen}
-          onClose={onCreateWebsiteClose}
-          profilePhoto={profilePhoto}
-          businessCardLogo={logo}
-          coverPhoto={coverPhoto}
-          firstName={firstName}
-          lastName={lastName}
-          genderPronouns={genderPronouns}
-          jobTitle={jobTitle}
-          businessName={businessName}
-          businessAddress={businessAddress}
-          businessDescription={businessDescription}
-          selectedPrimaries={selectedPrimaries}
-          selectedSecondaries={selectedSecondaries}
-        />
-        
-      
-        {/*test ui*/}
-     <div className="fixed bottom-0 right-0 h-auto mr-12 mb-8" id="box_btn" style={{width: "380px"}  }>
-    <Card maxW='sm' >
-    <CardHeader>
-       <Heading size='md'>Live Preview</Heading>
-    </CardHeader>
-    <Divider/>
-    <CardBody>
-    <>
-   
-   
-   {/*preview*/}
-                <style
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      "\n    #body {\n      font-family: sans-serif;\n    }\n\n    input[type='range']::-moz-range-track {\n      background: none;\n    }\n\n    input[type='range']::-moz-range-thumb {\n      -moz-appearance: none;\n      width: 1.5rem;\n      height: 1.5rem;\n      border-radius: 100%;\n      border: none;\n      background: #059669;\n      z-index: 3;\n      cursor: pointer;\n    }\n\n    input[type='range']::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      width: 1.5rem;\n      height: 1.5rem;\n      border-radius: 100%;\n      border: none;\n      background: #059669;\n      z-index: 3;\n      cursor: pointer;\n    }\n\n    .closeColor {\n      filter: invert(1)\n    }\n\n    .topAction {}\n\n    .iconColor {\n      color: #eee;\n    }\n\n    .cardColor {\n      color: #222 !important\n    }\n\n    .textColor {\n      color: #222 !important\n    }\n\n    .seekbarColor {\n      background: #05966980 !important\n    }\n  "
-                  }}
-                />{" "}
-                {/**/} {/**/}
-                <div id="previewBodyT1"  style={{
-                    backgroundColor: "rgb(5, 150, 105)",
-                    height: "600px",
-                    overflow: "scroll",
-                    overflowX: "hidden"
-                  }}>
-                <div
-                  id="modal"
-                  style={{
-                    backgroundColor: "rgb(221, 221, 221)",
-                    visibility: "hidden",
-                    top: "2rem",
-                    opacity: 0
-                  }}
-                >
-                  <a id="close" className="closeColor">
-                    <div className="icon">
+                    <div className="icon iconColor">
                       <svg
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -1156,7 +1197,7 @@ const BusinessCard = () => {
                       >
                         <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
                         <path
-                          d="M18 6 6 18M6 6l12 12"
+                          d="M21 15v4c0 1.097-.903 2-2 2H5c-1.097 0-2-.903-2-2v-4m4-5 5 5 5-5m-5 5V3"
                           style={{
                             fill: "none",
                             fillRule: "nonzero",
@@ -1165,264 +1206,222 @@ const BusinessCard = () => {
                           }}
                         />
                       </svg>
-                    </div>
+                    </div>{" "}
+                    <span className="iconColor">Download Key</span>
                   </a>
-                  <div id="keyView">
-                    <p className="textColor">
-                      Use my public key to send me encrypted messages
-                    </p>{" "}
-                    <a
-                      download=""
-                      target="_blank"
-                      id="dlKey"
-                      rel="noreferrer"
-                      tabIndex={-1}
-                      style={{ backgroundColor: "rgb(5, 150, 105)" }}
-                      href="./sdsf dfd's public key.asc"
-                    >
-                      <div className="icon iconColor">
-                        <svg
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlSpace="preserve"
-                          style={{
-                            fillRule: "evenodd",
-                            clipRule: "evenodd",
-                            strokeLinecap: "round",
-                            strokeLinejoin: "round",
-                            strokeMiterlimit: 2
-                          }}
-                        >
-                          <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
-                          <path
-                            d="M21 15v4c0 1.097-.903 2-2 2H5c-1.097 0-2-.903-2-2v-4m4-5 5 5 5-5m-5 5V3"
-                            style={{
-                              fill: "none",
-                              fillRule: "nonzero",
-                              stroke: "#fff",
-                              strokeWidth: 2
-                            }}
-                          />
-                        </svg>
-                      </div>{" "}
-                      <span className="iconColor">Download Key</span>
-                    </a>
-                  </div>
-                  <div id="copyView">
-                    <p className="textColor">
-                      Copy and send the URL to share my Business Card
-                    </p>{" "}
-                    <button id="copyURL" style={{ backgroundColor: "rgb(5, 150, 105)" }}>
-                      <div className="icon iconColor">
-                        <svg
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlSpace="preserve"
-                          style={{
-                            fillRule: "evenodd",
-                            clipRule: "evenodd",
-                            strokeLinecap: "round",
-                            strokeLinejoin: "round",
-                            strokeMiterlimit: 2
-                          }}
-                        >
-                          <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
-                          <path
-                            d="M22 11a2 2 0 0 0-2-2h-9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9Z"
-                            style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
-                          />
-                          <path
-                            d="M5 15H4c-1.097 0-2-.903-2-2V4c0-1.097.903-2 2-2h9c1.097 0 2 .903 2 2v1"
-                            style={{
-                              fill: "none",
-                              fillRule: "nonzero",
-                              stroke: "#fff",
-                              strokeWidth: 2
-                            }}
-                          />
-                        </svg>
-                      </div>{" "}
-                      <span className="iconColor">Copy URL</span>
-                    </button>
-                  </div>
-                  <div id="qrView" className="textColor">
-                    <div id="qr" />
-                    <h3>Scan the QR Code</h3>
-                    <p>to view my Business Card on another device</p>
-                  </div>
                 </div>
-                <header>
-                  <div id="topActions" style={{ display: "none" }}>
-                    <div>
-                      <a id="share">
-                        <div className="icon topAction">
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlSpace="preserve"
-                            style={{
-                              fillRule: "evenodd",
-                              clipRule: "evenodd",
-                              strokeLinecap: "round",
-                              strokeMiterlimit: 2
-                            }}
-                          >
-                            <g>
-                              <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
-                              <clipPath id="a">
-                                <path d="M0 0h24v24H0z" />
-                              </clipPath>
-                              <g clipPath="url(#a)">
-                                <circle
-                                  cx={17}
-                                  cy={5}
-                                  r={3}
-                                  style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
-                                />
-                                <circle
-                                  cx={5}
-                                  cy={12}
-                                  r={3}
-                                  style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
-                                />
-                                <circle
-                                  cx={17}
-                                  cy={19}
-                                  r={3}
-                                  style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
-                                />
-                                <path
-                                  d="m7.59 13.51 6.83 3.98m-.01-10.98-6.82 3.98"
-                                  style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
-                                ></path>
-                              </g>
-                            </g>
-                          </svg>
-                        </div>
-                      </a>{" "}
-                      <a id="showQR">
-                        <div className="icon topAction">
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlSpace="preserve"
-                            style={{
-                              fillRule: "evenodd",
-                              clipRule: "evenodd",
-                              strokeLinecap: "round",
-                              strokeLinejoin: "round",
-                              strokeMiterlimit: 2
-                            }}
-                          >
+                <div id="copyView">
+                  <p className="textColor">
+                    Copy and send the URL to share my Business Card
+                  </p>{" "}
+                  <button id="copyURL" style={{ backgroundColor: "rgb(5, 150, 105)" }}>
+                    <div className="icon iconColor">
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlSpace="preserve"
+                        style={{
+                          fillRule: "evenodd",
+                          clipRule: "evenodd",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeMiterlimit: 2
+                        }}
+                      >
+                        <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
+                        <path
+                          d="M22 11a2 2 0 0 0-2-2h-9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9Z"
+                          style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
+                        />
+                        <path
+                          d="M5 15H4c-1.097 0-2-.903-2-2V4c0-1.097.903-2 2-2h9c1.097 0 2 .903 2 2v1"
+                          style={{
+                            fill: "none",
+                            fillRule: "nonzero",
+                            stroke: "#fff",
+                            strokeWidth: 2
+                          }}
+                        />
+                      </svg>
+                    </div>{" "}
+                    <span className="iconColor">Copy URL</span>
+                  </button>
+                </div>
+                <div id="qrView" className="textColor">
+                  <div id="qr" />
+                  <h3>Scan the QR Code</h3>
+                  <p>to view my Business Card on another device</p>
+                </div>
+              </div>
+              <header>
+                <div id="topActions" style={{ display: "none" }}>
+                  <div>
+                    <a id="share">
+                      <div className="icon topAction">
+                        <svg
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlSpace="preserve"
+                          style={{
+                            fillRule: "evenodd",
+                            clipRule: "evenodd",
+                            strokeLinecap: "round",
+                            strokeMiterlimit: 2
+                          }}
+                        >
+                          <g>
                             <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
-                            <path
-                              d="M4 4h4v4H4V4Zm0 12h4v4H4v-4ZM16 4h4v4h-4V4Z"
-                              style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
-                            ></path>
-                            <path
-                              d="M12 4v14c0 1.097.903 2 2 2h4c1.097 0 2-.903 2-2v-4c0-1.097-.903-2-2-2H4"
-                              style={{
-                                fill: "none",
-                                stroke: "#fff",
-                                strokeWidth: 2,
-                                strokeLinejoin: "miter"
-                              }}
-                            />
-                            <path style={{ fill: "#fff" }} d="M15 15h2v2h-2z" />
-                          </svg>
+                            <clipPath id="a">
+                              <path d="M0 0h24v24H0z" />
+                            </clipPath>
+                            <g clipPath="url(#a)">
+                              <circle
+                                cx={17}
+                                cy={5}
+                                r={3}
+                                style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
+                              />
+                              <circle
+                                cx={5}
+                                cy={12}
+                                r={3}
+                                style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
+                              />
+                              <circle
+                                cx={17}
+                                cy={19}
+                                r={3}
+                                style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
+                              />
+                              <path
+                                d="m7.59 13.51 6.83 3.98m-.01-10.98-6.82 3.98"
+                                style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
+                              ></path>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                    </a>{" "}
+                    <a id="showQR">
+                      <div className="icon topAction">
+                        <svg
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlSpace="preserve"
+                          style={{
+                            fillRule: "evenodd",
+                            clipRule: "evenodd",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeMiterlimit: 2
+                          }}
+                        >
+                          <path style={{ fill: "none" }} d="M0 0h24v24H0z" />
+                          <path
+                            d="M4 4h4v4H4V4Zm0 12h4v4H4v-4ZM16 4h4v4h-4V4Z"
+                            style={{ fill: "none", stroke: "#fff", strokeWidth: 2 }}
+                          ></path>
+                          <path
+                            d="M12 4v14c0 1.097.903 2 2 2h4c1.097 0 2-.903 2-2v-4c0-1.097-.903-2-2-2H4"
+                            style={{
+                              fill: "none",
+                              stroke: "#fff",
+                              strokeWidth: 2,
+                              strokeLinejoin: "miter"
+                            }}
+                          />
+                          <path style={{ fill: "#fff" }} d="M15 15h2v2h-2z" />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>{" "}
+                  {/**/}
+                </div>
+                <div className="headerImgC">
+                  {coverPhoto&&<img id="cover" src={coverUrl.current} alt="Background Pattern" />}{" "}
+                { logo&&<img
+                    id="logo"
+                    src={avatarUrl.current}
+                    alt="Logo"
+                    style={{ margin: "3rem 0px 6rem" }}
+                  /> }
+                </div>
+              </header>
+              <main style={{ backgroundColor: "rgb(221, 221, 221)", marginTop: 0 }}>
+                {profilePhoto&&<img id="profilePhoto" src={profileUrl.current} alt="Photo" />}
+                <div id="info" className="textColor">
+                  <p className="name">{firstName&&lastName ? (`${firstName} ${lastName}`) : ("Your Name")  }</p>
+                  <p className="pronouns">{genderPronouns ? (genderPronouns) : (`Gender Pronouns`)}</p>
+                  <p className="jobtitle">{jobTitle ? (jobTitle) : (`Job Title`)}</p>
+                  <p className="bizname">{businessName ? (businessName) : (`Business Name`)}</p>
+                  <p className="bizaddr">{businessAddress ? (businessAddress) : (`Business Address`)}</p>
+                </div>
+                <p className="sub textColor">{businessDescription ? (businessDescription) : (`Business Description`)}</p>{" "}
+             
+                 
+                <div className="actions">
+               {selectedPrimaries.map((selectedPrimary, index) => (
+                  <div className="actionsC" key={index}>
+                    <div className="actionBtn">
+                      <a
+                        href={selectedPrimary.href ?  (selectedPrimary.href + selectedPrimary.value) : (selectedPrimary.value)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={selectedPrimary.name}
+                        style={{ backgroundColor: "rgb(5, 150, 105)" }}
+                      >
+                        <div className="icon iconColor">
+                        <Image
+                src={`/assets/icons/${selectedPrimary.icon}.svg`}
+                alt={selectedPrimary.icon}
+                />
                         </div>
                       </a>
-                    </div>{" "}
-                    {/**/}
-                  </div>
-                  <div className="headerImgC">
-                    <img id="cover" src={coverPhoto ? (coverUrl.current) : ("https://i.imgur.com/MOOf4RV.jpg") } alt="Background Pattern" />{" "}
-                 <img
-                      id="logo"
-                      src={logo ? (avatarUrl.current) : ("https://i.imgur.com/AXwrkfW.jpg")}
-                      alt="Logo"
-                      style={{ margin: "3rem 0px 6rem" }}
-                    />
-                  </div>
-                </header>
-                <main style={{ backgroundColor: "rgb(221, 221, 221)", marginTop: 0 }}>
-                 <img id="profilePhoto" src={profilePhoto ? (profileUrl.current) : ("https://i.imgur.com/dTA02lI.jpg")} alt="Photo" />
-                  <div id="info" className="textColor">
-                    <p className="name">{firstName&&lastName ? (`${firstName} ${lastName}`) : ("Your Name")  }</p>
-                    <p className="pronouns">{genderPronouns ? (genderPronouns) : (`Gender Pronouns`)}</p>
-                    <p className="jobtitle">{jobTitle ? (jobTitle) : (`Job Title`)}</p>
-                    <p className="bizname">{businessName ? (businessName) : (`Business Name`)}</p>
-                    <p className="bizaddr">{businessAddress ? (businessAddress) : (`Business Address`)}</p>
-                  </div>
-                  <p className="sub textColor">{businessDescription ? (businessDescription) : (`Business Description`)}</p>{" "}
-              
-                  
-                  <div className="actions">
-                 {selectedPrimaries.map((selectedPrimary, index) => (
-                    <div className="actionsC" key={index}>
-                      <div className="actionBtn">
-                        <a
-                          href={selectedPrimary.href ?  (selectedPrimary.href + selectedPrimary.value) : (selectedPrimary.value)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={selectedPrimary.name}
-                          style={{ backgroundColor: "rgb(5, 150, 105)" }}
-                        >
-                          <div className="icon iconColor">
-                          <Image
-                  src={`/assets/icons/${selectedPrimary.icon}.svg`}
-                  alt={selectedPrimary.icon}
-                  />
-                          </div>
-                        </a>
-                        <p className="textColor">{selectedPrimary.name}</p>
-                      </div>
+                      <p className="textColor">{selectedPrimary.name}</p>
                     </div>
-                     ))}
-   
-   
                   </div>
-                  <div className="actions secondary">
-   
-   
-                  {selectedSecondaries.map((selectedSecondary, index) => (
-                    <div className="actionsC" key={index}>
-                      <div className="actionBtn secBtn">
-                        <a
-                          href={selectedSecondary.href ?  (selectedSecondary.href + selectedSecondary.value) : (selectedSecondary.value)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={selectedSecondary.name}
-                          style={{ background: selectedSecondary.color }}
-                        >
-                          <div className="icon">
-                          <Image
-                          src={`/assets/icons/${selectedSecondary.icon}.svg`}
-                          alt={selectedSecondary.icon}
-                          />
-                          </div>
-                        </a>
-                      </div>
-                    </div> ))}
-   
-   
-                  </div>
-                </main>
+                   ))}
+
                 </div>
-                </>
-    </CardBody>
-    <Divider />
-    <CardFooter>
-    </CardFooter>
-   </Card>
-   </div>
-        </div>
-        {/* step 9 */}
-        {/* step 11  */}
+                <div className="actions secondary">
+
+                {selectedSecondaries.map((selectedSecondary, index) => (
+                  <div className="actionsC" key={index}>
+                    <div className="actionBtn secBtn">
+                      <a
+                        href={selectedSecondary.href ?  (selectedSecondary.href + selectedSecondary.value) : (selectedSecondary.value)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={selectedSecondary.name}
+                        style={{ background: selectedSecondary.color }}
+                      >
+                        <div className="icon">
+                        <Image
+                        src={`/assets/icons/${selectedSecondary.icon}.svg`}
+                        alt={selectedSecondary.icon}
+                        />
+                        </div>
+                      </a>
+                    </div>
+                  </div> ))}
+
+                </div>
+              </main>
+              </div>
+              </>
+            {/* Preview */}
+          </ModalBody>
+          <ModalFooter>
+            <Button  onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       </div>
-    )
-   
-   
+      {/* step 9 */}
+      {/* step 11  */}
+    </div>
+  )
+
 };
-   
+
 export default BusinessCard;

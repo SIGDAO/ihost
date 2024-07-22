@@ -1,4 +1,4 @@
-export function resizeImage(base64Str, maxWidth = 900, maxHeight = 350, text = "@username") {
+export function resizeImage(base64Str, maxWidth = 900, maxHeight = 350, text = "iacademy-admin") {
     return new Promise(resolve => {
       let img = new Image();
       img.src = base64Str;
@@ -28,7 +28,7 @@ export function resizeImage(base64Str, maxWidth = 900, maxHeight = 350, text = "
           canvas.height = height;
           let ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
-          ctx.font = "30px Arial";
+          ctx.font = "28px Arial";
           ctx.fillStyle = "#ffffff";
           ctx.fillText(text, 130, 80);
           resolve(canvas.toDataURL("image/jpeg", 0.9));

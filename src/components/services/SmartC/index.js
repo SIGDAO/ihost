@@ -15,22 +15,49 @@
 // import {Amount} from "@signumjs/util";
 // import { Contract, ContractDataView } from "@signumjs/contracts";
 // import {sharp_01} from "sharp";
+import {
+  Flex,
+  Text,
+  Heading,
+  Link
+} from "@chakra-ui/react";
+
 const SmartC = () => {
+
   return (
     <>
-      <div className="iframeDiv">
-        <iframe src="https://deleterium.info/SmartC/stable/"></iframe>
+       
+        <Flex>
+          <Heading
+            as="h1"
+            fontSize="6xl"
+            bgGradient="linear(to-l, #374782, #1C97E7)"
+            bgClip="text"
+          >
+            C Compiler for Signum - 2.2.1
+          </Heading>
+        </Flex>
+        <Text fontSize="10pt">
+        Write C smart contracts for signum network. Compile in your browser.
+        </Text>
+        <Text fontSize="10pt">
+        Credited by <Link href="https://github.com/deleterium/SmartC/" >deleterium</Link>
+          </Text>
+  
+      <div className="iframeDiv ">
+        <iframe src="https://smartc-web-ui-ten.vercel.app/"></iframe>
         <style jsx>{`
         .iframeDiv {
           overflow: hidden;
         }
         iframe {
             width: 101%;
-            height: 75vh;
+            height: 68vh;
         }
       `}</style>
 
       </div>
+
     </>
   )};
 

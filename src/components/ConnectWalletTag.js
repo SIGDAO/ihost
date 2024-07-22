@@ -31,7 +31,7 @@ const ConnectWalletTag = ({
   isPayments,
   ...styles
 }) => {
-  const { address, isLoggedIn, user ,isVIP} = useUser();
+  const { address, isLoggedIn, user ,isVIP, sigdao} = useUser();
   const { onProfileOpen } = useCore();
   const { connect, logout } = useMemberControls();
   const { onCopy: onCopyAddress } = useCopy({
@@ -81,15 +81,16 @@ const ConnectWalletTag = ({
                       {user?.services?.generator?.units || 0} Generation Units
                     </Text>
                     <Text fontSize="8pt" noOfLines="1">
-                      {user?.services?.website?.units || 0} Website Units
+                      {sigdao/1000000 || 0} SIGDAO
                     </Text>
-                    <Text fontSize="8pt" noOfLines="1">
+                    {/* <Text fontSize="8pt" noOfLines="1">
                       {user?.services?.utils?.units || 0} Utils Units
-                    </Text>
+                    </Text> */}
+
                    {isVIP && ( <HStack >
                     <RiVipLine/>
                     <Text fontSize="10pt" noOfLines="1" maxW="150px" color="gold">
-                      VIP user
+                      BETTERMI NFT
                     </Text>
                      </HStack> ) } 
                   </VStack>

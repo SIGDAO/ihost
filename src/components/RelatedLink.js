@@ -12,7 +12,7 @@ import { partnersArr } from "@/utils/json";
 import { webColor } from "@/theme/index";
 import posthog from "posthog-js";
 
-const Partners = () => {
+const RelatedLink = () => {
   const containerColor = useColorModeValue(
     webColor.containerBg[0],
     webColor.containerBg[1],
@@ -60,7 +60,7 @@ const Partners = () => {
           </Wrap>
         </Link>
       ))}
-      <Link
+      {/* <Link
         href="mailto: nfthost@outlook.com"
         style={{ textDecoration: "none" }}
         w="full"
@@ -87,9 +87,9 @@ const Partners = () => {
         >
           <Text>💖 Your Company</Text>
         </Flex>
-      </Link>
+      </Link> */}
     </Wrap>
   );
 };
 
-export default Partners;
+export default RelatedLink;

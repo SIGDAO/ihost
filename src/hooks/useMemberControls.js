@@ -48,19 +48,39 @@ export const useMemberControls = () => {
     user,
     setWallet,
     setVIP,
+    setSigdao
   } = useUser();
   const { setProvider, provider } = useCore();
   const [isDeleting, setIsDeleting] = useState(false);
+  //sigdaoAmount = await checkSigdaoAmount(ledger,connection,account.account);
+  function checkArrayForAttributeValue(array, attribute,attributeA, value) {
+    const obj = array.find((obj) => obj[attribute] === value);
+    return obj ? obj[attributeA] : 0;
+  }
 
+  const checkSigdaoAmount = async (ledger,connection ,accountId) => {
+    console.log("ledger", ledger);
+    console.log("connection", connection);
+    console.log("accountId", accountId);
+    const response = await fetch(`${connection.currentNodeHost}/api?requestType=getAccountAssets&account=${accountId}`);
+    const res = await response.json();
+    const sigdaoAmount = checkArrayForAttributeValue(res.assetBalances, "asset", "balanceQNT" ,"5453974739826751020");
+    console.log("sigdao amount:", sigdaoAmount)
+    console.log(res);
+    return sigdaoAmount
+  } 
   const checkNFTsOwner = async (ledger, accountId) => {
    
-    let vipNftsCreatorId = "18040307637715891485" //VIP data wallet
+    // let vipNftsCreatorId = "18040307637715891485" //VIP data wallet
+    let vipNftsCreatorId = "10856521546493939940" //S-CN96-UG3L-4EJB-BWJCF 
     let dataViews = [];
     let nftsOwnersLists = [];
     if (ledger ){
       let nftStorages = await ledger.contract.getContractsByAccount({
         accountId: vipNftsCreatorId,
-        machineCodeHash: "15155055045342098571",
+        // machineCodeHash: "15155055045342098571",
+        machineCodeHash: "15519954399276214446",
+        
       });
       console.log("nftStorages:",nftStorages);
       nftStorages = nftStorages.ats
@@ -68,7 +88,7 @@ export const useMemberControls = () => {
       const results = await Promise.all(promises);
       console.log("results:",results);
       dataViews = results.map(result => new ContractDataView(result) );
-      nftsOwnersLists = dataViews.map(dataView => dataView.getVariableAsDecimal(0));
+      nftsOwnersLists = dataViews.map(dataView => dataView.getVariableAsDecimal(5));
       console.log("dataViews:", dataViews)
       console.log(nftsOwnersLists);
       console.log(accountId)
@@ -78,12 +98,12 @@ export const useMemberControls = () => {
       }
       return false;
     }
-
   } 
   const connect = async (wallet) => {
     try {
       let address = "";
       let isVipAccount = false;
+      let sigdaoAmount = 0;
       const CHAIN_ID = process.env.CHAIN_ID;
       const CHAIN_ID_IN_DEC = Number(CHAIN_ID);
       const RPC_URL_MAP = {
@@ -161,6 +181,7 @@ export const useMemberControls = () => {
       address = account.accountRS;
       //check the signum whether hold the vip nfts 
       isVipAccount = await checkNFTsOwner(ledger,account.account);
+      sigdaoAmount = await checkSigdaoAmount(ledger,connection,account.account);
       }
 
       const token = await axios.post(
@@ -170,7 +191,8 @@ export const useMemberControls = () => {
           wallet,
         },
       );
-
+      
+      
       // if (!localStorage.getItem("nfthost-user")) {
       //   posthog.capture("User logged in with crypto wallet", {
       //     wallet,
@@ -192,6 +214,7 @@ export const useMemberControls = () => {
       setWallet(wallet);
       setIsLoggedIn(true);
       setVIP(isVipAccount);
+      setSigdao(sigdaoAmount);
       return true;
     } catch (err) {
       const msg = errorHandler(err);

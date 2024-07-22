@@ -1,10 +1,11 @@
 import { useState } from 'react';
-
-const AliasSearchBar = ({ onSearch }) => {
+import { Button, ButtonGroup,BeatLoader } from '@chakra-ui/react'
+const AliasSearchBar = ({ onSearch, toast, isSearching, setIsSearching }) => {
   const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = (e) => {
+ 
+  const handleSearch = async (e) => {
     e.preventDefault();
+    setIsSearching(true);
     onSearch(searchTerm);
   };
 
@@ -17,12 +18,15 @@ const AliasSearchBar = ({ onSearch }) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button
+      <Button
+        isLoading={isSearching}
         type="submit"
         className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
+        colorScheme='blue'
+        // spinner={<BeatLoader size={8} color='white' />}
       >
         Search
-      </button>
+      </Button>
     </form>
   );
 };

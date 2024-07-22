@@ -94,6 +94,8 @@ const Layout = ({ children, currentApp }) => {
       {isSidebar && (
         <VStack
           position="fixed"
+          overflow='auto'
+          scrollbar-width='none'
           top="0"
           flexDir="column"
           bg={sidebarBG}
