@@ -1,5 +1,5 @@
 <p align="center">
-    <a href='https://app.sigdao.io/' rel='nofollow'>
+    <a href='https://app.sigdao.io/' rel='follow'>
         <img src='https://avatars.githubusercontent.com/u/136441453?s=200&v=4' alt='iHost Logo' width='125px'/>
     </a>
 </p>
