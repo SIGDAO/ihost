@@ -8,7 +8,7 @@
 
 <p align="center">
     <img src='https://github.com/sigdao/ihost/actions/workflows/docker-deployment.yml/badge.svg' alt='Docker Deployment'>
-    <a href="[https://discord.gg/BMZZXZMnmv](https://discord.gg/tX9fm765Cr)" rel="follow">
+    <a href="[https://discord.gg/BMZZXZMnmv](https://discord.gg/BMZZXZMnmv)" rel="follow">
         <img src='https://img.shields.io/discord/925910496354381854.svg?color=7289da&label=discord&logo=discord&style=flat' alt='iHost Discord' />
     </a>
 </p>
