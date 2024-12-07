@@ -35,6 +35,7 @@ Access a comprehensive library of pre-built smart contract templates and a user-
 
 ### 4. NFT Generator & Uploader
 Generate and upload unique NFTs seamlessly, adding another layer of engagement and value to your dApp. This feature allows you to tap into the growing NFT market effortlessly.
+How to: (https://youtube.com/playlist?list=PLdMKLAUS1OGf8-6DESBN8HfMOuhPANu6q&si=Pa4l9ejBJzmn1i0U)
 
 ### 5. AI-Powered Web IDE
 Code and collaborate directly within our integrated web IDE, enhancing your development workflow. This feature facilitates real-time collaboration and version control among team members.
