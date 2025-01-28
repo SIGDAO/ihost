@@ -44,11 +44,11 @@ const Footer = () => {
                   fontFamily="inter"
                   fontSize="20pt"
                 >
-                  iHost
+                  iHost (beta)
                 </Heading>
               </HStack>
               <Text fontSize="9pt" mt="1.25em">
-                &copy; 2024 iHost. All rights Reserved.
+                &copy; 2025 iHost. All rights Reserved.
               </Text>
               {/* <HStack justifyContent="center" mt="1em">
                 <IconButton

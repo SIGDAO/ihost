@@ -64,7 +64,7 @@ const Layout = ({ children, currentApp }) => {
                 fontSize="16pt"
                 color="#68D391"
               >
-                iHost
+                iHost (beta)
               </Heading>
             </HStack>
           </Link>

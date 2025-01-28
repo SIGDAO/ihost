@@ -41,7 +41,7 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
         <HStack spacing=".5em" cursor="pointer" flex="1">
           
           <Heading as="h1" fontWeight="bold" fontFamily="inter" fontSize="20pt">
-            iHost
+            iHost (beta)
           </Heading>
         </HStack>
       </NextLink>

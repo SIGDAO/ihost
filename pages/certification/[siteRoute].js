@@ -215,7 +215,7 @@ const deployCertification = (props) => {
                     fontFamily="inter"
                     fontSize="20pt"
                   >
-                    iHost
+                    iHost (beta)
                   </Heading>
                 </HStack>
               </NextLink>
@@ -290,7 +290,7 @@ export async function getStaticProps({ params: { siteRoute } }) {
 //     updatedAt: '2024-03-26T07:12:30.605+00:00',
 //     components: {
 //       title: 'test0123456',
-//       unrevealedImage: 'https://www.nfthost.app/assets/logo.png',
+//       unrevealedImage: 'https://app.sigdao.io//assets/logo.png',
 //       description: 'abc',
 //       embed: '<div>abc</div>',
 //       script: '',
@@ -299,7 +299,7 @@ export async function getStaticProps({ params: { siteRoute } }) {
 //     },
 //     meta: {
 //       robot: '',
-//       favicon: 'https://app.sigdao,io/favicon.ico"',
+//       favicon: 'https://app.sigdao.io/favicon.ico"',
 //       language: 'EN'
 //     },
 //     externalLinks: {

@@ -36,7 +36,7 @@ const Landing = () => {
         bgSize="cover"
       >
         <MainNavbar isLanding isSocial />
-        <Announcement />
+        {/* <Announcement /> */}
         <Flex
           flexDir="column"
           justifyContent="center"

@@ -69,8 +69,9 @@ const Alias = () => {
   const [transactionId, setTransactionId] = useState();
   const [aliasName, setAliasName] = useState();
   const [tld, setTld] = useState();
+  // change to europe.node
   const [userData,  setUserData ] = useState( async () => {
-    const responses = await fetch(`https://europe2.signum.network/api?requestType=getAccount&account=${address}`);
+    const responses = await fetch(`https://europe.signum.network/api?requestType=getAccount&account=${address}`);
     const data = await responses.json();
     console.log("responses:", data.publicKey)
 
@@ -79,7 +80,7 @@ const Alias = () => {
   }
   );
   const [tldsList , setTlds] = useState( async () => {
-    const responses = await fetch(`https://europe2.signum.network/api?requestType=getTLDs&firstIndex=0&lastIndex=500`);
+    const responses = await fetch(`https://europe.signum.network/api?requestType=getTLDs&firstIndex=0&lastIndex=500`);
     const data = await responses.json();
     console.log("responses:", data)
     const result = data.tlds.map((response) =>{
@@ -89,6 +90,7 @@ const Alias = () => {
     })
 
     console.log(result);
+    //array the accData to 
     const resultObj = result.reduce((acc, [key, price , available,id,transaction,accountId,aliasURL,alias ]) => {
         acc[key] = {"priceNQT":price, 
         "status": available,

@@ -39,6 +39,10 @@ export const useMemberControls = () => {
     isClosable: true,
     position: "bottom",
   });
+  const loadingToast = useToast({ title: 'Connecting to xt-wallet ',
+    status: 'loading',
+    duration: 90000,
+    isClosable: false, })
   const router = useRouter();
   const {
     setAddress,
@@ -100,6 +104,7 @@ export const useMemberControls = () => {
     }
   } 
   const connect = async (wallet) => {
+    loadingToast();
     try {
       let address = "";
       let isVipAccount = false;
@@ -205,7 +210,9 @@ export const useMemberControls = () => {
       const userData = await getUserByAddress(address);
       console.log(userData);
       if (!userData) throw new Error("Cannot get user data");
-
+      if (userData) {
+        loadingToast.closeAll();
+      }
       // posthog.identify(userData._id);
       // posthog.people.set({ walletAddress: userData.address });
 
@@ -215,6 +222,7 @@ export const useMemberControls = () => {
       setIsLoggedIn(true);
       setVIP(isVipAccount);
       setSigdao(sigdaoAmount);
+      
       return true;
     } catch (err) {
       const msg = errorHandler(err);
@@ -225,6 +233,7 @@ export const useMemberControls = () => {
       } else if (msg === "Coinbase wallet is not installed") {
         window.open("https://www.coinbase.com/wallet", "_blank");
       }
+      loadingToast.closeAll();
       toast({ description: msg });
       return false;
     }

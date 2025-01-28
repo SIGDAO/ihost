@@ -104,7 +104,7 @@ const Payment = () => {
                     fontFamily="inter"
                     fontSize="20pt"
                   >
-                    iHost
+                    iHost (beta)
                   </Heading>
                 </HStack>
               </NextLink>

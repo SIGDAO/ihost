@@ -25,7 +25,7 @@ const Meta = ({ title }) => {
       <meta name="theme-color" content="#753FE5" />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://domainein.info/" />
+      {/* <meta property="og:url" content="https://domainein.info/" /> */}
       <meta
         property="og:title"
         content="iHost - Generate &#38; Host your NFT Collection"
@@ -36,13 +36,13 @@ const Meta = ({ title }) => {
       />
       <meta
         property="og:image"
-        content="https://domainein.info/assets/nfthost-og.png"
+        // content="https://domainein.info/assets/nfthost-og.png"
       />
       <meta property="og:image:alt" content="iHost OpenGraph Picture" />
       <meta property="og:site_name" content="iHost" />
 
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://domainein.info/" />
+      {/* <meta property="twitter:url" content="https://domainein.info/" /> */}
       <meta
         property="twitter:title"
         content="iHost - Generate &#38; Host your NFT Collection"
@@ -53,7 +53,7 @@ const Meta = ({ title }) => {
       />
       <meta
         property="twitter:image"
-        content="https://domainein.info/assets/nfthost-og.png"
+        // content="https://domainein.info/assets/nfthost-og.png"
       />
       <meta
         property="twitter:image:alt"

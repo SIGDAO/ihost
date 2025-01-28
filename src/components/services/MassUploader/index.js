@@ -438,21 +438,7 @@ const MassUploader = () => {
    
     return mimeType;
   }
-  // function to get attributes's array
-  function getAttributesFromNftRecord(record) {
-    const attributes = [];
-    for (let i = 1; i <= 8; ++i) {
-      // @ts-ignore
-      const att = record[`attribute${i}`];
-      if (att) {
-        const [key, value] = att.split(":");
-        attributes.push({ [key]: value });
-      }
-    }
-  
-    return attributes;
 
-  }
   //prepare the ipfs hash for the meta data
   function imagePinResultToMediaArray(imagePinResult) {
     const media = [];
@@ -479,7 +465,7 @@ const MassUploader = () => {
     return media;
   }
 
-  //optimizeImageforNfts 
+  //optimizeImageforNfts Not deleted
   const resizeNft01 = (file) => new Promise(resolve => {
     Resizer.imageFileResizer(file, 480, 9999, "WEBP", 50, 0,
       uri => {
@@ -922,15 +908,6 @@ function asStatusCode(status) {
 
   const handleImageChange = async (e) => {
     if (e.target.files) {
-      // let thumbPixel = await resizeNft01(nftImages02);
-      // thumbPixel = new File([thumbPixel], "000002.1-thumb.webp", { type: "image/webp" })
-      // console.log("thumbPixel.name: ", thumbPixel.name)
-      // let socialPixel = await resizeNft02(nftImages02);
-      // socialPixel = new File([socialPixel], "000002.1-social.webp", { type: "image/webp" })
-      // console.log("socialPixel: ", socialPixel.name)
-      // let originalPixel = new File([nftImages02], "000002.1.jpg", { type: "image/jpeg" })
-      // console.log("originalPixel: ", originalPixel.name)
-      // let files = [originalPixel, socialPixel, thumbPixel];
       const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
       let socialFilesArray = [];
       let newFilesArray = [];

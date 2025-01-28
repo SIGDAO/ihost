@@ -36,6 +36,7 @@ import Certification from "@/components/services/Certification";
 import Alias from "@/components/services/Alias";
 import SCSample from "@/components/services/SmartC/SCSample";
 import CodeEditor from "@/components/services/CodeEditor"
+import ProjectTemplate from "@/components/services/CodeEditor/ProjectTemplate";
 const Page = () => {
   const router = useRouter();
   const { isLoggedIn } = useUser();
@@ -97,6 +98,7 @@ const Page = () => {
                 alias: <Alias/>,
                 scsample: <SCSample/>,
                 codeeditor: <CodeEditor/>,
+                projecttemplate: <ProjectTemplate/>,
               }[currentApp]}
           </>
         ) : (

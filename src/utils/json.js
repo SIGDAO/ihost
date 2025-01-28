@@ -87,10 +87,10 @@ export const sidebarArr = [
     parent: "smart contract",
     items: [
       {
-        name: "Code Editor",
+        name: "AI Coder (Test)",
         link: "/codeeditor",
         icon: <AiFillCode />,
-        children: [],
+        children: [{ name: "Project Template", link: "/codeeditor/projecttemplate" }],
         isExternal: false,
       },
       {
@@ -413,7 +413,10 @@ export const partnersArr = [
   {
     company: "Sigdao Web3store",
     image: "/assets/partners/logoWhite.svg",
-    link: "https://store.sigdao.io/",
+    // for production 
+    // link: "https://store.sigdao.io/",
+     // for test 
+    link: "https://web3store.vercel.app/",
     description:
       "A platform to register tools and applications for the Signum eco-system",
   },

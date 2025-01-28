@@ -4,6 +4,7 @@ import { flexRender, getCoreRowModel, useReactTable} from "@tanstack/react-table
 import { useGenerator } from "@/providers/GeneratorProvider";
 import EditableCell from "./EditableCell";
 import EditableNameCell from "./EditableNameCell";
+import EditableNumberCell from "./EditableNumberCell";
 import { Image,Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 
 const columns = [
@@ -36,7 +37,7 @@ const columns = [
     {
         accessorKey: 'identifier',
         header: "Identifier",
-        cell: EditableCell
+        cell: EditableNumberCell
     },
     {
         accessorKey: 'image1',
@@ -100,12 +101,12 @@ const columns = [
     },{
         accessorKey: 'price',
         header: "Price",
-        cell: EditableCell
+        cell: EditableNumberCell
     },
     {
         accessorKey: 'offerPrice',
         header: "Offer Price",
-        cell: EditableCell
+        cell: EditableNumberCell
     },
     {
         accessorKey: 'auctionEnd',

@@ -24,10 +24,10 @@ const CreateWebsiteModal = ({ isOpen, onClose }) => {
   const [route, setRoute] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [logo, setLogo] = useState("https://www.nfthost.app/assets/logo.png");
+  const [logo, setLogo] = useState("https://app.sigdao.io/favicon.ico/assets/logo.png");
   const [script, setScript] = useState("");
   const [embed, setEmbed] = useState("");
-  const [favicon, setFavicon] = useState("https://app.sigdao,io/favicon.ico");
+  const [favicon, setFavicon] = useState("https://app.sigdao.io/favicon.ico");
   const [robot, setRobot] = useState("");
   const [language, setLanguage] = useState("");
 

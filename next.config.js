@@ -1,3 +1,4 @@
+
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -17,4 +18,24 @@ module.exports = withBundleAnalyzer({
     SOLANA_RPC_URL: process.env.SOLANA_RPC_URL,
     INFURA_ID: process.env.INFURA_ID,
   },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "*",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "*",
+          },
+        ],
+      },
+    ];
+  },
 });
+
+
+

@@ -56,7 +56,7 @@ import {
           }}
           isOpen={isCsvEditModal}
           isCentered
-          size="4xl"
+          size="full"
           closeOnOverlayClick={false}
           scrollBehavior="inside"
         >
@@ -197,4 +197,3 @@ import {
   };
   
   export default CsvEditModal;
-  

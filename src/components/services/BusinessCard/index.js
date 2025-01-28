@@ -81,13 +81,13 @@ const BusinessCard = () => {
   const refContainer = useRef("feature");
   const id = useRef(2);
   const avatarUrl = useRef(
-    "https://i.imgur.com/AXwrkfW.jpg"
+    "https://i.imgur.com/NVDbJiD.png"
   );
   const coverUrl = useRef(
-    "https://i.imgur.com/MOOf4RV.jpg"
+    "https://i.imgur.com/6xeqnwt.jpeg"
   );
   const profileUrl = useRef(
-    "https://i.imgur.com/dTA02lI.jpg"
+        "https://i.imgur.com/K902Iwa.png"
   );
   const updateAvatar = (imgSrc) => {
     avatarUrl.current = imgSrc;
@@ -1335,18 +1335,19 @@ const BusinessCard = () => {
                     </div>{" "}
                     {/**/}
                   </div>
+                
                   <div className="headerImgC">
-                    <img id="cover" src={coverPhoto ? (coverUrl.current) : ("https://i.imgur.com/MOOf4RV.jpg") } alt="Background Pattern" />{" "}
+                    <img id="cover" src={coverPhoto ? (coverUrl.current) : ("https://i.imgur.com/6xeqnwt.jpeg") } alt="Background Pattern" />{" "}
                  <img
                       id="logo"
-                      src={logo ? (avatarUrl.current) : ("https://i.imgur.com/AXwrkfW.jpg")}
+                      src={logo ? (avatarUrl.current) : ("https://i.imgur.com/NVDbJiD.png")}
                       alt="Logo"
                       style={{ margin: "3rem 0px 6rem" }}
                     />
                   </div>
                 </header>
                 <main style={{ backgroundColor: "rgb(221, 221, 221)", marginTop: 0 }}>
-                 <img id="profilePhoto" src={profilePhoto ? (profileUrl.current) : ("https://i.imgur.com/dTA02lI.jpg")} alt="Photo" />
+                 <img id="profilePhoto" src={profilePhoto ? (profileUrl.current) : ("https://i.imgur.com/K902Iwa.png")} alt="Photo" />
                   <div id="info" className="textColor">
                     <p className="name">{firstName&&lastName ? (`${firstName} ${lastName}`) : ("Your Name")  }</p>
                     <p className="pronouns">{genderPronouns ? (genderPronouns) : (`Gender Pronouns`)}</p>

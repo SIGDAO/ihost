@@ -34,7 +34,7 @@ const SmartC = () => {
             bgGradient="linear(to-l, #374782, #1C97E7)"
             bgClip="text"
           >
-            C Compiler for Signum - 2.2.1
+            C Compiler for Signum - 2.3.0
           </Heading>
         </Flex>
         <Text fontSize="10pt">
@@ -46,16 +46,26 @@ const SmartC = () => {
   
       <div className="iframeDiv ">
         <iframe src="https://smartc-web-ui-ten.vercel.app/"></iframe>
-        <style jsx>{`
+        {/* <iframe allow="cross-origin-isolated" src="https://aicoder.liveandlearn.live/"></iframe> 
+        <iframe src="https://aicoder-fortest.vercel.app/"></iframe>  */}
+        {/* <style jsx>{`
         .iframeDiv {
           overflow: hidden;
         }
         iframe {
             width: 101%;
-            height: 68vh;
+            height: 80vh;
+        }
+      `}</style> */}
+  <style jsx>{`
+        .iframeDiv {
+          overflow: hidden;
+        }
+        iframe {
+            width: 101%;
+           height: 68vh;
         }
       `}</style>
-
       </div>
 
     </>
