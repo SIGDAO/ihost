@@ -57,7 +57,7 @@ const Page = () => {
 
   return (
     <main style={{ background: bgColor, minHeight: "100vh" }}>
-      <Meta title="Dashboard | iHost" />
+      <Meta title="Dashboard | IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
       <Layout currentApp={currentApp}>
         {currentApp === "team" || currentApp === "partners" || isLoggedIn ? (
           <>

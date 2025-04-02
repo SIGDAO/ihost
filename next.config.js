@@ -4,6 +4,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 module.exports = withBundleAnalyzer({
+  compiler: {
+    removeConsole: true,
+  },
   reactStrictMode: false,
   swcMinify: false,
   images: {

@@ -8,7 +8,7 @@ const Main = () => {
   
   return (
     <Flex as="main" flexDir="column">
-      <Meta title="iHost" />
+      <Meta title="IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
       <CookieModal />
       <Landing />
       <MainFooter />

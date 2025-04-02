@@ -89,7 +89,7 @@ const Payment = () => {
 
   return (
     <main>
-      <Meta title="Payment | iHost" />
+      <Meta title="Payment | IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
       <KeepWorkingModal />
       <Flex minH="100vh" justifyContent="center" alignItems="center" py="4em">
         {paymentData ? (
