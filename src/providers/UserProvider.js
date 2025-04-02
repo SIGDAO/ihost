@@ -8,7 +8,8 @@ export const UserProvider = ({ children }) => {
   const [wallet, setWallet] = useState("");
   const [user, setUser] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [isVIP, setVIP]=useState(false);
+  const [sigdao, setSigdao]=useState(false);
   const controllers = {
     address,
     setAddress,
@@ -18,6 +19,10 @@ export const UserProvider = ({ children }) => {
     setIsLoggedIn,
     wallet,
     setWallet,
+    isVIP,
+    setVIP,
+    sigdao,
+    setSigdao
   };
 
   return (

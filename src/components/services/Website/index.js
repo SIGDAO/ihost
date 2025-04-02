@@ -7,12 +7,13 @@ import CreateWebsiteModal from "./CreateWebsiteModal";
 import List from "./List";
 import Settings from "./Settings";
 
-const Website = () => {
+const 
+Website = () => {
   const { isLoggedIn } = useUser();
   const { editingWebsite } = useWebsite();
   const { getWebsites } = useWebsiteControls();
   const {
-    isOpen: isCreateWebsiteOpen,
+    isOpen:isCreateWebsiteOpen,
     onClose: onCreateWebsiteClose,
     onOpen: onCreateWebsiteOpen,
   } = useDisclosure();

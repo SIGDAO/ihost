@@ -1,10 +1,17 @@
+
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
 module.exports = withBundleAnalyzer({
+  compiler: {
+    removeConsole: true,
+  },
   reactStrictMode: false,
   swcMinify: false,
+  images: {
+    unoptimized: true,
+  },
   env: {
     CHAIN_ID: process.env.CHAIN_ID,
     ENCRYPT_KEY: process.env.ENCRYPT_KEY,
@@ -14,4 +21,24 @@ module.exports = withBundleAnalyzer({
     SOLANA_RPC_URL: process.env.SOLANA_RPC_URL,
     INFURA_ID: process.env.INFURA_ID,
   },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "*",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "*",
+          },
+        ],
+      },
+    ];
+  },
 });
+
+
+

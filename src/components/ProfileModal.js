@@ -39,6 +39,7 @@ const ProfileModal = () => {
     setAreYouSureData,
   } = useCore();
   const { user } = useUser();
+  console.log("user:", user)
   const { onCopy: onUserIdCopy } = useCopy({
     text: user?._id,
   });
@@ -150,7 +151,7 @@ const ProfileModal = () => {
                     {user?.services?.generator?.units?.toString()}
                   </Text>
                 </VStack>
-                <VStack>
+                {/* <VStack>
                   <Question
                     prompt="Number of premium metadata utilities you can use."
                     w="150px"
@@ -162,8 +163,8 @@ const ProfileModal = () => {
                   <Text fontSize="10pt">
                     {user?.services?.utils?.units?.toString()}
                   </Text>
-                </VStack>
-                <VStack>
+                </VStack> */}
+                {/* <VStack>
                   <Question
                     prompt="Number of premium minting websites you can create."
                     w="150px"
@@ -172,10 +173,11 @@ const ProfileModal = () => {
                       WEBSITE UNITS
                     </Text>
                   </Question>
-                  <Text fontSize="10pt">
-                    {user?.services?.website?.units === 1 ? "Unlimited" : "0"}
+                  <Text fontSize="10pt"> */}
+                    {/* {user?.services_website_units === 1 ? "Unlimited" : "0"} */}
+                    {/* {user?.services?.website?.units === 1 ? "Unlimited" : "0"} 
                   </Text>
-                </VStack>
+                </VStack> */}
               </Wrap>
             </Flex>
           </HStack>

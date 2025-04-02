@@ -78,8 +78,8 @@ const Domain = () => {
             onChange={setRoute}
             mt="1em"
             maxW="380px"
-            addonRight
-            addonRightText={`.${config?.frontendUrl}`}
+            addonLeft
+            addonLeftText={`${config?.frontendUrl}/mintingwebsite/`}
             isInvalid={editInputState?.route?.status}
             errorText={editInputState?.route?.message}
             textTransform="lowercase"
@@ -102,7 +102,7 @@ const Domain = () => {
           </Button>
         </Flex>
       </Flex>
-      <Flex
+      {/* <Flex
         flexDir="column"
         bg={containerColor}
         p="1em"
@@ -189,7 +189,7 @@ const Domain = () => {
             Connect
           </Button>
         </Flex>
-      </Flex>
+      </Flex> */}
     </VStack>
   );
 };

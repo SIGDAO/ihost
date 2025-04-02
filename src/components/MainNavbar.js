@@ -39,9 +39,9 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
     <Flex as="nav" justifyContent="space-between" px="2em" py="1.5em">
       <NextLink href="/" shallow passHref>
         <HStack spacing=".5em" cursor="pointer" flex="1">
-          <Image src="/assets/logo.png" alt="NFT Host Logo" w="50px" />
+          
           <Heading as="h1" fontWeight="bold" fontFamily="inter" fontSize="20pt">
-            NFT Host
+            iHost (beta)
           </Heading>
         </HStack>
       </NextLink>
@@ -57,7 +57,7 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
                   Features
                 </Button>
               </NextLink>
-              <NextLink href="/#testimonials" shallow passHref>
+              {/* <NextLink href="/#testimonials" shallow passHref>
                 <Button
                   bg="transparent"
                   _hover={{ bg: "transparent", color: navbarButton }}
@@ -72,12 +72,12 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
                 >
                   Pricing
                 </Button>
-              </NextLink>
+              </NextLink> */}
             </HStack>
           )}
           {isSocial && (
             <HStack flex="1" justifyContent="flex-end">
-              <Link
+              {/* <Link
                 href="https://discord.gg/2BDzCvSTVc"
                 isExternal
                 style={{ color: defaultColor }}
@@ -128,7 +128,7 @@ const Navbar = ({ isLanding, isColorMode, isSocial }) => {
                   _hover={{ bg: "transparent", color: navbarButton }}
                   onClick={toggleColorMode}
                 />
-              )}
+              )} */}
             </HStack>
           )}
         </>

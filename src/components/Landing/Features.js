@@ -35,7 +35,7 @@ const Features = () => {
         />
       </HStack>
       <Text fontSize="18pt" mt=".75em">
-        Powerful tools that will ensure your NFTs success.
+        Powerful tools that will ensure your Web3 journey success.
       </Text>
       <Image
         src="/assets/landing-effect-5.png"
@@ -63,13 +63,13 @@ const Features = () => {
                 loading="lazy"
               />
               <Text fontWeight="semibold" fontSize="16pt">
-                Collection Generator
+                Green Builder
               </Text>
             </Flex>
             <Text fontSize="10pt" mt="1em">
-              We provide the fastest NFT generator in the market. You can
-              generate 100 unique images for free. We charge with a fixed price
-              of $25 per generation for collections above 100.
+              In Green Builder, we provide basic functions for users. 
+              You can generate unique images for new NFTs and then 
+              deploy these images to Signum's blockchain through the mass uploader.
             </Text>
           </Flex>
           <Flex
@@ -90,14 +90,12 @@ const Features = () => {
                 loading="lazy"
               />
               <Text fontWeight="semibold" fontSize="16pt">
-                Minting Website Hosting
+                Green Power Up
               </Text>
             </Flex>
             <Text fontSize="10pt" mt="1em">
-              Create a minting website by a click of a button. You can host your
-              own minting website for free. Features including prebuilt
-              templates, addons, domain, and more. Unlock special features by
-              upgrading to premium for $15 USD.
+              Green Power Up provides non-Web3 tools - Business Card and Certification 
+              and a Web3 tool - Alias. You can connect your result from the non-Web3 tool to Signum Blockchain.
             </Text>
           </Flex>
           <Flex
@@ -118,14 +116,11 @@ const Features = () => {
                 loading="lazy"
               />
               <Text fontWeight="semibold" fontSize="16pt">
-                Metadata Utilities
+                Green Smart Contract
               </Text>
             </Flex>
             <Text fontSize="10pt" mt="1em">
-              Create a minting website by a click of a button. You can host your
-              own minting website for free. Features including prebuilt
-              templates, addons, domain, and more. Unlock special features by
-              upgrading to premium for $15 USD.
+            SmartC is designed for users of any knowledge level to develop smart contract, and as a learning lab for teaching and experimenting with Signum.
             </Text>
           </Flex>
         </VStack>

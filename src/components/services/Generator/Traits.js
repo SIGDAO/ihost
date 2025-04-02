@@ -34,6 +34,22 @@ const Traits = () => {
   );
   const itemColor = useColorModeValue("blackAlpha.100", "blackAlpha.400");
   const itemBorderColor = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
+  // functions 
+  // const handleDrop = (acceptedFiles) => {
+  //   const file = acceptedFiles[0];
+  //   const reader = new FileReader();
+
+  //   reader.onload = (e) => {
+  //     const image = new Image();
+  //     image.onload = () => {
+  //       console.log('Image width:', image.width);
+  //       console.log('Image height:', image.height);
+  //     };
+  //     image.src = e.target.result;
+  //   };
+
+  //   reader.readAsDataURL(file);
+  // };
 
   return (
     <Flex
@@ -116,7 +132,9 @@ const Traits = () => {
           "image/png": [],
         }}
         multiple
-        onDrop={(files) => UploadAssets(files)}
+        onDrop={(files) =>{
+          console.log("on drop files: ", files[0].width);
+          UploadAssets(files)} }
       >
         {({ getRootProps, getInputProps }) => (
           <Flex
@@ -135,6 +153,9 @@ const Traits = () => {
             <VStack>
               <Icon as={BsFillImageFill} fontSize="18pt" />
               <Text>Drag and drop images here</Text>
+              <Text>Please make sure the image ratio in 1:1</Text>
+              <Text>and at least 512px:512px</Text>
+              {/* <Text>Drag and drop images here</Text> */}
               <Text fontSize="10pt">Supported Format: .png</Text>
             </VStack>
           </Flex>

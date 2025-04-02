@@ -36,21 +36,21 @@ const Footer = () => {
         <Flex flexDir="column" flex="1" alignItems="center">
           <NextLink href="/" shallow passHref>
             <Flex flexDir="column">
-              <HStack spacing=".5em" cursor="pointer" flex="1">
-                <Image src="/assets/logo.png" alt="NFT Host Logo" w="50px" />
+              <HStack spacing=".5em" cursor="pointer" flex="1" justifyContent="center">
+                
                 <Heading
                   as="h1"
                   fontWeight="bold"
                   fontFamily="inter"
                   fontSize="20pt"
                 >
-                  NFT Host
+                  iHost (beta)
                 </Heading>
               </HStack>
               <Text fontSize="9pt" mt="1.25em">
-                &copy; 2022 NFTHost. All rights Reserved.
+                &copy; 2025 iHost. All rights Reserved.
               </Text>
-              <HStack justifyContent="center" mt="1em">
+              {/* <HStack justifyContent="center" mt="1em">
                 <IconButton
                   aria-label="NFT Host Discord"
                   icon={<FaDiscord />}
@@ -78,7 +78,7 @@ const Footer = () => {
                   _hover={{ bg: "transparent", color: navbarButton }}
                   onClick={toTiktok}
                 />
-              </HStack>
+              </HStack> */}
             </Flex>
           </NextLink>
         </Flex>
@@ -91,16 +91,16 @@ const Footer = () => {
                   Features
                 </Text>
               </NextLink>
-              <NextLink href="/#testimonials" passHref shallow>
+              {/* <NextLink href="/#testimonials" passHref shallow>
                 <Text cursor="pointer" _hover={{ color: navbarButton }}>
                   Testimonials
                 </Text>
-              </NextLink>
-              <NextLink href="/#pricing" passHref shallow>
+              </NextLink> */}
+              {/* <NextLink href="/#pricing" passHref shallow>
                 <Text cursor="pointer" _hover={{ color: navbarButton }}>
                   Pricing
                 </Text>
-              </NextLink>
+              </NextLink> */}
             </VStack>
             <VStack alignItems="flex-start">
               <Text fontWeight="bold">Policies</Text>
@@ -123,14 +123,14 @@ const Footer = () => {
                 </Text>
               </Link>
             </VStack>
-            <VStack alignItems="flex-start">
+            {/* <VStack alignItems="flex-start">
               <Text fontWeight="bold">About</Text>
-              <NextLink href="/dashboard/team" passHref shallow>
+              <NextLink href="/dashboard/credits" passHref shallow>
                 <Text cursor="pointer" _hover={{ color: navbarButton }}>
-                  Team
+                  Credits
                 </Text>
               </NextLink>
-            </VStack>
+            </VStack> */}
           </Wrap>
         </Flex>
       </Wrap>

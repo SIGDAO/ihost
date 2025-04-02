@@ -16,12 +16,17 @@ import {
   TagCloseButton,
   FormHelperText,
   useColorModeValue,
+  Radio,
+  RadioGroup,
+  Stack,
+  IconButton,
 } from "@chakra-ui/react";
+import { AddIcon, CloseIcon } from '@chakra-ui/icons'
 import { IoMdAdd } from "@react-icons/all-files/io/IoMdAdd";
 import { useGenerator } from "@/providers/GeneratorProvider";
 import { useMetadata } from "@/hooks/services/generator/useMetadata";
 import { webColor } from "@/theme/index";
-
+import { useState, useMemo } from "react";
 const Configuration = () => {
   const {
     name,
@@ -50,6 +55,53 @@ const Configuration = () => {
     setYoutubeURL,
     backgroundColor,
     setBackgroundColor,
+     //for signum wallet 
+     royalties,
+     setRoyalties,
+     attributes,
+     setAttributes,
+     nftTypes,
+     setNftTypes,
+     edition,
+     setEdition,
+     identifier,
+     setIdentifier,
+     officialWeb,
+     setOfficialWeb,
+     socialPlatform,
+     setSocialPlatform,
+     attribute1,
+     setAttribute1,
+     attribute2,
+     setAttribute2,
+     attribute3,
+     setAttribute3,
+     attribute4,
+     setAttribute4,
+     attribute5,
+     setAttribute5,
+     attribute6,
+     setAttribute6,
+     attribute7,
+     setAttribute7,
+     attribute8,
+     setAttribute8,
+     signumAttributes,
+     setSignumAttributes,
+     listingMode,
+     setlistingMode,
+     price,
+     setPrice,
+     offerPrice,
+     setOfferPrice,
+     auctionEnd,
+     setAuctionEnd,
+     numOfAttributes,
+     updateNum,
+     attributeType,
+     setAttributeType,
+     attributeName,
+     setAttributeName,
   } = useGenerator();
   const { AddCreator, DeleteCreator } = useMetadata();
 
@@ -61,9 +113,64 @@ const Configuration = () => {
     "rgba(0,0,0,0.1)",
     "rgba(0,0,0,0.5)",
   );
-
+  const addAttribute = (type, name) => {
+    if (numOfAttributes <= 8) {
+      if (type != "" && name != "") {
+        let newAttribute = type + ":" + name;
+        setSignumAttributes(signumAttributes => [...signumAttributes, newAttribute])
+        console.log(signumAttributes);
+        setAttributeType("");
+        setAttributeName("");
+        updateNum(numOfAttributes + 1)
+      }
+    }
+  }
+  const returnType = (attribute) => {
+    let attributeArray = attribute.split(":");
+    return attributeArray[0];
+  }
+  const returnName = (attribute) => {
+    let attributeArray = attribute.split(":");
+    return attributeArray[1];
+  }
+  const removeAttribute = (deleteIndex) => {
+    setSignumAttributes(signumAttributes.filter((oldAttribute, index) => index !== deleteIndex))
+    updateNum(numOfAttributes - 1)
+    console.log(signumAttributes);
+  }
   const isDisplay = (component) =>
     standardType?.components?.includes(component);
+  const setAttributeTypeFunc = (value) => {
+    setAttributeType(value);
+  }
+  const setAttributeNameFunc = (value) => {
+    setAttributeName(value);
+  }
+  const listingModeChange = useMemo(() => {
+  if (listingMode === "NotForSale"){
+    setPrice(0);
+    setOfferPrice(0);
+    setAuctionEnd("");
+    console.log(price)
+    console.log(offerPrice)
+    console.log(auctionEnd)
+  }
+  if (listingMode === "FixedPrice"){
+    setOfferPrice(0);
+    setAuctionEnd("");
+    console.log(price)
+    console.log(offerPrice)
+    console.log(auctionEnd)
+  }
+  if (listingMode === "NotForSale"){
+    setPrice(0);
+    setOfferPrice(0);
+    setAuctionEnd("");
+    console.log(price)
+    console.log(offerPrice)
+    console.log(auctionEnd)
+  }
+  }, [listingMode]);
 
   return (
     <Flex
@@ -83,7 +190,7 @@ const Configuration = () => {
         <span style={{ color: "rgb(52,140,212)" }}>{standardType?.name}</span>
       </Text>
       <Text fontSize="9pt" mb="1em">
-        Fields with * are required. Otherwise, leave it empty if you want.
+        Fields with * are required. Otherwise, leave it empty if you want.<div><br /></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Text>
       {isDisplay("name") && (
         <HStack w="full">
@@ -95,7 +202,7 @@ const Configuration = () => {
               onChange={(e) => setName(e.target.value)}
             />
             <FormHelperText fontSize="9pt">
-              Name of your NFT Collection.
+              Name of NFT Collection.
             </FormHelperText>
           </FormControl>
           {isDisplay("size") && (
@@ -113,7 +220,7 @@ const Configuration = () => {
                 </NumberInputStepper>
               </NumberInput>
               <FormHelperText fontSize="9pt">
-                Size of your NFT Collection.
+                Size of NFT Collection.
               </FormHelperText>
             </FormControl>
           )}
@@ -155,6 +262,7 @@ const Configuration = () => {
           )}
         </HStack>
       )}
+
       {isDisplay("description") && (
         <FormControl mt="1em">
           <Textarea
@@ -170,6 +278,62 @@ const Configuration = () => {
           </FormHelperText>
         </FormControl>
       )}
+
+      {isDisplay("royalties") && (
+        <HStack alignItems="flex-start" mt="1em" w="full">
+          <FormControl flex="1em">
+            <NumberInput
+              min={0}
+              max={25}
+              value={royalties}
+              onChange={setRoyalties}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <FormHelperText fontSize="9pt">
+              The royalties in percent you earn when sold
+            </FormHelperText>
+          </FormControl>
+
+        </HStack>
+      )}
+
+      {isDisplay("edition") && (
+        <HStack w="full">
+          <FormControl flex="1">
+            <Input
+              id="collectionEdition"
+              placeholder="Edition"
+              value={edition}
+              onChange={(e) => setEdition(e.target.value)}
+            />
+            <FormHelperText fontSize="9pt">
+              A alphanumeric Edition.
+            </FormHelperText>
+          </FormControl>
+        </HStack>
+      )}
+
+      {isDisplay("identifier") && (
+        <HStack w="full">
+          <FormControl flex="1">
+            <Input
+              type="number"
+              id="collectionIdentifier"
+              placeholder="#Identifier"
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+            />
+            <FormHelperText fontSize="9pt">
+              Some numeric identifier, usually an incremental value
+            </FormHelperText>
+          </FormControl>
+        </HStack>
+      )}
       {isDisplay("image") && (
         <FormControl mt="1em">
           <Input
@@ -180,10 +344,12 @@ const Configuration = () => {
             onChange={(e) => setStorageURL(e.target.value)}
           />
           <FormHelperText fontSize="9pt">
-            This is the External URL to the image of the item. Can be just about
+            {/* This is the External URL to the image of the item. Can be just about
             any type of image, and can be IPFS URLs or paths. This could be left
             blank because most contract deployers update the image key
-            automatically when uploading your metadata to ipfs.
+            automatically when uploading your metadata to ipfs. */}
+            The absolute file path to the first image. Example: /home/ohager/Desktop/generated-cute-monstas/4.png
+            (Posix and Windows paths are possible)
           </FormHelperText>
         </FormControl>
       )}
@@ -253,12 +419,40 @@ const Configuration = () => {
           </FormHelperText>
         </FormControl>
       )}
+      {isDisplay("officialWeb") && (
+        <FormControl mt="1em">
+          <Input
+            id="collectionYoutubeUrl"
+            placeholder="Official Website"
+            w="full"
+            value={officialWeb}
+            onChange={(e) => setOfficialWeb(e.target.value)}
+          />
+          <FormHelperText fontSize="9pt">
+            Add links to your official websites.
+          </FormHelperText>
+        </FormControl>
+      )}
+      {isDisplay("socialPlatform") && (
+        <FormControl mt="1em">
+          <Input
+            id="collectionYoutubeUrl"
+            placeholder="Social Platform"
+            w="full"
+            value={socialPlatform}
+            onChange={(e) => setSocialPlatform(e.target.value)}
+          />
+          <FormHelperText fontSize="9pt">
+            Add links to your social platforms.
+          </FormHelperText>
+        </FormControl>
+      )}
       {isDisplay("compiler") && (
         <FormControl mt="1em">
           <Input
             id="collectionCompiler"
             w="full"
-            value="https://nfthost.app/"
+            value="https://ihost.app/"
             readOnly
             disabled
           />
@@ -267,6 +461,154 @@ const Configuration = () => {
           </FormHelperText>
         </FormControl>
       )}
+
+      {
+        isDisplay("signumAttributes") && signumAttributes && signumAttributes.map((attribute, index) => (
+          <HStack w="full" mt="1em" key={attribute+index}>
+            <FormControl flex="1"  >
+              <Input
+                id={"showAttributeType" + index}
+                value={returnType(attribute)}
+                readOnly
+                disabled
+              />
+            </FormControl>
+            <FormControl flex="1"  >
+              <Input
+                id={"showAttributeName" + index}
+                value={returnName(attribute)}
+                readOnly
+                disabled
+              />
+            </FormControl>
+            <FormControl flex="1"  >
+              <IconButton
+                id={"Delete" + index}
+                colorScheme='blue'
+                aria-label='Search database'
+                icon={<CloseIcon />}
+                onClick={(e) => removeAttribute(index)}
+              />
+            </FormControl>
+
+          </HStack>
+        ))
+      }
+
+      {isDisplay("signumAttributes") && (numOfAttributes < 8) && (
+        <>
+          <HStack w="full" mt="1em">
+            <FormControl flex="1">
+              <Input
+                id="collectionAttributeType"
+                placeholder="Example: Color"
+                value={attributeType}
+                onChange={(e) => setAttributeTypeFunc(e.target.value)}
+              />
+              <FormHelperText fontSize="9pt">
+                Type of attribute
+              </FormHelperText>
+            </FormControl>
+            <FormControl flex="1">
+              <Input
+                id="collectionAttributeName"
+                placeholder="Example: Green"
+                value={attributeName}
+                onChange={(e) => setAttributeNameFunc(e.target.value)}
+              />
+              <FormHelperText fontSize="9pt">
+                Name of attribute
+              </FormHelperText>
+            </FormControl>
+            <FormControl flex="1">
+              <IconButton
+                colorScheme='blue'
+                aria-label='Search database'
+                icon={<AddIcon />}
+                onClick={(e) => addAttribute(attributeType, attributeName)}
+              />
+              <FormHelperText fontSize="9pt">
+                &nbsp;
+              </FormHelperText>
+            </FormControl>
+
+          </HStack>
+          <HStack w="full" >
+            <FormControl >
+              <FormHelperText fontSize="9pt">
+                The attribute/trait of the NFTs. This value is used to calculate rarities within a collection. It is a key-value tuple and each NFT can have up to eight attributes
+              </FormHelperText>
+            </FormControl>
+          </HStack>
+        </>
+      )}
+
+      {isDisplay("listingMode") && (
+        <HStack w="full" mt="1em">
+          <FormControl flex="1">
+            <RadioGroup onChange={setlistingMode} value={listingMode}>
+              <Stack direction='row'>
+                <Radio value='NotForSale'>Not For Sale</Radio>
+                <Radio value='FixedPrice'>For Sale</Radio>
+                <Radio value='OnAuction'>For Auction</Radio>
+              </Stack>
+            </RadioGroup>
+            <FormHelperText fontSize="9pt">
+              The initial listing mode, i.e For Sale, For Auction, or Not For Sale
+            </FormHelperText>
+          </FormControl>
+        </HStack>
+      )}
+
+      {isDisplay("listingMode") && ((listingMode === "FixedPrice") || (listingMode === "OnAuction")) && (
+        <FormControl mt="1em">
+          <Input
+          type="number"
+            id="nftPrice"
+            placeholder="Price"
+            w="full"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          <FormHelperText fontSize="9pt">
+            The initial price n SIGNA or &quot;Buy Now&quot; price for auctions in SIGNA.
+          </FormHelperText>
+        </FormControl>
+      )}
+      {isDisplay("listingMode") && (listingMode === "OnAuction") && (
+        <>
+          <FormControl mt="1em">
+            <Input
+            type="number"
+              id="nftOfferPrice"
+              placeholder="Offer Price"
+              w="full"
+              value={offerPrice}
+              onChange={(e) => setOfferPrice(e.target.value)}
+            />
+            <FormHelperText fontSize="9pt">
+              The initial price n SIGNA for auctions.
+            </FormHelperText>
+          </FormControl>
+
+          <FormControl mt="1em">
+            <Input
+              id="auctionEnd"
+              w="full"
+              placeholder="Select Date and Time"
+              type="datetime-local"
+              value={auctionEnd}
+              onChange={(e) => setAuctionEnd(e.target.value)} //convert in use
+            />
+            <FormHelperText fontSize="9pt">
+              Auction End: Date and Time when auction ends. The date will be converted in Blocktime and might result in estimated targed time. This way minute precision is not guaranteed.
+            </FormHelperText>
+          </FormControl>
+
+
+        </>
+      )
+      }
       {isDisplay("creators") && (
         <Box mt="1em" w="full">
           <HStack w="full" alignItems="flex-start">

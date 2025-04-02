@@ -8,7 +8,7 @@ import MainFooter from "@/components/MainFooter";
 const NotFound = () => {
   return (
     <main style={{ minHeight: "100vh" }}>
-      <Meta title="404 | NFT Host" />
+      <Meta title="404 | IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
       <Flex flexDir="column" minH="100vh">
         <MainNavbar isColorMode />
         <Flex

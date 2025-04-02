@@ -20,20 +20,32 @@ import Templates from "@/components/services/Website/Templates";
 import SelectedWebsite from "@/components/services/Website/SelectedWebsite";
 import Analytics from "@/components/services/Website/Analytics";
 import ConnectWalletTag from "@/components/ConnectWalletTag";
-import Partners from "@/components/Partners";
+import RelatedLink from "@/components/RelatedLink";
 import Payments from "@/components/Payments";
-import Team from "@/components/Team";
 import Utilities from "@/components/services/Utilities";
 import MetadataEditor from "@/components/services/Generator/MetadataEditor";
 import ProfileModal from "@/components/ProfileModal";
 import AreYouSureModal from "@/components/AreYouSureModal";
 import { webColor } from "@/theme/index";
-
+//not for original nfthost 
+import BusinessCard from "@/components/services/BusinessCard";
+import MassUploader from "@/components/services/MassUploader";
+import Credits from "@/components/Credits";
+import SmartC from "@/components/services/SmartC";
+import Certification from "@/components/services/Certification";
+import Alias from "@/components/services/Alias";
+import SCSample from "@/components/services/SmartC/SCSample";
+import CodeEditor from "@/components/services/CodeEditor"
+import ProjectTemplate from "@/components/services/CodeEditor/ProjectTemplate";
 const Page = () => {
   const router = useRouter();
   const { isLoggedIn } = useUser();
   const app = router.query.app || [];
+
   const currentApp = app[app.length === 2 ? 1 : 0]?.toLowerCase();
+  console.log(router)
+  console.log(app);
+  console.log(currentApp);
   useReAuthenticate();
 
   const bgColor = useColorModeValue(
@@ -45,7 +57,7 @@ const Page = () => {
 
   return (
     <main style={{ background: bgColor, minHeight: "100vh" }}>
-      <Meta title="Dashboard | NFT Host" />
+      <Meta title="Dashboard | IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
       <Layout currentApp={currentApp}>
         {currentApp === "team" || currentApp === "partners" || isLoggedIn ? (
           <>
@@ -73,12 +85,20 @@ const Page = () => {
                 generator: <Generator />,
                 metadata: <MetadataEditor />,
                 utilities: <Utilities />,
+                businesscard: <BusinessCard />,
+                massuploader: <MassUploader />,
                 website: <Website />,
                 templates: <Templates />,
                 analytics: <Analytics />,
                 payments: <Payments />,
-                partners: <Partners />,
-                team: <Team />,
+                relatedlink: <RelatedLink />,
+                credits: <Credits />,
+                smartc: <SmartC/>,
+                certification: <Certification />,
+                alias: <Alias/>,
+                scsample: <SCSample/>,
+                codeeditor: <CodeEditor/>,
+                projecttemplate: <ProjectTemplate/>,
               }[currentApp]}
           </>
         ) : (

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineArrowLeft } from "@react-icons/all-files/ai/AiOutlineArrowLeft";
 import { AiOutlineWarning } from "@react-icons/all-files/ai/AiOutlineWarning";
-// import { FaWallet } from '@react-icons/all-files/fa/FaWallet'
+import { FaWallet } from '@react-icons/all-files/fa/FaWallet'
 import { FaEthereum } from "@react-icons/all-files/fa/FaEthereum";
 import { useReAuthenticate } from "@/hooks/useReAuthenticate";
 import { useCore } from "@/providers/CoreProvider";
@@ -25,11 +25,11 @@ import { useUser } from "@/providers/UserProvider";
 import { usePaymentControls } from "@/hooks/usePaymentControls";
 import Meta from "@/components/Meta";
 import Question from "@/components/Question";
-// import CardInput from '@/components/CardInput'
+import CardInput from '@/components/CardInput'
 import KeepWorkingModal from "@/components/KeepWorkingModal";
-// import { loadStripe } from '@stripe/stripe-js'
-// import { Elements } from '@stripe/react-stripe-js'
-// import config from '@/config/index'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import config from '@/config/index'
 import { getCurrencyFromWallet, getPriceFromService } from "@/utils/tools";
 
 const month = [
@@ -46,7 +46,7 @@ const month = [
   "Nov",
   "Dec",
 ];
-// const stripePromise = loadStripe(config.stripe.publicKey);
+const stripePromise = loadStripe(config.stripe.publicKey);
 
 const Payment = () => {
   const {
@@ -89,7 +89,7 @@ const Payment = () => {
 
   return (
     <main>
-      <Meta title="Payment | NFT Host" />
+      <Meta title="Payment | IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
       <KeepWorkingModal />
       <Flex minH="100vh" justifyContent="center" alignItems="center" py="4em">
         {paymentData ? (
@@ -104,7 +104,7 @@ const Payment = () => {
                     fontFamily="inter"
                     fontSize="20pt"
                   >
-                    NFT Host
+                    iHost (beta)
                   </Heading>
                 </HStack>
               </NextLink>
@@ -189,7 +189,7 @@ const Payment = () => {
                     </Text>
                   </Flex>
                 </Button>
-                {/* <Button 
+                <Button 
                                     h='60px' 
                                     minW='120px' 
                                     justifyContent='flex-start' 
@@ -203,9 +203,9 @@ const Payment = () => {
                                             Bank Card
                                         </Text>
                                     </Flex>
-                                </Button> */}
+                                </Button>
               </Wrap>
-              <Box mt="1em">
+              {/* <Box mt="1em">
                 <Text fontSize="10pt">Referral Code</Text>
                 <Flex gap=".5em" mt=".25em">
                   <Question
@@ -231,7 +231,7 @@ const Payment = () => {
                     Apply
                   </Button>
                 </Flex>
-              </Box>
+              </Box> */}
               {isApplied && (
                 <Flex justifyContent="center" mt="1em">
                   <Text fontSize="10pt" color="purple.500">
@@ -265,7 +265,7 @@ const Payment = () => {
                     )}
                   </Button>
                 )}
-                {/* {paymentMethodStep === 'bankcard' && (
+                {paymentMethodStep === 'bankcard' && (
                                     <VStack spacing='1em'>
                                         <VStack alignItems='flex-start' w='full'>
                                             <Text fontSize='10pt' mb='.25em'>
@@ -289,7 +289,7 @@ const Payment = () => {
                                             </Elements>
                                         </VStack>
                                     </VStack>
-                                )} */}
+                                )}
               </Box>
             </Flex>
             <HStack justifyContent="center" mt="2em" spacing="1em" opacity=".3">
