@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-    # IHOST: Your Gateway to Building AI-Powered Green Web3 dApps on SIGNUM.Network
+    # IHOST: AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups!
 </p>
 
 <p>
