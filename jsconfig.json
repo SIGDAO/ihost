@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"],
@@ -8,7 +13,10 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/theme/*": ["src/theme/*"]
+      "@/theme/*": ["src/theme/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/public/*": ["public/*"],
+      "@/app/*": ["app/*"],
     }
   }
 }

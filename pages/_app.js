@@ -45,7 +45,7 @@ const MyApp = ({ Component, pageProps }) => {
           <WebsiteProvider>
           {isClientSide()
                   ? (<>
-                          <AppInitializer/>
+                          {/* <AppInitializer/> */}
                           <Component {...pageProps} />
                       </>
                   )

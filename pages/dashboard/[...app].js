@@ -37,15 +37,16 @@ import Alias from "@/components/services/Alias";
 import SCSample from "@/components/services/SmartC/SCSample";
 import CodeEditor from "@/components/services/CodeEditor"
 import ProjectTemplate from "@/components/services/CodeEditor/ProjectTemplate";
+import LandingPage from "@/components/services/LandingPage";
 const Page = () => {
   const router = useRouter();
   const { isLoggedIn } = useUser();
   const app = router.query.app || [];
-
   const currentApp = app[app.length === 2 ? 1 : 0]?.toLowerCase();
   console.log(router)
-  console.log(app);
-  console.log(currentApp);
+  console.log("app",app);
+  console.log("currentApp", currentApp);
+  // login here
   useReAuthenticate();
 
   const bgColor = useColorModeValue(
@@ -57,7 +58,7 @@ const Page = () => {
 
   return (
     <main style={{ background: bgColor, minHeight: "100vh" }}>
-      <Meta title="Dashboard | IHOST // AI-Agent Powered green SIGNUM dApp Builder, Web3 Store & Community Power-Ups! //" />
+      <Meta title="Dashboard | iHost" />
       <Layout currentApp={currentApp}>
         {currentApp === "team" || currentApp === "partners" || isLoggedIn ? (
           <>
@@ -99,6 +100,7 @@ const Page = () => {
                 scsample: <SCSample/>,
                 codeeditor: <CodeEditor/>,
                 projecttemplate: <ProjectTemplate/>,
+                landingpage: <LandingPage/>,
               }[currentApp]}
           </>
         ) : (

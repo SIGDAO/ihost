@@ -4,11 +4,13 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 module.exports = withBundleAnalyzer({
-  compiler: {
-    removeConsole: true,
-  },
+  // for production to disable console.log
+  // compiler: {
+  //   removeConsole: true,
+  // },
   reactStrictMode: false,
-  swcMinify: false,
+  serverExternalPackages: ["@codesandbox/sdk"],
+  // swcMinify: false,
   images: {
     unoptimized: true,
   },
@@ -20,6 +22,28 @@ module.exports = withBundleAnalyzer({
     CREATE_WEBSITE_TOKEN: process.env.CREATE_WEBSITE_TOKEN,
     SOLANA_RPC_URL: process.env.SOLANA_RPC_URL,
     INFURA_ID: process.env.INFURA_ID,
+  },
+  // webpack: (config, options, { isServer }) => {
+    webpack: (config, options) => {
+    if (options.nextRuntime === "edge") {
+      if (!config.resolve.conditionNames) {
+        config.resolve.conditionNames = ["require", "node"];
+      }
+      if (!config.resolve.conditionNames.includes("worker")) {
+        config.resolve.conditionNames.push("worker");
+      }
+    }
+    // if (!isServer) {
+    //   config.resolve.fallback = {
+    //     stream: require.resolve('stream-browserify'),
+    //     crypto: require.resolve('crypto-browserify'),
+    //     http: require.resolve('stream-http'),
+    //     https: require.resolve('https-browserify'),
+    //     os: require.resolve('os-browserify'),
+    //     path: require.resolve('path-browserify')
+    //   };
+    // }
+    return config;
   },
   async headers() {
     return [
